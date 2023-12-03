@@ -1,0 +1,77 @@
+@font-face {
+  font-family: superPlants;
+  src: url(../assets/fonts/SuperPlants.ttf);
+}
+#header {
+  background-color: #FBF8F0;
+  border-bottom: 1px #D51E01 solid;
+  padding: 4px;
+}
+
+#logo {
+  font-family: superPlants, sans-serif;
+  font-size: 25px;
+  text-decoration: none;
+  color: #D51E01;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+#menu i {
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10;
+  display: block;
+  position: fixed;
+  right: 15px;
+  top: 8px;
+}
+
+#navbar {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: -20px;
+  right: -261px;
+  width: 260px;
+  height: 100vh;
+  background-color: #FBF8F0;
+  border-left: 1px #D51E01 solid;
+  padding: 120px 0 0 0;
+  transition: 0.3s ease-in;
+}
+#navbar li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+#navbar li a {
+  text-decoration: none;
+  transition: 0.1s ease-in;
+  color: black;
+}
+
+#navbar.open {
+  right: 0;
+}
+
+#navbar li a:hover {
+  border-bottom: black 1px solid;
+}
+
+@media screen and (min-width: 768px) {
+  #logo {
+    justify-content: center;
+    font-size: 50px;
+  }
+  #navbar {
+    font-size: 22px;
+    width: 400px;
+    right: -401px;
+  }
+  #menu i {
+    font-size: 50px;
+  }
+}/*# sourceMappingURL=Navbar.css.map */
