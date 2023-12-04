@@ -1,0 +1,34 @@
+@font-face {
+  font-family: superPlants;
+  src: url(../assets/fonts/SuperPlants.ttf);
+}
+.servicescard {
+  width: 500px;
+  margin: 30px 80px;
+  display: flex;
+  flex-direction: column;
+}
+.servicescard #servicesheader {
+  display: flex;
+}
+.servicescard #servicesheader #servicename {
+  margin: auto;
+  flex-grow: 1;
+  font-family: "Titan One", sans-serif;
+  font-size: 2.5rem;
+  text-align: left;
+}
+.servicescard #servicesheader #serviceprice {
+  margin: auto;
+  flex-grow: 1;
+  font-family: "Titan One", sans-serif;
+  font-size: 1.5rem;
+  text-align: right;
+}
+.servicescard #servicedescription {
+  background-color: #E8EADD;
+  border: 5px solid #ABAF95;
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 5vh;
+}/*# sourceMappingURL=ServicesCard.css.map */
