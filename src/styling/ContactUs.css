@@ -1,0 +1,94 @@
+@font-face {
+  font-family: superPlants;
+  src: url(../assets/fonts/SuperPlants.ttf);
+}
+#contactPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #FBF8F0;
+}
+
+.imageContainer {
+  height: 35vh;
+}
+.imageContainer img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+}
+
+.whiteContainer {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+.whiteContainer .heading {
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+  margin: 0;
+}
+.whiteContainer h5 {
+  font-weight: 900;
+  margin: 8px;
+}
+.whiteContainer .greenContainer {
+  background-color: #E8EADD;
+  border: 1px solid #ABAF95;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 12px;
+  width: 250px;
+}
+.whiteContainer .greenContainer #blackLogo {
+  font-size: 26px;
+  font-family: superPlants, sans-serif;
+  font-weight: lighter;
+  margin: 5px;
+}
+.whiteContainer .greenContainer table {
+  text-align: left;
+}
+.whiteContainer .greenContainer table td {
+  padding: 5px 10px;
+}
+.whiteContainer #buttonContainer {
+  display: flex;
+  padding: 30px;
+}
+.whiteContainer #buttonContainer .bookNowButton {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 769px) {
+  #contactPageContainer {
+    flex-direction: row;
+  }
+  #contactPageContainer .imageContainer {
+    width: 50vw;
+    height: 85vh;
+  }
+  #contactPageContainer .whiteContainer {
+    width: 50vw;
+    justify-content: center;
+  }
+  #contactPageContainer .whiteContainer .heading {
+    font-size: 40px;
+  }
+  #contactPageContainer .greenContainer {
+    min-width: 280px;
+  }
+  #contactPageContainer .greenContainer table td {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}/*# sourceMappingURL=ContactUs.css.map */
