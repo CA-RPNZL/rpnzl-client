@@ -1,10 +1,14 @@
-@font-face {
-    font-family: superPlants;
-    src: url(../assets/fonts/SuperPlants.ttf);
-}
-
+// Colour scheme
 $red: #D51E01;
-$offwhite: #FBF8F0;
-$purple: #C1B8F1;
+$light-red: #F2B8A9;
 $pale-pink: #FDEDEB;
+$dark-purple: #9487DA;
+$purple: #C1B8F1;
+$dark-green: #ABAF95;
+$light-green: #E8EADD;
+$offwhite: #FBF8F0;
+
+
+// Screen breakpoints
 $tablet: 768px;
+$mobile: 480px;
