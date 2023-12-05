@@ -1,13 +1,13 @@
 import "../styling/ServicesCard.css";
 
-function ServicesCard() {
+function ServicesCard(props) {
     return (
         <div className="servicescard">
             <div id="servicesheader">
-                <div id="servicename">Consultation</div>
-                <div id="serviceprice">$280 - $530</div>
+                <div id="servicename">{props.name}</div>
+                <div id="serviceprice">{props.price}</div>
             </div>
-            <div id="servicedescription">Approx time: 30 min</div>
+            <div id="servicedescription">{props.description}</div>
         </div>
     )
 }

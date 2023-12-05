@@ -21,4 +21,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.bookNowButton {
+  position: relative;
+  top: auto;
+  left: auto;
 }/*# sourceMappingURL=Services.css.map */
