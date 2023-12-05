@@ -13,15 +13,15 @@ const Footer = () => (
                 </a>
 
             </div>
-            <div class="social-media">
+            <div className="social-media">
                 <a href="https://www.pinterest.com" target="_blank">
-                    <i class="fa-brands fa-pinterest"></i>
+                    <i className="fa-brands fa-pinterest"></i>
                 </a>
                 <a href="https://www.facebook.com" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
+                    <i className="fa-brands fa-facebook"></i>
                 </a>
                 <a href="https://www.instagram.com" target="_blank">
-                    <i class="fa-brands fa-instagram"></i>
+                    <i className="fa-brands fa-instagram"></i>
                 </a>
             </div>
         </footer>
