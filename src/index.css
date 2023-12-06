@@ -1,6 +1,13 @@
 /* Import Google fonts: Montserrat, Titan One */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@100&family=Titan+One&display=swap');
 
+/* Import font: Super Plants */
+@font-face {
+  font-family: superPlants;
+  src: url(./assets/fonts/SuperPlants.ttf);
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,4 +21,38 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  /* 48px / 3rem */
+  font-size: 3rem;
+}
+
+h2 {
+  /* 40px / 2.5rem */
+  font-size: 2.5rem;
+}
+
+h3 {
+  /* 32px / 2rem */
+  font-size: 2rem;
+}
+
+h4 {
+  /* 24px / 1.5rem */
+  font-size: 1.5rem;
+}
+
+h5 {
+  /* 24px / 1.5rem */
+  font-size: 1.5rem;
+}
+
+h6 {
+  /* 16px / 1rem */
+  font-size: 1rem;
 }

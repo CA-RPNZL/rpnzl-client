@@ -5,7 +5,7 @@ const Navbar = () => {
     const [toggle, setToggle]= useState(false);
     
     return (
-        <div>
+        <div id="navHeader">
             <header id="header">
                 <div className="container">
                     <a href="#" id="logo">
