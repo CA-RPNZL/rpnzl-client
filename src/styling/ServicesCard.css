@@ -1,7 +1,3 @@
-@font-face {
-  font-family: superPlants;
-  src: url(../assets/fonts/SuperPlants.ttf);
-}
 .servicescard {
   width: 500px;
   margin: 30px 80px;
@@ -12,10 +8,10 @@
   display: flex;
 }
 .servicescard #servicesheader #servicename {
-  margin: auto;
+  margin: 5px auto;
   flex-grow: 1;
   font-family: "Titan One", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: left;
 }
 .servicescard #servicesheader #serviceprice {
@@ -33,8 +29,19 @@
   min-height: 5vh;
 }
 
-.bookNowButton {
-  position: relative;
-  top: auto;
-  left: auto;
+@media (min-width: 768px) and (max-width: 1280px) {
+  .servicescard {
+    margin: 0px 0px 50px;
+  }
+}
+@media (max-width: 480px) {
+  .servicescard {
+    margin: 0px 0px 30px;
+  }
+  .servicescard #servicesheader #servicename {
+    font-size: 1.5rem;
+  }
+  .servicescard #servicesheader #serviceprice {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=ServicesCard.css.map */

@@ -7,7 +7,10 @@ function ServicesCard(props) {
                 <div id="servicename">{props.name}</div>
                 <div id="serviceprice">{props.price}</div>
             </div>
-            <div id="servicedescription">{props.description}</div>
+            <div id="servicedescription">
+                <p>Approx time: {props.duration} mins</p>
+                <p>{props.description}</p>
+            </div>
         </div>
     )
 }

@@ -1,17 +1,12 @@
-@font-face {
-  font-family: superPlants;
-  src: url(../assets/fonts/SuperPlants.ttf);
-}
 #services {
+  padding: 20px 0px;
   background-color: #FBF8F0;
-  width: 100vw;
-  text-align: center;
+  flex-grow: 2;
   display: flex;
   flex-direction: column;
-  flex-grow: 2;
+  text-align: center;
 }
 #services h1 {
-  font-size: 4rem;
   font-family: "Titan One", sans-serif;
   text-decoration: underline;
 }
@@ -22,9 +17,12 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+#services #bookNowBtnContainer {
+  margin: 50px auto;
+}
 
-.bookNowButton {
-  position: relative;
-  top: auto;
-  left: auto;
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
 }/*# sourceMappingURL=Services.css.map */

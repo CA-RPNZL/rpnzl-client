@@ -34,12 +34,13 @@ function Services() {
                     key={service._id}
                     name={service.name}
                     price={service.price}
+                    duration={service.duration}
                     description={service.description}
                  />
             ))}
             </div>
             <BookNowButton/>
-            <p>Please note: Final price will be given on day of appointment after consultation.</p>
+            <p id="disclaimer">Please note: Final price will be given on day of appointment after consultation.</p>
         </div>
     )
 };
