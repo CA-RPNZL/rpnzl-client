@@ -1,0 +1,69 @@
+@font-face {
+  font-family: superPlants;
+  src: url(../assets/fonts/SuperPlants.ttf);
+}
+#aboutHeading h1 {
+  font-size: 50px;
+  margin-left: 50px;
+  margin-top: 100px;
+  font-family: "Montserrat", sans-serif;
+}
+#aboutHeading h1::after {
+  content: "RPNZL";
+  font-family: "superPlants", sans-serif;
+  width: 1em;
+}
+
+.aboutContainer {
+  float: left;
+  clear: left;
+  width: 50%;
+  margin-left: 100px;
+  min-height: 280px;
+  background-color: #E8EADD;
+  border: 4px #ABAF95 solid;
+  border-radius: 20px;
+}
+.aboutContainer #aboutPara {
+  padding: 18px;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.aboutContainer .bookNowButton {
+  position: relative;
+  top: auto;
+  left: 75%;
+  transform: translateX(-50%);
+}
+
+#aboutTeamImage {
+  position: relative;
+  margin-top: -25px;
+  display: block;
+}
+#aboutTeamImage .image-container {
+  padding-right: 50px;
+  overflow: hidden;
+}
+#aboutTeamImage #teamImage {
+  max-width: 500px;
+  height: 350px;
+  border-radius: 15px;
+  display: block;
+  margin-left: auto;
+}
+
+#meetTeamText {
+  background-color: #FDEDEB;
+  border-top: 2px #D51E01 solid;
+  border-bottom: 2px #D51E01 solid;
+  margin-top: 60px;
+  text-align: center;
+}
+#meetTeamText p {
+  font-size: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+}/*# sourceMappingURL=Aboutpage.css.map */

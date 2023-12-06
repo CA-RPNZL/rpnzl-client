@@ -1,0 +1,25 @@
+@font-face {
+  font-family: superPlants;
+  src: url(../assets/fonts/SuperPlants.ttf);
+}
+.hairdresserContainer {
+  float: right;
+  clear: right;
+  width: 45%;
+  margin-right: 20px;
+}
+.hairdresserContainer .hairdresserName {
+  font-family: "Titan One", sans-serif;
+  font-size: 20px;
+}
+.hairdresserContainer .hairdresserBio,
+.hairdresserContainer .hairdresserService {
+  background-color: #E8EADD;
+  border: 2px #ABAF95 solid;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 15px;
+}/*# sourceMappingURL=HairdresserInfo.css.map */
