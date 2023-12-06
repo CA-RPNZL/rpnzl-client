@@ -8,7 +8,7 @@
 }
 
 .imageContainer {
-    height: 35vh;
+    height: 40vh;
     img {
         height: 100%;
         width: 100%;
@@ -70,15 +70,16 @@
 
 }
 
-@media screen and (min-width: calc($tablet + 1px)) {
+@media screen and (min-width: $laptop) {
     #contactPageContainer {
         flex-direction: row;
         .imageContainer {
             width: 50vw;
-            height: 85vh;
+            height: 90vh;
         }
         .whiteContainer {
             width: 50vw;
+            min-height: 90vh;
             justify-content: center;
             .heading {
                 font-size: 40px;

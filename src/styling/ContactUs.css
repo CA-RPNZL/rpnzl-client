@@ -6,7 +6,7 @@
 }
 
 .imageContainer {
-  height: 35vh;
+  height: 40vh;
 }
 .imageContainer img {
   height: 100%;
@@ -66,16 +66,17 @@
   margin-top: 20px;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1024px) {
   #contactPageContainer {
     flex-direction: row;
   }
   #contactPageContainer .imageContainer {
     width: 50vw;
-    height: 85vh;
+    height: 90vh;
   }
   #contactPageContainer .whiteContainer {
     width: 50vw;
+    min-height: 90vh;
     justify-content: center;
   }
   #contactPageContainer .whiteContainer .heading {
