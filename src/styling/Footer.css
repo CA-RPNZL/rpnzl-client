@@ -1,7 +1,7 @@
 #footer {
   background-color: #FDEDEB;
   border-top: 1px #D51E01 solid;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
   padding: 10px 30px;
   display: flex;

@@ -1,29 +1,36 @@
 #contactPageContainer {
+  flex-grow: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #FBF8F0;
 }
 
 .imageContainer {
+  margin-bottom: 20px;
   height: 40vh;
+  overflow: hidden;
+  position: relative;
 }
 .imageContainer img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .whiteContainer {
+  flex-grow: 2;
   text-align: center;
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
+  height: auto;
 }
 .whiteContainer .heading {
   font-family: "Titan One", sans-serif;
@@ -66,17 +73,18 @@
   margin-top: 20px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1139px) {
   #contactPageContainer {
     flex-direction: row;
   }
   #contactPageContainer .imageContainer {
-    width: 50vw;
-    height: 90vh;
+    width: 50%;
+    height: auto;
+    margin-bottom: 0px;
   }
   #contactPageContainer .whiteContainer {
-    width: 50vw;
-    min-height: 90vh;
+    width: 50%;
+    height: auto;
     justify-content: center;
   }
   #contactPageContainer .whiteContainer .heading {
