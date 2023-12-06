@@ -28,19 +28,20 @@
     .heading {
         font-family: 'Titan One', sans-serif;
         font-weight:lighter;
+        font-size: 32px;
         margin: 0;
     }
-    h5 {
+    h6 {
         font-weight: 900;
         margin: 8px;
     }
     .greenContainer {
         background-color: $light-green;
-        border: 1px solid $medium-green;
+        border: 2px solid $dark-green;
         font-size: 12px;
         border-radius: 10px;
         padding: 12px;
-        width: 250px;
+        width: 240px;
         #blackLogo {
             font-size: 26px;
             font-family: superPlants, sans-serif;

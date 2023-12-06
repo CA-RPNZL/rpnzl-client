@@ -9,8 +9,8 @@ function ContactUs() {
                 <img src={buildingPhoto} />
             </div>
             <div className="whiteContainer">
-                <h1 className="heading">Get in touch</h1>
-                <h5>We would love to hear from you</h5>
+                <h3 className="heading">Get in touch</h3>
+                <h6 className="subheading">We would love to hear from you</h6>
                 <div className="greenContainer">
                     <h5 id="blackLogo">RPNZL</h5>
                     <table>
