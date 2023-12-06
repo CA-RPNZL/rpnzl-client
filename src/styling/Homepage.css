@@ -1,25 +1,24 @@
-@font-face {
-  font-family: superPlants;
-  src: url(../assets/fonts/SuperPlants.ttf);
-}
-#heroImage {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+#homePage {
+  background-color: #FBF8F0;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 #heroImageDiv {
+  background-image: url(../assets/photos/hero_image.jpg);
+  background-size: cover;
+  background-position: bottom center;
   width: 100vw;
-  height: 70vh;
-  position: relative;
+  flex-grow: 2;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 10vh;
 }
 
-.bookNowButton {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+@media screen and (max-width: 480px) {
+  #heroImageDiv {
+    padding-bottom: 5vh;
+  }
 }/*# sourceMappingURL=Homepage.css.map */
