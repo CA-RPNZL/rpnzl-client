@@ -1,0 +1,67 @@
+@import './variables';
+
+
+#booking {
+    background-color: $offwhite;
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+
+
+    #bookingModule {
+        margin: 0 auto;
+        padding: 20px;
+        min-width: 500px;
+        max-width: 80vw;
+        box-sizing: border-box;
+        background-color: $light-green;
+        border: 1px solid $dark-green;
+        border-radius: 5px;
+
+        #bookingHeading {
+            margin: 0 auto 20px;
+            width: 80%;
+            border: 1px solid $dark-green;
+            border-radius: 5px;
+            background-color: white;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        #bookingMenu {
+            text-align: left;
+
+            .bookingForm {
+                display: grid;
+                margin-bottom: 15px;
+                grid-template-columns: 1fr 4fr 3fr;
+                row-gap: 5px;
+
+                .service-name {
+                    font-weight: bold;
+                }
+
+                .service-duration {
+                    grid-column: 2 / 4;
+                    font-style: italic;
+                    font-size: 0.8rem;
+                }
+
+            }
+        }
+
+        #bookingBtns {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    #booking {
+        #bookingModule {
+            min-width: 300px;
+            max-width: 80vw;
+        }
+    }
+}
