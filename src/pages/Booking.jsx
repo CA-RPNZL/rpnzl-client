@@ -3,6 +3,7 @@ import "../styling/Booking.css";
 import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
 import SelectHairstylist from "../components/SelectHairstylist";
+import PreConfirmation from "../components/PreConfirmation";
 
 
 function Booking() {
@@ -16,6 +17,8 @@ function Booking() {
                 return <SelectService />;
             case 1:
                 return <SelectHairstylist />;
+            case 3:
+                return <PreConfirmation />;
             default:
                 return <SelectService />;
         }

@@ -49,6 +49,19 @@
 #booking #bookingModule #bookingMenu #selectHairstylist .hairstylistEmoji {
   margin-right: 8px;
 }
+#booking #bookingModule #bookingMenu .preConfirmHeader {
+  margin-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#booking #bookingModule #bookingMenu .preConfirmSelected {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#booking #bookingModule #bookingMenu .preConfirmSelected + .preConfirmSelected {
+  margin-bottom: 50px;
+}
 #booking #bookingModule #bookingBtns {
   display: flex;
   justify-content: space-around;
