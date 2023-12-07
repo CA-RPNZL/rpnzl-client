@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import './variables';
 
 .ovalContainer {
     display: flex;
@@ -12,8 +12,6 @@
     max-width: 500px;
     background-color: $offwhite;
 }
-
-
 
 .review {
     margin-top: 60px;
