@@ -11,10 +11,14 @@
   max-width: 80vw;
   box-sizing: border-box;
   background-color: #E8EADD;
-  border: 1px solid #ABAF95;
+  border: 3px solid #ABAF95;
+  border-radius: 20px;
+}
+#booking #bookingModule #bookingMenu {
+  text-align: left;
   border-radius: 5px;
 }
-#booking #bookingModule #bookingHeading {
+#booking #bookingModule #bookingMenu #bookingHeading {
   margin: 0 auto 20px;
   width: 80%;
   border: 1px solid #ABAF95;
@@ -23,22 +27,27 @@
   text-align: center;
   text-transform: uppercase;
 }
-#booking #bookingModule #bookingMenu {
-  text-align: left;
-}
-#booking #bookingModule #bookingMenu .bookingForm {
+#booking #bookingModule #bookingMenu #selectService {
   display: grid;
-  margin-bottom: 15px;
   grid-template-columns: 1fr 4fr 3fr;
+  margin-bottom: 15px;
   row-gap: 5px;
 }
-#booking #bookingModule #bookingMenu .bookingForm .service-name {
+#booking #bookingModule #bookingMenu #selectService .service-name {
   font-weight: bold;
 }
-#booking #bookingModule #bookingMenu .bookingForm .service-duration {
+#booking #bookingModule #bookingMenu #selectService .service-duration {
   grid-column: 2/4;
   font-style: italic;
   font-size: 0.8rem;
+}
+#booking #bookingModule #bookingMenu #selectHairstylist {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  margin-bottom: 15px;
+}
+#booking #bookingModule #bookingMenu #selectHairstylist .hairstylistEmoji {
+  margin-right: 8px;
 }
 #booking #bookingModule #bookingBtns {
   display: flex;

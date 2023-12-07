@@ -26,9 +26,10 @@ function SelectService() {
 
     return (
             <div id="bookingMenu">
+                <h6 id="bookingHeading">Select Service</h6>
                 <form>
                     {services.map(service => (
-                        <div className="bookingForm" key={service._id}>
+                        <div id="selectService" key={service._id}>
                             <input type="radio" id={service._id} name="selectService" className="service-input" />
                             <label htmlFor={service._id} className="service-name">{service.name}</label>
                             <label htmlFor={service._id} className="service-price">{service.price}</label>

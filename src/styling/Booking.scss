@@ -15,26 +15,27 @@
         max-width: 80vw;
         box-sizing: border-box;
         background-color: $light-green;
-        border: 1px solid $dark-green;
-        border-radius: 5px;
-
-        #bookingHeading {
-            margin: 0 auto 20px;
-            width: 80%;
-            border: 1px solid $dark-green;
-            border-radius: 5px;
-            background-color: white;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
+        border: 3px solid $dark-green;
+        border-radius: 20px;
+        
         #bookingMenu {
             text-align: left;
+            border-radius: 5px;
+    
+            #bookingHeading {
+                margin: 0 auto 20px;
+                width: 80%;
+                border: 1px solid $dark-green;
+                border-radius: 5px;
+                background-color: white;
+                text-align: center;
+                text-transform: uppercase;
+            }
 
-            .bookingForm {
+            #selectService {
                 display: grid;
-                margin-bottom: 15px;
                 grid-template-columns: 1fr 4fr 3fr;
+                margin-bottom: 15px;
                 row-gap: 5px;
 
                 .service-name {
@@ -45,6 +46,17 @@
                     grid-column: 2 / 4;
                     font-style: italic;
                     font-size: 0.8rem;
+                }
+
+            }
+
+            #selectHairstylist {
+                display: grid;
+                grid-template-columns: 1fr 9fr;
+                margin-bottom: 15px;
+
+                .hairstylistEmoji {
+                    margin-right: 8px;
                 }
 
             }

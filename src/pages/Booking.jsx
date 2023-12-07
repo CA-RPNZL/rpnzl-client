@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styling/Booking.css";
 import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
+import SelectHairstylist from "../components/SelectHairstylist";
 
 
 function Booking() {
@@ -13,6 +14,8 @@ function Booking() {
         switch (page) {
             case 0:
                 return <SelectService />;
+            case 1:
+                return <SelectHairstylist />;
             default:
                 return <SelectService />;
         }
@@ -32,14 +35,13 @@ function Booking() {
     return (
         <div id="booking">
             <div id="bookingModule">
-                <h6 id="bookingHeading">Select Service</h6>
                 <div id="bookingMenu">
                     {showPage()}
                 </div>
                 <div id="bookingBtns">
-                    { page > 0 && page !== 4 && <WhiteButton label="Back" onClick={goBack} />}
-                    { page < 3 && <WhiteButton label="Next" onClick={goNext}/>}
-                    { page === 3 && <WhiteButton label="Confirm" onClick={goNext} />}
+                    { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
+                    { page < 3 && <WhiteButton label="Next" action={goNext}/>}
+                    { page === 3 && <WhiteButton label="Confirm" action={goNext} />}
                 </div>
             </div>
         </div>
