@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styling/Booking.css";
 import WhiteButton from "../components/WhiteButton";
+import BackButton from "../components/BackButton";
 
 
 function Booking() {
@@ -23,6 +24,7 @@ function Booking() {
         fetchServices();
     }, []);
 
+
     return (
         <div id="booking">
             <div id="bookingModule">
@@ -40,7 +42,7 @@ function Booking() {
                     </form>
                 </div>
                 <div id="bookingBtns">
-                    <WhiteButton label="Back" />
+                    <BackButton label="Back" />
                     <WhiteButton label="Next" />
                 </div>
             </div>
