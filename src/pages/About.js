@@ -3,6 +3,7 @@ import '../styling/Aboutpage.css';
 import Hairdressers from "../components/HairdresserInfo";
 import teamImage from "../assets/photos/team_photo.jpg";
 import BookNowButton from "../components/BookNowButton";
+import AboutCarousel from "../components/AboutCarousel";
 
 function Aboutpage() {
     return (
@@ -30,6 +31,7 @@ function Aboutpage() {
                 <div id="meetTeamText">
                     <p>Meet the RPNZL team</p>
                 </div>
+            <AboutCarousel />
             <Hairdressers />
             </div>
         </div>

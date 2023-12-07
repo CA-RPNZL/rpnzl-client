@@ -5,8 +5,8 @@
 .hairdresserContainer {
   float: right;
   clear: right;
-  width: 45%;
-  margin-right: 20px;
+  width: 50%;
+  padding: 40px;
 }
 .hairdresserContainer .hairdresserName {
   font-family: "Titan One", sans-serif;
@@ -21,5 +21,5 @@
   font-weight: 600;
   padding: 10px;
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }/*# sourceMappingURL=HairdresserInfo.css.map */
