@@ -4,7 +4,7 @@ import "../styling/Booking.css";
 function PreConfirmation() {
 
     return (
-            <div id="bookingMenu">
+            <div id="preConfirmationDiv">
                 <h6 id="bookingHeading">Your selections</h6>
                 <div id="preConfirmService">
                     <p className="preConfirmHeader">Services</p>

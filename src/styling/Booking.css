@@ -7,8 +7,7 @@
 #booking #bookingModule {
   margin: 0 auto;
   padding: 20px;
-  min-width: 500px;
-  max-width: 80vw;
+  width: 500px;
   box-sizing: border-box;
   background-color: #E8EADD;
   border: 3px solid #ABAF95;
@@ -49,27 +48,113 @@
 #booking #bookingModule #bookingMenu #selectHairstylist .hairstylistEmoji {
   margin-right: 8px;
 }
-#booking #bookingModule #bookingMenu .preConfirmHeader {
+#booking #bookingModule #bookingMenu .preConfirmHeader, #booking #bookingModule #bookingMenu .confirmedHeader {
   margin-top: 30px;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
 }
-#booking #bookingModule #bookingMenu .preConfirmSelected {
+#booking #bookingModule #bookingMenu .preConfirmSelected, #booking #bookingModule #bookingMenu .confirmedSelected {
   text-align: center;
   margin-bottom: 20px;
 }
 #booking #bookingModule #bookingMenu .preConfirmSelected + .preConfirmSelected {
   margin-bottom: 50px;
 }
+#booking #bookingModule #bookingMenu #confirmationDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#booking #bookingModule #bookingMenu #confirmationDiv #bookingHeading {
+  grid-column: 1/3;
+}
+#booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  place-self: center;
+  text-align: center;
+}
+#booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage img {
+  max-width: 50%;
+}
+#booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
 #booking #bookingModule #bookingBtns {
   display: flex;
   justify-content: space-around;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 768px) and (max-width: 1139px) {
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingHeading {
+    grid-column: 1/3;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    text-align: center;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage img {
+    margin: 30px auto;
+    max-width: 25%;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails {
+    grid-column: 1/3;
+    grid-row: 3/5;
+    display: grid;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedService {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedHairstylist {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedDateTime {
+    grid-column: 1/3;
+    grid-row: 2/3;
+  }
+}
+@media (max-width: 653px) {
   #booking #bookingModule {
     min-width: 300px;
     max-width: 80vw;
+  }
+  #booking #bookingModule #bookingMenu .preConfirmHeader, #booking #bookingModule #bookingMenu .confirmedHeader {
+    margin-top: 20px;
+  }
+  #booking #bookingModule #bookingMenu .preConfirmSelected, #booking #bookingModule #bookingMenu .confirmedSelected {
+    margin-bottom: 10px;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingHeading {
+    grid-column: 1/3;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    text-align: center;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #bookingSuccessImage img {
+    margin: 30px auto;
+    max-width: 25%;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails {
+    grid-column: 1/3;
+    grid-row: 3/5;
+    display: grid;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedService {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedHairstylist {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  #booking #bookingModule #bookingMenu #confirmationDiv #confirmationDetails #confirmedDateTime {
+    grid-column: 1/2;
+    grid-row: 3/4;
   }
 }/*# sourceMappingURL=Booking.css.map */

@@ -4,6 +4,7 @@ import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
 import SelectHairstylist from "../components/SelectHairstylist";
 import PreConfirmation from "../components/PreConfirmation";
+import Confirmation from "../components/Confirmation";
 
 
 function Booking() {
@@ -19,6 +20,8 @@ function Booking() {
                 return <SelectHairstylist />;
             case 3:
                 return <PreConfirmation />;
+            case 4:
+                return <Confirmation />;
             default:
                 return <SelectService />;
         }

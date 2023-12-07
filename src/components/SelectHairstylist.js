@@ -26,7 +26,7 @@ function SelectHairstylist() {
 
 
     return (
-            <div id="bookingMenu">
+            <div id="selectHairstylistDiv">
                 <h6 id="bookingHeading">Select Hairstylist</h6>
                 <form>
                     <div id="selectHairstylist" key="selectHairstylist">

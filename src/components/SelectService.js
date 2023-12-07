@@ -25,7 +25,7 @@ function SelectService() {
 
 
     return (
-            <div id="bookingMenu">
+            <div id="selectServiceDiv">
                 <h6 id="bookingHeading">Select Service</h6>
                 <form>
                     {services.map(service => (
