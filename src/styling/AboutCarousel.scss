@@ -33,7 +33,18 @@
     }
   }
 
-  
+  @media screen and (max-width: 1360px) {
+
+    .about-carousel {
+    padding: 40px 50px;
+    }
+  }
+
+@media screen and (max-width: $tablet) {
+  .about-carousel {
+    padding: 100px 30px;
+  }
+}
   
   
   

@@ -4,7 +4,7 @@
     float: right;
     clear: right;
     width: 50%;
-    padding: 40px;
+    padding: 30px 40px;
   
   .hairdresserName {
       font-family: 'Titan One', sans-serif;
@@ -22,4 +22,30 @@
       font-size: 18px;
       margin-bottom: 20px;
   }
+}
+
+@media screen and (max-width: 1360px) {
+    .hairdresserContainer {
+      width: 40%;
+  
+      .hairdresserName {
+        font-size: 16px;
+      }
+  
+      .hairdresserBio,
+      .hairdresserService {
+        font-size: 14px;
+      }
+    }
+  }
+
+@media screen and (max-width: $tablet) {
+    .hairdresserContainer {
+        padding: 20px 40px
+    }
+
+    .hairdresserBio,
+    .hairdresserService {
+        margin-bottom: 0;
+    }
 }

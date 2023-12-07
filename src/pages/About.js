@@ -24,7 +24,7 @@ function Aboutpage() {
             </div>
             <div id="aboutTeamImage">
                 <div className="image-container">
-                <img src={teamImage} id="teamImage" alt="Team" />
+                <img src={teamImage} id="teamImage" alt="RPNZLTeam" />
             </div>
             </div>
             <div>

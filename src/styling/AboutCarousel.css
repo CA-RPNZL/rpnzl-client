@@ -25,4 +25,15 @@
 .about-carousel .hairdresser .hairdresser-info p {
   margin-top: 10px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 1360px) {
+  .about-carousel {
+    padding: 40px 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .about-carousel {
+    padding: 100px 30px;
+  }
 }/*# sourceMappingURL=AboutCarousel.css.map */

@@ -63,4 +63,15 @@
 }
 #meetTeamText span {
   font-family: "superPlants", sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutContainer {
+    width: 600px;
+    font-size: 14px;
+  }
+  #aboutTeamImage {
+    margin-top: 350px;
+    margin-right: 80px;
+  }
 }/*# sourceMappingURL=Aboutpage.css.map */
