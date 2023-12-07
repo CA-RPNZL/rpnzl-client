@@ -4,7 +4,7 @@ import "../styling/WhiteButton.css";
 function WhiteButton(props) {
     return (
         <div id="whiteBtn">
-            <Button className="whiteButton" onClick={props.action}>{props.label}</Button>
+            <Button className="whiteButton">{props.label}</Button>
         </div>
     )
 

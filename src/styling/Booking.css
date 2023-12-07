@@ -42,7 +42,7 @@
 }
 #booking #bookingModule #bookingBtns {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media (max-width: 480px) {

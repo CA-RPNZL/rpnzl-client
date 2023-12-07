@@ -1,49 +1,45 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styling/Booking.css";
 import WhiteButton from "../components/WhiteButton";
-import BackButton from "../components/BackButton";
+import SelectService from "../components/SelectService";
 
 
 function Booking() {
-    const [services, setServices] = useState([]);
+    // Set up page state
+    const [page, setPage] = useState(0);
 
-    useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                // Fetch data from API
-                let response = await fetch(process.env.REACT_APP_API + "/services")
-                // Save data as json
-                const responseData = await response.json();
-                // Update state
-                setServices(responseData);
-            } catch (error) {
-                console.log(error);
-            }
+    // Set up page condition
+    const showPage = () => {
+        switch (page) {
+            case 0:
+                return <SelectService />;
+            default:
+                return <SelectService />;
         }
+    };
 
-        fetchServices();
-    }, []);
+    // Back button functionality
+    const goBack = () => {
+        setPage((previousPage) => previousPage - 1);
+    }
+
+    // Next button functionality
+    const goNext = () => {
+        setPage((previousPage) => previousPage + 1);
+    }
 
 
     return (
         <div id="booking">
             <div id="bookingModule">
-                <div id="bookingHeading">Select Service</div>
+                <h6 id="bookingHeading">Select Service</h6>
                 <div id="bookingMenu">
-                    <form>
-                        {services.map(service => (
-                            <div className="bookingForm">
-                                <input type="radio" id={service._id} name={service.name} className="service-input" />
-                                <label for={service.name} className="service-name">{service.name}</label>
-                                <label for={service.name} className="service-price">{service.price}</label>
-                                <label for={service.name} className="service-duration">{`${service.duration} minutes`}</label>
-                            </div>
-                        ))}
-                    </form>
+                    {showPage()}
                 </div>
                 <div id="bookingBtns">
-                    <BackButton label="Back" />
-                    <WhiteButton label="Next" />
+                    { page > 0 && page !== 4 && <WhiteButton label="Back" onClick={goBack} />}
+                    { page < 3 && <WhiteButton label="Next" onClick={goNext}/>}
+                    { page === 3 && <WhiteButton label="Confirm" onClick={goNext} />}
                 </div>
             </div>
         </div>
