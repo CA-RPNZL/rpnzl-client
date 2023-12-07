@@ -1,0 +1,34 @@
+@import './variables';
+
+#services {
+    padding: 20px 0px;
+    background-color: $offwhite;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+        font-family: 'Titan One', sans-serif;
+        text-decoration: underline;
+    }
+
+    #servicescontainer {
+        margin: 0 auto;
+        max-width: 80vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #bookNowBtnContainer {
+        margin: 50px auto;
+    }
+}
+
+// Media query for Mobile
+@media (max-width: $mobile) {
+    h1 {
+        font-size: 2rem;
+    }
+}

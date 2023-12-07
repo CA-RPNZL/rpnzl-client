@@ -1,0 +1,64 @@
+@import "./_variables";
+
+.servicescard {
+    width: 500px;
+    margin: 30px 80px;
+    display: flex;
+    flex-direction: column;
+
+    #servicesheader{
+        display: flex;
+        
+        #servicename {
+            margin: 5px auto;
+            flex-grow:1;
+            font-family: "Titan One", sans-serif;
+            font-size: 2rem;
+            text-align: left;
+        }
+
+        #serviceprice {
+            margin: auto;
+            flex-grow:1;
+            font-family: "Titan One", sans-serif;
+            font-size: 1.5rem;
+            text-align: right;
+        }
+        
+    }
+    
+    #servicedescription {
+        background-color: $light-green;
+        border: 5px solid $dark-green;
+        border-radius: 20px;
+        padding: 20px;
+        min-height: 5vh;
+    }
+};
+
+
+// Media query for Tablet
+@media (min-width: $tablet) and (max-width: $desktop) {
+    .servicescard {
+        margin: 0px 0px 50px;
+    }
+}
+
+
+// Media query for Mobile
+@media (max-width: $mobile) {
+    .servicescard {
+        margin: 0px 0px 30px;
+
+        #servicesheader {
+
+            #servicename {
+                font-size: 1.5rem;
+            }
+
+            #serviceprice {
+                font-size: 1rem;
+            }
+        }
+    }
+}

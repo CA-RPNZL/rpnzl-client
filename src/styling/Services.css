@@ -1,0 +1,28 @@
+#services {
+  padding: 20px 0px;
+  background-color: #FBF8F0;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#services h1 {
+  font-family: "Titan One", sans-serif;
+  text-decoration: underline;
+}
+#services #servicescontainer {
+  margin: 0 auto;
+  max-width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#services #bookNowBtnContainer {
+  margin: 50px auto;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+}/*# sourceMappingURL=Services.css.map */
