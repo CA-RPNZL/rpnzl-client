@@ -9,7 +9,7 @@ function Aboutpage() {
     return (
         <div>
             <div id="aboutHeading">
-                <h1>About </h1>
+                <h1>About <span>RPNZL</span> </h1>
             </div>
             <div className="aboutContainer">
             <div id="aboutPara">
@@ -29,7 +29,7 @@ function Aboutpage() {
             </div>
             <div>
                 <div id="meetTeamText">
-                    <p>Meet the RPNZL team</p>
+                    <p>Meet the <span>RPNZL</span> team</p>
                 </div>
             <AboutCarousel />
             <Hairdressers />

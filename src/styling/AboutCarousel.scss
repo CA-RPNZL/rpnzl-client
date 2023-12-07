@@ -7,14 +7,15 @@
     flex-direction: column;
     align-items: flex-start;
     max-width: 800px;
-    padding: 20px 150px;
+    padding: 40px 150px;
   
     .hairdresser {
       width: 300px;
       height: 500px;
       border-radius: 15px;
-      margin-bottom: 60px;
-      box-shadow: 0 0 60px rgba(128, 0, 128, 0.5); 
+      margin-bottom: 80px;
+      box-shadow: 0 0 60px $dark-purple; 
+      background-color: $purple;
   
       img {
         width: 300px;
@@ -25,7 +26,7 @@
       .hairdresser-info {
         text-align: center; 
         p {
-          margin-top: 5px;
+          margin-top: 10px;
           font-weight: bold;
         }
       }
