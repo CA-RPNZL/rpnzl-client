@@ -21,6 +21,8 @@
     padding-bottom: 10vh;
 }
 
+
+// Media query for mobile
 @media screen and (max-width: $mobile) {
     #heroImageDiv {
         padding-bottom: 5vh;

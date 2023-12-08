@@ -29,7 +29,13 @@
   min-height: 5vh;
 }
 
-@media (min-width: 768px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .servicescard {
+    width: 400px;
+    margin: 30px 50px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
   .servicescard {
     margin: 0px 0px 50px;
   }

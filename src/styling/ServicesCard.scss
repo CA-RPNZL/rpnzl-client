@@ -37,15 +37,24 @@
 };
 
 
-// Media query for Tablet
-@media (min-width: $tablet) and (max-width: $desktop) {
+// Media query for laptop
+@media (min-width: $laptop) and (max-width: $desktop) {
+    .servicescard {
+        width: 400px;
+        margin: 30px 50px;
+    }
+}
+
+
+// Media query for tablet
+@media (min-width: $tablet) and (max-width: calc($laptop - 1px)) {
     .servicescard {
         margin: 0px 0px 50px;
     }
 }
 
 
-// Media query for Mobile
+// Media query for mobile
 @media (max-width: $mobile) {
     .servicescard {
         margin: 0px 0px 30px;
