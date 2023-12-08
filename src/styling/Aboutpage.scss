@@ -3,7 +3,9 @@
 #aboutHeading {
   h1 {
     font-size: 50px;
-    margin-top: 100px;
+    padding: 30px 40px;
+    float: left;
+    clear: left;
     font-family: 'Montserrat', sans-serif;
 
     span {
@@ -17,8 +19,7 @@
   float: left;
   clear: left;
   width: 50%;
-  margin-left: 100px;
-  min-height: 250px;
+  margin-left: 60px;
   background-color: $light-green;
   border: 4px $dark-green solid;
   border-radius: 20px;
@@ -32,38 +33,38 @@
   }
 
   .bookNowButton {
-  position: relative;
-  top: auto;
-  left: 35%; 
-  transform: translateX(-50%);
+    position: relative;
+    top: auto;
+    left: 30%;
+    transform: translateX(-50%);
   }
-  
 }
 
-#aboutTeamImage {
+.aboutTeamImage {
   position: relative;
-  margin-top: -25px;
   display: block;
 
   .image-container {
-    padding-right: 30px;
+    padding: 130px 30px 0;
     overflow: hidden;
   }
 
-  #teamImage {
-    max-width: 500px;
-    height: 350px;
+  .teamImage {
+    max-width: 100%;
+    height: auto;
     border-radius: 15px;
     display: block;
-    margin-left: auto;
   }
+}
+
+.meetTeamContainer {
+  padding: 30px 0;
 }
 
 #meetTeamText {
   background-color: $pale-pink;
   border-top: 2px $red solid;
   border-bottom: 2px $red solid;
-  margin-top: 60px;
   text-align: center;
 
   p {
@@ -71,6 +72,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
   }
+
   span {
     font-family: 'superPlants', sans-serif;
   }
@@ -78,12 +80,30 @@
 
 @media screen and (max-width: $tablet) {
   .aboutContainer {
-    width: 600px;
+    width: 90%;
+    margin-left: 30px;
     font-size: 14px;
   }
 
-  #aboutTeamImage {
-    margin-top: 350px;
-    margin-right: 80px;
+  .aboutTeamImage {
+    margin-top: 10px;
+  }
+
+  #aboutHeading {
+    h1 {
+      padding: 10px 350px 10px 50px; 
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .aboutContainer {
+    margin-left: 20px;
+  }
+
+  #aboutHeading {
+    h1 {
+      padding-right: 55px;
+    }
   }
 }

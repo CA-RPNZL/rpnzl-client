@@ -34,6 +34,9 @@
 }
 @media screen and (max-width: 768px) {
   .about-carousel {
-    padding: 100px 30px;
+    padding: 100px 0 0 30px;
+  }
+  .carouselContainer {
+    margin-bottom: 50px;
   }
 }/*# sourceMappingURL=AboutCarousel.css.map */

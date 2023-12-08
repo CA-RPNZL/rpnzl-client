@@ -1,6 +1,8 @@
 #aboutHeading h1 {
   font-size: 50px;
-  margin-top: 100px;
+  padding: 30px 40px;
+  float: left;
+  clear: left;
   font-family: "Montserrat", sans-serif;
 }
 #aboutHeading h1 span {
@@ -12,8 +14,7 @@
   float: left;
   clear: left;
   width: 50%;
-  margin-left: 100px;
-  min-height: 250px;
+  margin-left: 60px;
   background-color: #E8EADD;
   border: 4px #ABAF95 solid;
   border-radius: 20px;
@@ -28,32 +29,33 @@
 .aboutContainer .bookNowButton {
   position: relative;
   top: auto;
-  left: 35%;
+  left: 30%;
   transform: translateX(-50%);
 }
 
-#aboutTeamImage {
+.aboutTeamImage {
   position: relative;
-  margin-top: -25px;
   display: block;
 }
-#aboutTeamImage .image-container {
-  padding-right: 30px;
+.aboutTeamImage .image-container {
+  padding: 130px 30px 0;
   overflow: hidden;
 }
-#aboutTeamImage #teamImage {
-  max-width: 500px;
-  height: 350px;
+.aboutTeamImage .teamImage {
+  max-width: 100%;
+  height: auto;
   border-radius: 15px;
   display: block;
-  margin-left: auto;
+}
+
+.meetTeamContainer {
+  padding: 30px 0;
 }
 
 #meetTeamText {
   background-color: #FDEDEB;
   border-top: 2px #D51E01 solid;
   border-bottom: 2px #D51E01 solid;
-  margin-top: 60px;
   text-align: center;
 }
 #meetTeamText p {
@@ -67,11 +69,22 @@
 
 @media screen and (max-width: 768px) {
   .aboutContainer {
-    width: 600px;
+    width: 90%;
+    margin-left: 30px;
     font-size: 14px;
   }
-  #aboutTeamImage {
-    margin-top: 350px;
-    margin-right: 80px;
+  .aboutTeamImage {
+    margin-top: 10px;
+  }
+  #aboutHeading h1 {
+    padding: 10px 350px 10px 50px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .aboutContainer {
+    margin-left: 20px;
+  }
+  #aboutHeading h1 {
+    padding-right: 55px;
   }
 }/*# sourceMappingURL=Aboutpage.css.map */

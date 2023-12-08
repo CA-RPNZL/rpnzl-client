@@ -42,7 +42,11 @@
 
 @media screen and (max-width: $tablet) {
   .about-carousel {
-    padding: 100px 30px;
+    padding: 100px 0 0 30px;
+  }
+
+  .carouselContainer {
+    margin-bottom: 50px;
   }
 }
   
