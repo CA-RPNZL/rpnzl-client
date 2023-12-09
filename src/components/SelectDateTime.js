@@ -1,16 +1,24 @@
 import Calendar from "react-calendar";
 import "../styling/Booking.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppointmentContext from "../contexts/AppointmentContext";
 
 function SelectDateTime() {
     // Get today's date
     const currentDate = new Date();
 
-    // State for selected date
-    const [selectedDate, setSelectedDate] = useState(currentDate);
+    // Update AppointmentContext with selected date
+    const {selectedDate, setDate} = useContext(AppointmentContext);
 
-    // State for selected time
-    const [selectedTime, setSelectedTime] = useState(null);
+    // // State for selected date
+    // const [selectedDate, setSelectedDate] = useState(currentDate);
+
+
+    // Update AppointmentContext with selected time
+    const {selectedTime, setTime} = useContext(AppointmentContext);
+
+    // // State for selected time
+    // const [selectedTime, setSelectedTime] = useState(null);
 
     // Calendar function: format day of the week
     const formatDay = (locale, date) => {
@@ -25,7 +33,7 @@ function SelectDateTime() {
     //
     const onChange = (value) => {
         console.log(value);
-        setSelectedDate(value);
+        setDate(value);
     }
 
     return (

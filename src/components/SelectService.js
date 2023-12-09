@@ -30,6 +30,7 @@ function SelectService() {
     const {selectedService, setService} = useContext(AppointmentContext);
 
 
+
     return (
             <div id="selectServiceDiv">
                 <h6 id="bookingHeading">Select Service</h6>
