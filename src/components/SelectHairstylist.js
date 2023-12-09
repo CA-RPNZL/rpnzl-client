@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../styling/Booking.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function SelectHairstylist() {
-    const [stylist, setStylist] = useState([]);
+    const [hairstylistList, setHairstylistList] = useState([]);
 
     // Fetch list of services
     // useEffect(() => {
@@ -25,6 +26,9 @@ function SelectHairstylist() {
     //     fetchServices();
     // }, []);
 
+
+    // // Update AppointmentContext with selected hairstylist
+    const {hairstylist, setHairstylist} = useContext(AppointmentContext);
 
     return (
             <div id="selectHairstylistDiv">

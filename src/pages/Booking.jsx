@@ -6,11 +6,14 @@ import SelectHairstylist from "../components/SelectHairstylist";
 import SelectDateTime from "../components/SelectDateTime";
 import PreConfirmation from "../components/PreConfirmation";
 import Confirmation from "../components/Confirmation";
+import AppointmentContext, { appointmentContextData } from "../contexts/AppointmentContext";
 
 
 function Booking() {
+
     // Set up page state
     const [page, setPage] = useState(0);
+
 
     // Set up page condition
     const showPage = () => {
@@ -30,10 +33,12 @@ function Booking() {
         }
     };
 
+
     // Back button functionality
     const goBack = () => {
         setPage((previousPage) => previousPage - 1);
     }
+
 
     // Next button functionality
     const goNext = () => {
@@ -41,17 +46,38 @@ function Booking() {
     }
 
 
+    // Create states for appointment data
+    const [client, setClient] = useState(appointmentContextData.client);
+    const [service, setService] = useState(appointmentContextData.service);
+    const [hairstylist, setHairstylist] = useState(appointmentContextData.hairstylist);
+    const [date, setDate] = useState(appointmentContextData.date);
+    const [time, setTime] = useState(appointmentContextData.time);
+
+
     return (
-        <div id="booking">
-            <div id="bookingModule">
-                {showPage()}
-                <div id="bookingBtns">
-                    { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
-                    { page < 3 && <WhiteButton label="Next" action={goNext}/>}
-                    { page === 3 && <WhiteButton label="Confirm" action={goNext} />}
+        <AppointmentContext.Provider value={{
+            client: client,
+            setClient: setClient,
+            selectedService: service,
+            setService: setService,
+            selectedHairstylist: hairstylist,
+            setHairstylist: setHairstylist,
+            selectedDate: date,
+            setDate: setDate,
+            selectedTime: time,
+            setTime: setTime
+        }}>
+            <div id="booking">
+                <div id="bookingModule">
+                    {showPage()}
+                    <div id="bookingBtns">
+                        { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
+                        { page < 3 && <WhiteButton label="Next" action={goNext}/>}
+                        { page === 3 && <WhiteButton label="Confirm" action={goNext} />}
+                    </div>
                 </div>
             </div>
-        </div>
+        </AppointmentContext.Provider>                                                                                                                     
     )
 }
 
