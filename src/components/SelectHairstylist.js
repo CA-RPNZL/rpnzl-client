@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styling/Booking.css";
-import { Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 function SelectHairstylist() {
@@ -29,31 +30,31 @@ function SelectHairstylist() {
             <div id="selectHairstylistDiv">
                 <h6 id="bookingHeading">Select Hairstylist</h6>
                 <form>
-                    <div id="selectHairstylist" key="selectHairstylist">
+                    <div className="selectHairstylist" key="selectHairstylist">
                         <input type="radio" name="selectHairstylist" id="No preference" />
                         <div>
-                            <label htmlFor="No preference">No preference</label>
+                            <label class="hairstylistName" htmlFor="No preference">No preference</label>
                         </div>
                     </div>
-                    <div id="selectHairstylist" key="selectHairstylist">
+                    <div className="selectHairstylist" key="selectHairstylist">
                         <input type="radio" name="selectHairstylist" id="No preference" />
                         <div>
-                            <span className="hairstylistEmoji">&#128135;</span>
-                            <label htmlFor="No preference">Bianca Lopez</label>
+                            <FontAwesomeIcon icon={faUser} className="hairstylistIcon" />
+                            <label class="hairstylistName" htmlFor="No preference">Bianca Lopez</label>
                         </div>
                     </div>
-                    <div id="selectHairstylist" key="selectHairstylist">
+                    <div className="selectHairstylist" key="selectHairstylist">
                         <input type="radio" name="selectHairstylist" id="No preference" />
                         <div>
-                            <span className="hairstylistEmoji">&#128135;</span>
-                            <label htmlFor="No preference">Angela Anaconda</label>
+                            <FontAwesomeIcon icon={faUser} className="hairstylistIcon" />
+                            <label class="hairstylistName" htmlFor="No preference">Angela Anaconda</label>
                         </div>
                     </div>
-                    <div id="selectHairstylist" key="selectHairstylist">
+                    <div className="selectHairstylist" key="selectHairstylist">
                         <input type="radio" name="selectHairstylist" id="No preference" />
                         <div>
-                            <span className="hairstylistEmoji">&#128135;</span>
-                            <label htmlFor="No preference">Michelle Smith</label>
+                            <FontAwesomeIcon icon={faUser} className="hairstylistIcon" />
+                            <label class="hairstylistName" htmlFor="No preference">Michelle Smith</label>
                         </div>
                     </div>
                 </form>

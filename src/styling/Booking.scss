@@ -1,4 +1,7 @@
-@import './variables';
+@import "./variables";
+@import "./components/SelectService";
+@import "./components//SelectHairstylist";
+@import "./components/Confirmation";
 
 
 #booking {
@@ -9,223 +12,39 @@
 
 
     #bookingModule {
-        margin: 0 auto;
-        padding: 20px;
-        width: 500px;
+        margin: 20px auto;
+        width: 80vw;
+        padding: 20px 10px;
         box-sizing: border-box;
         background-color: $light-green;
-        border: 3px solid $dark-green;
+        border: 1px solid $dark-green;
         border-radius: 20px;
         
-        #bookingMenu {
-            text-align: left;
+        #bookingHeading {
+            margin: 0 auto 20px;
+            width: 80%;
+            border: 1px solid $dark-green;
             border-radius: 5px;
+            background-color: white;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
     
-            #bookingHeading {
-                margin: 0 auto 20px;
-                width: 80%;
-                border: 1px solid $dark-green;
-                border-radius: 5px;
-                background-color: white;
-                text-align: center;
-                text-transform: uppercase;
-            }
-
-            // Select service screen
-
-            #selectService {
-                display: grid;
-                grid-template-columns: 1fr 4fr 3fr;
-                margin-bottom: 15px;
-                row-gap: 5px;
-
-                .service-name {
-                    font-weight: bold;
-                }
-
-                .service-duration {
-                    grid-column: 2 / 4;
-                    font-style: italic;
-                    font-size: 0.8rem;
-                }
-
-            }
-
-            // Select hairstylist screen
-
-            #selectHairstylist {
-                display: grid;
-                grid-template-columns: 1fr 9fr;
-                margin-bottom: 15px;
-
-                .hairstylistEmoji {
-                    margin-right: 8px;
-                }
-
-            }
-
-            // Preconfirmation and confirmation screen
-            .preConfirmHeader, .confirmedHeader {
-                margin-top: 30px;
-                text-align: center;
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-
-            .preConfirmSelected, .confirmedSelected {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .preConfirmSelected + .preConfirmSelected {
-                margin-bottom: 50px;
-            }
-
-            // Confirmation screen
-
-            #confirmationDiv {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                
-                #bookingHeading {
-                    grid-column: 1 / 3;
-                }
-
-                #bookingSuccessImage {
-                    grid-column: 2 / 3;
-                    grid-row: 2 / 3;
-                    place-self: center;
-                    text-align: center;
-                    
-                    img {
-                        max-width: 50%;
-                    }
-                }
-
-                #confirmationDetails {
-                    grid-column: 1 / 2;
-                    grid-row: 2 / 3;
-                }
-            }
-        }
-
-        #bookingBtns {
-            display: flex;
-            justify-content: space-around;
-        }
+    #bookingBtns {
+        display: flex;
+        justify-content: space-around;
     }
 }
 
-@media (min-width: $tablet) and (max-width: calc($laptop + 115px) ) {
+
+// Media query for tablet
+@media screen and (min-width: $tablet) {
     #booking {
         #bookingModule {
-            #bookingMenu {
-                // Confirmation screen
-                
-                #confirmationDiv {
-                                
-                    #bookingHeading {
-                        grid-column: 1 / 3;
-                    }
-                
-                    #bookingSuccessImage {
-                        grid-column: 1 / 3;
-                        grid-row: 2 / 3;
-                        text-align: center;
-                        
-                        img {
-                            margin: 30px auto;
-                            max-width: 25%;
-                        }
-                    }
-                
-                    #confirmationDetails {
-                        grid-column: 1 / 3;
-                        grid-row: 3 / 5;
-
-                        // confirmationDetails child divs
-                        display: grid;
-
-                        #confirmedService {
-                            grid-column: 1 / 2;
-                            grid-row: 1 / 2;
-                        }
-
-                        #confirmedHairstylist {
-                            grid-column: 2 / 3;
-                            grid-row: 1 / 2;
-                        }
-
-                        #confirmedDateTime {
-                            grid-column: 1 / 3;
-                            grid-row: 2 / 3;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: calc($tablet - 115px)) {
-    #booking {
-        #bookingModule {
-            min-width: 300px;
-            max-width: 80vw;
-
-            #bookingMenu {
-                
-                // Preconfirmation and confirmation screen
-                .preConfirmHeader, .confirmedHeader {
-                    margin-top: 20px;
-                }
-                .preConfirmSelected, .confirmedSelected {
-                    margin-bottom: 10px;
-                }
-
-                // Confirmation screen
-                
-                #confirmationDiv {
-                                
-                    #bookingHeading {
-                        grid-column: 1 / 3;
-                    }
-                
-                    #bookingSuccessImage {
-                        grid-column: 1 / 3;
-                        grid-row: 2 / 3;
-                        text-align: center;
-                        
-                        img {
-                            margin: 30px auto;
-                            max-width: 25%;
-                        }
-                    }
-                
-                    #confirmationDetails {
-                        grid-column: 1 / 3;
-                        grid-row: 3 / 5;
-
-                        // confirmationDetails child divs
-                        display: grid;
-
-                        #confirmedService {
-                            grid-column: 1 / 2;
-                            grid-row: 1 / 2;
-                        }
-
-                        #confirmedHairstylist {
-                            grid-column: 1 / 2;
-                            grid-row: 2 / 3;
-                        }
-
-                        #confirmedDateTime {
-                            grid-column: 1 / 2;
-                            grid-row: 3 / 4;
-                        }
-                    }
-                }
-            }
+            max-width: 500px;
+            padding: 20px;
+            border: 3px solid $dark-green;
         }
     }
 }

@@ -29,11 +29,11 @@ function SelectService() {
                 <h6 id="bookingHeading">Select Service</h6>
                 <form>
                     {services.map(service => (
-                        <div id="selectService" key={service._id}>
-                            <input type="radio" id={service._id} name="selectService" className="service-input" />
-                            <label htmlFor={service._id} className="service-name">{service.name}</label>
-                            <label htmlFor={service._id} className="service-price">{service.price}</label>
-                            <label htmlFor={service._id} className="service-duration">{`${service.duration} minutes`}</label>
+                        <div className="selectService" key={service._id}>
+                            <input type="radio" id={service._id} name="selectService" className="serviceInput" />
+                            <label htmlFor={service._id} className="serviceName">{service.name}</label>
+                            <label htmlFor={service._id} className="servicePrice">{service.price}</label>
+                            <label htmlFor={service._id} className="serviceDuration">{`${service.duration} minutes`}</label>
                         </div>
                     ))}
                 </form>

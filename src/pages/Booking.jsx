@@ -41,9 +41,7 @@ function Booking() {
     return (
         <div id="booking">
             <div id="bookingModule">
-                <div id="bookingMenu">
-                    {showPage()}
-                </div>
+                {showPage()}
                 <div id="bookingBtns">
                     { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
                     { page < 3 && <WhiteButton label="Next" action={goNext}/>}
