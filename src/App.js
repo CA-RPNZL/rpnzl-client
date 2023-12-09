@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ContactUs from './pages/ContactUs';
 import Homepage from './pages/Homepage';
+import SignUp from './pages/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />}/>
           <Route path="/contactus" element={<ContactUs />}/>
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </BrowserRouter>
