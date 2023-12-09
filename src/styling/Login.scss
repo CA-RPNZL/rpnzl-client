@@ -1,0 +1,84 @@
+@import './variables';
+/* Styling for the overall container of the login page */
+.login-container {
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    text-align: center; 
+    background-color: $offwhite;
+  }
+  
+  /* Styling for the login form within the container */
+  .login-form {
+    width: 60vh; 
+    margin: auto; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  
+    h2 {
+      margin-bottom: 20px; /* Add margin below the heading for spacing */
+      font-family: 'Titan One', sans-serif;
+      font-weight:lighter;
+    }
+  
+    // Styling for form element
+    form {
+      // flexbox for form layout
+      display: flex; 
+      flex-direction: column; 
+  
+      /* Styling for each input group within the form */
+      .input-group {
+        margin-bottom: 15px; 
+  
+        label {
+          margin-bottom: 8px;
+          display: block; 
+        }
+        
+        // styling for input fields
+        input {
+          width: 100%; 
+          padding: 8px; 
+          box-sizing: border-box; 
+        }
+      }
+  
+      /* Styling for the submit button within the form */
+      .loginButton {
+        border: 2px solid $red;
+        background-color: $pale-pink;
+        font-family: 'Titan One', sans-serif;
+        color: $red;
+        font-size: 14px;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.1s ease-out;
+        text-decoration: none;
+        &:hover {
+            background-color: $red;
+            color: white;
+        }
+      }
+    }
+  }
+
+  // login form size adjusts for tabet
+@media screen and (max-width: $tablet) {
+  .login-form {
+      max-width: 40vh;
+  }
+}
+
+// login form size adjusts for mobile
+@media screen and (max-width: $mobile) {
+  .login-form {
+      max-width: 30vh;
+  }
+}

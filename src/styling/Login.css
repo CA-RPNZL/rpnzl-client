@@ -1,0 +1,71 @@
+/* Styling for the overall container of the login page */
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  background-color: #FBF8F0;
+}
+
+/* Styling for the login form within the container */
+.login-form {
+  width: 60vh;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.login-form h2 {
+  margin-bottom: 20px; /* Add margin below the heading for spacing */
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+}
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  /* Styling for each input group within the form */
+  /* Styling for the submit button within the form */
+}
+.login-form form .input-group {
+  margin-bottom: 15px;
+}
+.login-form form .input-group label {
+  margin-bottom: 8px;
+  display: block;
+}
+.login-form form .input-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.login-form form .loginButton {
+  border: 2px solid #D51E01;
+  background-color: #FDEDEB;
+  font-family: "Titan One", sans-serif;
+  color: #D51E01;
+  font-size: 14px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+}
+.login-form form .loginButton:hover {
+  background-color: #D51E01;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .login-form {
+    max-width: 40vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .login-form {
+    max-width: 30vh;
+  }
+}/*# sourceMappingURL=Login.css.map */
