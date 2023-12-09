@@ -1,10 +1,15 @@
-.about-carousel {
+.carouselContainer {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.about-carousel {
+  position: relative;
   float: left;
   flex-direction: column;
-  align-items: flex-start;
   max-width: 800px;
-  padding: 40px 150px;
+  padding: 40px 0 0 100px;
 }
 .about-carousel .hairdresser {
   width: 300px;
@@ -27,16 +32,11 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1360px) {
+@media screen and (max-width: 880px) {
   .about-carousel {
-    padding: 40px 50px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .about-carousel {
-    padding: 100px 0 0 30px;
+    padding: 100px 0 0 20px;
   }
   .carouselContainer {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
 }/*# sourceMappingURL=AboutCarousel.css.map */

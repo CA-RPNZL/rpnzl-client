@@ -1,90 +1,80 @@
-#aboutHeading h1 {
+#aboutPageContainer {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #FBF8F0;
+}
+#aboutPageContainer #aboutHeading h1 {
   font-size: 50px;
   padding: 30px 40px;
   float: left;
   clear: left;
   font-family: "Montserrat", sans-serif;
 }
-#aboutHeading h1 span {
+#aboutPageContainer #aboutHeading h1 span {
   font-family: "superPlants", sans-serif;
   width: 1em;
 }
-
-.aboutContainer {
-  float: left;
-  clear: left;
+#aboutPageContainer .aboutRpnzl {
   width: 50%;
   margin-left: 60px;
   background-color: #E8EADD;
   border: 4px #ABAF95 solid;
   border-radius: 20px;
 }
-.aboutContainer #aboutPara {
+#aboutPageContainer .aboutRpnzl #aboutPara {
   padding: 18px;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   line-height: 1.5;
 }
-.aboutContainer .bookNowButton {
+#aboutPageContainer .aboutRpnzl #aboutPara .bookNowButton {
   position: relative;
   top: auto;
   left: 30%;
   transform: translateX(-50%);
 }
-
-.aboutTeamImage {
+#aboutPageContainer .image-container {
   position: relative;
-  display: block;
+  padding: 50px 30px 0;
 }
-.aboutTeamImage .image-container {
-  padding: 130px 30px 0;
-  overflow: hidden;
-}
-.aboutTeamImage .teamImage {
-  max-width: 100%;
+#aboutPageContainer .image-container .teamImage {
+  width: 100%;
   height: auto;
   border-radius: 15px;
   display: block;
 }
-
-.meetTeamContainer {
+#aboutPageContainer .meetTeamContainer {
   padding: 30px 0;
 }
-
-#meetTeamText {
+#aboutPageContainer .meetTeamContainer #meetTeamText {
   background-color: #FDEDEB;
   border-top: 2px #D51E01 solid;
   border-bottom: 2px #D51E01 solid;
   text-align: center;
 }
-#meetTeamText p {
+#aboutPageContainer .meetTeamContainer #meetTeamText p {
   font-size: 35px;
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
 }
-#meetTeamText span {
+#aboutPageContainer .meetTeamContainer #meetTeamText p span {
   font-family: "superPlants", sans-serif;
 }
-
 @media screen and (max-width: 768px) {
-  .aboutContainer {
+  #aboutPageContainer .aboutRpnzl {
     width: 90%;
     margin-left: 30px;
     font-size: 14px;
   }
-  .aboutTeamImage {
+  #aboutPageContainer .aboutTeamImage {
     margin-top: 10px;
-  }
-  #aboutHeading h1 {
-    padding: 10px 350px 10px 50px;
   }
 }
 @media screen and (max-width: 480px) {
-  .aboutContainer {
+  #aboutPageContainer .aboutRpnzl {
     margin-left: 20px;
-  }
-  #aboutHeading h1 {
-    padding-right: 55px;
   }
 }/*# sourceMappingURL=Aboutpage.css.map */

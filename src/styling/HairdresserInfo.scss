@@ -1,10 +1,10 @@
 @import './variables.scss';
 
-.hairdresserContainer {
+.hairdresserContent {
   float: right;
   clear: right;
   width: 50%;
-  padding: 30px 40px;
+  padding: 30px 40px 0 0;
 
   .hairdresserName {
     font-family: 'Titan One', sans-serif;
@@ -21,17 +21,6 @@
     padding: 10px;
     font-size: 18px;
     margin-bottom: 20px;
-  }
-}
-
-@media screen and (max-width: 1360px) {
-  .hairdresserContainer {
-    width: 40%;
-
-    .hairdresserBio,
-    .hairdresserService {
-      font-size: 14px;
-    }
   }
 }
 

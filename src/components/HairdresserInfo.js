@@ -4,7 +4,7 @@ import '../styling/HairdresserInfo.css';
 function Hairdressers() {
     return (
         <div>
-            <div className="hairdresserContainer">
+            <div className="hairdresserContent">
                 <div className="hairdresserName">
                     <h1>Michelle Smith</h1>
                 </div>
@@ -22,7 +22,7 @@ function Hairdressers() {
                         delivers confidence through impeccable cuts.</p>
                 </div>
             </div>
-            <div className="hairdresserContainer">
+            <div className="hairdresserContent">
                 <div className="hairdresserName">
                     <h1>Rachel Moss</h1>
                 </div>
@@ -39,7 +39,7 @@ function Hairdressers() {
                         transformation, Rachel is your go-to expert.</p>
                 </div>
             </div>
-            <div className="hairdresserContainer">
+            <div className="hairdresserContent">
                 <div className="hairdresserName">
                     <h1>Angela Trang</h1>
                 </div>

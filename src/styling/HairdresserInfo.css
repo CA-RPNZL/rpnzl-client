@@ -1,15 +1,15 @@
-.hairdresserContainer {
+.hairdresserContent {
   float: right;
   clear: right;
   width: 50%;
-  padding: 30px 40px;
+  padding: 30px 40px 0 0;
 }
-.hairdresserContainer .hairdresserName {
+.hairdresserContent .hairdresserName {
   font-family: "Titan One", sans-serif;
   font-size: 25px;
 }
-.hairdresserContainer .hairdresserBio,
-.hairdresserContainer .hairdresserService {
+.hairdresserContent .hairdresserBio,
+.hairdresserContent .hairdresserService {
   background-color: #E8EADD;
   border: 2px #ABAF95 solid;
   border-radius: 10px;
@@ -20,15 +20,6 @@
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1360px) {
-  .hairdresserContainer {
-    width: 40%;
-  }
-  .hairdresserContainer .hairdresserBio,
-  .hairdresserContainer .hairdresserService {
-    font-size: 14px;
-  }
-}
 @media screen and (max-width: 768px) {
   .hairdresserContainer {
     padding: 20px 40px 0 5px;

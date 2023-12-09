@@ -7,11 +7,11 @@ import AboutCarousel from "../components/AboutCarousel";
 
 function Aboutpage() {
   return (
-    <div>
+    <div id="aboutPageContainer">
       <div id="aboutHeading">
         <h1>About <span>RPNZL</span> </h1>
       </div>
-      <div className="aboutContainer">
+      <div className="aboutRpnzl">
         <div id="aboutPara">
           <p>Welcome to RPNZL, where we create fairytale hair for your everyday magical moments!
             Our salon boasts three skilled hairdressers dedicated to crafting the perfect look
@@ -22,11 +22,9 @@ function Aboutpage() {
           <BookNowButton className="bookNowButton" />
         </div>
       </div>
-      <div className="aboutTeamImage"> 
         <div className="image-container">
           <img src={teamImage} className="teamImage" alt="RPNZLTeam" />
         </div>
-      </div>
       <div>
         <div className="meetTeamContainer">
           <div id="meetTeamText">

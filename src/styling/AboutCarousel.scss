@@ -1,13 +1,17 @@
 @import './variables.scss';
 
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
 .about-carousel {
-    display: flex;
+    position: relative;
     float: left;
     flex-direction: column;
-    align-items: flex-start;
     max-width: 800px;
-    padding: 40px 150px;
+    padding: 40px 0 0 100px;
   
     .hairdresser {
       width: 300px;
@@ -33,20 +37,13 @@
     }
   }
 
-  @media screen and (max-width: 1360px) {
-
-    .about-carousel {
-    padding: 40px 50px;
-    }
-  }
-
-@media screen and (max-width: $tablet) {
+@media screen and (max-width: calc($tablet + 112px)) {
   .about-carousel {
-    padding: 100px 0 0 30px;
+    padding: 100px 0 0 20px;
   }
 
   .carouselContainer {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
 }
   
