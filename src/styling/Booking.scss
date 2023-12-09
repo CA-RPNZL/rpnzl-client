@@ -1,6 +1,7 @@
 @import "./variables";
 @import "./components/SelectService";
-@import "./components//SelectHairstylist";
+@import "./components/SelectHairstylist";
+@import "./components/SelectDateTime";
 @import "./components/Confirmation";
 
 
@@ -26,6 +27,8 @@
             border: 1px solid $dark-green;
             border-radius: 5px;
             background-color: white;
+            padding: 5px;
+            box-sizing: border-box;
             text-align: center;
             text-transform: uppercase;
         }
