@@ -4,6 +4,7 @@
     background-color: $offwhite;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     flex-grow: 2;
     
 }
@@ -31,11 +32,12 @@
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         padding-left: 5vw;
         flex: 1;
         width: 45vw;
         height: 500px;
-       
+    
         .greeting {
             order: 1;
         }
