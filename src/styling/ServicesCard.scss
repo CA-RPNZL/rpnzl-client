@@ -1,8 +1,8 @@
 @import "./_variables";
 
 .servicescard {
-    width: 500px;
-    margin: 30px 80px;
+    width: 30vw;
+    margin: 30px 50px;
     display: flex;
     flex-direction: column;
 
@@ -41,32 +41,42 @@
 @media (min-width: $laptop) and (max-width: $desktop) {
     .servicescard {
         width: 400px;
-        margin: 30px 50px;
+        margin: 30px 30px;
+
+        #servicesheader {
+            #servicename, #serviceprice {
+                font-size: 1.5rem;
+            }
+        }
     }
 }
 
 
 // Media query for tablet
-@media (min-width: $tablet) and (max-width: calc($laptop - 1px)) {
+@media screen and (max-width: calc($laptop - 1px)) {
     .servicescard {
+        width: 80vw;
+        max-width: 500px;
         margin: 0px 0px 50px;
+
+        #servicesheader {
+            #servicename, #serviceprice {
+                font-size: 1.5rem;
+            }
+        }
     }
 }
 
 
 // Media query for mobile
-@media (max-width: $mobile) {
+@media screen and (max-width: $mobile) {
     .servicescard {
+        width: 80vw;
         margin: 0px 0px 30px;
 
         #servicesheader {
-
-            #servicename {
-                font-size: 1.5rem;
-            }
-
-            #serviceprice {
-                font-size: 1rem;
+            #servicename, #serviceprice {
+                font-size: 1.2rem;
             }
         }
     }
