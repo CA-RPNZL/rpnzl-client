@@ -1,6 +1,6 @@
 @import './variables';
 /* Styling for the overall container of the login page */
-.login-container {
+.loginContainer {
     height: 100vh; 
     display: flex; 
     flex-direction: column; 
@@ -10,7 +10,7 @@
   }
   
   /* Styling for the login form within the container */
-  .login-form {
+  .loginForm {
     width: 60vh; 
     margin: auto; 
     padding: 20px; 
@@ -33,7 +33,7 @@
       flex-direction: column; 
   
       /* Styling for each input group within the form */
-      .input-group {
+      .inputGroup {
         margin-bottom: 15px; 
   
         label {
@@ -71,14 +71,14 @@
 
   // login form size adjusts for tabet
 @media screen and (max-width: $tablet) {
-  .login-form {
+  .loginForm {
       max-width: 40vh;
   }
 }
 
 // login form size adjusts for mobile
 @media screen and (max-width: $mobile) {
-  .login-form {
+  .loginForm {
       max-width: 30vh;
   }
 }
