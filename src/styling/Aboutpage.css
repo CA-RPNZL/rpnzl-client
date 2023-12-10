@@ -7,7 +7,7 @@
 }
 #aboutPageContainer #aboutHeading h1 {
   font-size: 50px;
-  padding: 30px 40px;
+  padding: 30px 40px 0;
   float: left;
   clear: left;
   font-family: "Montserrat", sans-serif;
@@ -16,35 +16,40 @@
   font-family: "superPlants", sans-serif;
   width: 1em;
 }
-#aboutPageContainer .aboutRpnzl {
-  width: 50%;
+#aboutPageContainer .aboutRpnzlContainer {
+  display: flex;
+  flex-direction: row;
+}
+#aboutPageContainer .aboutRpnzlContainer .aboutRpnzl {
+  min-width: 50%;
+  height: auto;
   margin-left: 60px;
   background-color: #E8EADD;
   border: 4px #ABAF95 solid;
   border-radius: 20px;
 }
-#aboutPageContainer .aboutRpnzl #aboutPara {
+#aboutPageContainer .aboutRpnzlContainer .aboutRpnzl #aboutPara {
   padding: 18px;
-  font-size: 16px;
+  font-size: 1.5em;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   line-height: 1.5;
 }
-#aboutPageContainer .aboutRpnzl #aboutPara .bookNowButton {
+#aboutPageContainer .aboutRpnzlContainer .aboutRpnzl #aboutPara .bookNowButton {
   position: relative;
   top: auto;
   left: 30%;
   transform: translateX(-50%);
 }
-#aboutPageContainer .image-container {
-  position: relative;
-  padding: 50px 30px 0;
+#aboutPageContainer .aboutRpnzlContainer .image-container {
+  padding: 30px 10px;
+  display: flex;
+  align-items: center;
 }
-#aboutPageContainer .image-container .teamImage {
+#aboutPageContainer .aboutRpnzlContainer .image-container .teamImage {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  display: block;
 }
 #aboutPageContainer .meetTeamContainer {
   padding: 30px 0;
@@ -63,14 +68,24 @@
 #aboutPageContainer .meetTeamContainer #meetTeamText p span {
   font-family: "superPlants", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1124px) {
   #aboutPageContainer .aboutRpnzl {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 1098px) {
+  #aboutPageContainer .aboutRpnzlContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  #aboutPageContainer .aboutRpnzlContainer .aboutRpnzl {
     width: 90%;
     margin-left: 30px;
     font-size: 14px;
   }
-  #aboutPageContainer .aboutTeamImage {
-    margin-top: 10px;
+  #aboutPageContainer .aboutRpnzlContainer .image-container {
+    padding-top: 20px;
+    align-items: flex-start;
   }
 }
 @media screen and (max-width: 480px) {
