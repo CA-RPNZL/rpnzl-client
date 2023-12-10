@@ -17,7 +17,6 @@
      object-fit: cover;
 }
 
-/* Styling for the login form within the container */
 .loginForm {
   flex-grow: 2;
   margin: auto;
@@ -33,8 +32,6 @@
 .loginForm form {
   display: flex;
   flex-direction: column;
-  /* Styling for each input group within the form */
-  /* Styling for the submit button within the form */
 }
 .loginForm form .inputGroup {
   margin-bottom: 15px;
@@ -67,19 +64,22 @@
 }
 
 @media screen and (max-width: 768px) {
-  .loginContainer {
+  .loginForm {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 300px;
+    height: 60%;
+    background-color: #FBF8F0;
+    display: flex;
     flex-direction: column;
-  }
-  .loginImage {
-    flex: 2;
-    width: 100%;
-    height: 5%;
-    -o-object-fit: fill;
-       object-fit: fill;
-  }
-}
-@media screen and (max-width: 480px) {
-  .loginContainer {
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ABAF95;
+    border-radius: 10px;
+    box-shadow: 20px #ABAF95;
   }
 }/*# sourceMappingURL=Login.css.map */
