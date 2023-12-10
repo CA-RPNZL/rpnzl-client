@@ -14,7 +14,7 @@ function SelectHairstylist() {
         const fetchHairstylists = async () => {
             try {
                 // Fetch data from API
-                let response = await fetch(process.env.REACT_APP_API + "/users/hairstylists?service=" + selectedService._id)
+                let response = await fetch(process.env.REACT_APP_API + "/users/hairstylists?service=" + selectedService._id);
                 // Save data as json
                 const responseData = await response.json();
                 // Update state

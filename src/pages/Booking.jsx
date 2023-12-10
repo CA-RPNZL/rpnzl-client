@@ -53,6 +53,10 @@ function Booking() {
     const [date, setDate] = useState(appointmentContextData.date);
     const [time, setTime] = useState(appointmentContextData.time);
 
+    // Create state for next button
+    const [disableNextBtn, setDisableNextBtn] = useState(false);
+
+
 
     return (
         <AppointmentContext.Provider value={{
@@ -72,8 +76,8 @@ function Booking() {
                     {showPage()}
                     <div id="bookingBtns">
                         { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
-                        { page < 3 && <WhiteButton label="Next" action={goNext}/>}
-                        { page === 3 && <WhiteButton label="Confirm" action={goNext} />}
+                        { page < 3 && <WhiteButton label="Next" action={goNext} disabled={disableNextBtn} />}
+                        { page === 3 && <WhiteButton label="Confirm" action={goNext} disabled={disableNextBtn} />}
                     </div>
                 </div>
             </div>

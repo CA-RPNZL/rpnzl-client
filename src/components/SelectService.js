@@ -26,9 +26,8 @@ function SelectService() {
         fetchServices();
     }, []);
 
-    // // Update AppointmentContext with selected service
+    // Update AppointmentContext with selected service
     const {selectedService, setService} = useContext(AppointmentContext);
-
 
 
     return (
