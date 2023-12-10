@@ -1,0 +1,24 @@
+#homePage {
+  background-color: #FBF8F0;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+#heroImageDiv {
+  background-image: url(../assets/photos/hero_image.jpg);
+  background-size: cover;
+  background-position: bottom center;
+  width: 100vw;
+  flex-grow: 2;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 10vh;
+}
+
+@media screen and (max-width: 480px) {
+  #heroImageDiv {
+    padding-bottom: 5vh;
+  }
+}/*# sourceMappingURL=Homepage.css.map */

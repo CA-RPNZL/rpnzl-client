@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import './variables';
 
 #header {
     background-color: $offwhite;
@@ -30,7 +30,9 @@
     font-size: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: fixed;
+    z-index: 4;
     top: -20px;
     right: -261px;
     width: 260px;
@@ -47,6 +49,12 @@
             transition: 0.1s ease-in;
             color: black;
         }
+        &:hover {
+            border-bottom: black 1px solid;
+        }
+    }
+    &-open {
+        right: 0;
     }
 
 }
@@ -55,11 +63,9 @@
     right: 0;
 }
 
-#navbar li a:hover{
-    border-bottom: black 1px solid;
-}
 
-@media screen and (min-width:768px) {
+// Media query for tablet +
+@media screen and (min-width: $tablet) {
     #logo {
         justify-content: center;
         font-size: 50px;
@@ -68,7 +74,6 @@
         font-size: 22px;
         width: 400px;
         right: -401px;
-        
     }
     #menu i {
         font-size: 50px

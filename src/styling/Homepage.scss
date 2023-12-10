@@ -1,0 +1,30 @@
+@import './variables';
+
+#homePage {
+    background-color: $offwhite;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#heroImageDiv {
+    background-image: url(../assets/photos/hero_image.jpg);
+    background-size: cover;
+    background-position: bottom center;
+    width: 100vw;
+    flex-grow: 2;
+
+    // Flex for button
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding-bottom: 10vh;
+}
+
+
+// Media query for mobile
+@media screen and (max-width: $mobile) {
+    #heroImageDiv {
+        padding-bottom: 5vh;
+    }
+}

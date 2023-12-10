@@ -1,0 +1,59 @@
+.servicescard {
+  width: 30vw;
+  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+}
+.servicescard #servicesheader {
+  display: flex;
+}
+.servicescard #servicesheader #servicename {
+  margin: 5px auto;
+  flex-grow: 1;
+  font-family: "Titan One", sans-serif;
+  font-size: 2rem;
+  text-align: left;
+}
+.servicescard #servicesheader #serviceprice {
+  margin: auto;
+  flex-grow: 1;
+  font-family: "Titan One", sans-serif;
+  font-size: 1.5rem;
+  text-align: right;
+}
+.servicescard #servicedescription {
+  background-color: #E8EADD;
+  border: 5px solid #ABAF95;
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 5vh;
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .servicescard {
+    width: 400px;
+    margin: 30px 30px;
+  }
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .servicescard {
+    width: 80vw;
+    max-width: 500px;
+    margin: 0px 0px 50px;
+  }
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .servicescard {
+    width: 80vw;
+    margin: 0px 0px 30px;
+  }
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
+    font-size: 1.2rem;
+  }
+}/*# sourceMappingURL=ServicesCard.css.map */

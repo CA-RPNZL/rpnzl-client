@@ -7,21 +7,21 @@ const Footer = () => (
                 <p>Fairytale hair for magical moments</p>
             </div>
 
-            <div className="container">
+            <div className="logoContainer">
                 <a href="#" id="footer-logo">
                     RPNZL
                 </a>
 
             </div>
-            <div class="social-media">
-                <a href="https://www.pinterest.com" target="_blank">
-                    <i class="fa-brands fa-pinterest"></i>
+            <div id="social-media">
+                <a href="https://www.pinterest.com" target="_blank" rel="noreferrer">
+                    <i className="fa-brands fa-pinterest"></i>
                 </a>
-                <a href="https://www.facebook.com" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
+                <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+                    <i className="fa-brands fa-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com" target="_blank">
-                    <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                    <i className="fa-brands fa-instagram"></i>
                 </a>
             </div>
         </footer>

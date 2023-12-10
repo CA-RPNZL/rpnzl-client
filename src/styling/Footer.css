@@ -1,40 +1,40 @@
-@font-face {
-  font-family: superPlants;
-  src: url(../assets/fonts/SuperPlants.ttf);
-}
 #footer {
   background-color: #FDEDEB;
   border-top: 1px #D51E01 solid;
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  box-sizing: border-box;
+  padding: 10px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+#footer .logoContainer {
+  margin: 0 auto;
+  text-align: center;
+}
 #footer-logo {
   font-family: superPlants, sans-serif;
   font-size: 30px;
-  text-decoration: none;
-  padding-right: 90px;
   color: #D51E01;
 }
 #footer #catchphrase {
   font-family: superPlants, sans-serif;
   color: #D51E01;
   text-align: left;
-  padding-left: 20px;
+  flex-grow: 1;
+  flex-basis: 0;
 }
-#footer .social-media {
+#footer #social-media {
   text-align: right;
-  padding-right: 50px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  flex-grow: 1;
+  flex-basis: 0;
 }
-#footer .social-media a {
+#footer #social-media a {
   color: black;
   text-decoration: none;
-  margin-right: 20px;
   font-size: 20px;
   display: inline-block;
   width: 30px;
@@ -45,44 +45,36 @@
   border: 3px solid #EB9082;
   transition: transform 0.3s ease-in-out;
 }
-#footer .social-media a:hover {
+#footer #social-media a:hover {
   transform: scale(1.2);
 }
+
 @media screen and (max-width: 768px) {
-  #footer #footer-logo {
-    font-size: 20px;
-    padding-right: 30px;
+  #footer-logo {
+    font-size: 24px;
   }
   #footer #catchphrase {
-    font-size: 10px;
-    padding-left: 10px;
+    font-size: 12px;
   }
   #footer .social-media a {
     display: inline-block;
     margin: 0 5px 0 0;
   }
 }
-@media screen and (max-width: 375px) {
-  #footer #footer-logo {
-    display: none;
-  }
-  #footer #footer {
+@media screen and (max-width: 480px) {
+  #footer {
+    padding: 20px;
     flex-direction: column;
-    align-items: center;
   }
   #footer #catchphrase {
-    padding: 30px 90px 0;
+    order: 2;
+    font-size: 14px;
+    text-align: center;
   }
-  #footer .social-media {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    text-align: right;
-    padding-right: 105px;
-    white-space: nowrap;
+  #footer .logoContainer {
+    display: none;
   }
-  #footer .social-media a {
-    display: inline-block;
-    margin: 0 5px 0 0;
+  #footer #social-media {
+    order: 1;
   }
 }/*# sourceMappingURL=Footer.css.map */
