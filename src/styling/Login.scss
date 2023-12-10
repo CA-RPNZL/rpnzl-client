@@ -10,18 +10,19 @@
 }
 
 /* Styling for the image container on the left side */
-.imageContainer {
-  flex: 1;
   .loginImage {
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    width: 50vw;
+    height: 100vh;
     object-fit: cover;
+    
   }
-}
+
 
 /* Styling for the login form within the container */
 .loginForm {
-  flex: 1;
+  flex-grow: 2;
   margin: auto;
   padding: 80px;
   text-align: center;
@@ -52,6 +53,7 @@
         // styling for input fields
         input {
           width: 100%; 
+          min-width: 120px;
           padding: 8px; 
           box-sizing: border-box; 
         }
@@ -79,14 +81,22 @@
 
   // login form size adjusts for tabet
 @media screen and (max-width: $tablet) {
-  .loginForm {
-      max-width: 40vh;
+  .loginContainer {
+    flex-direction: column;
+  }
+  .loginImage {
+    flex: 2;
+    width: 100%;
+    height: 5%;
+    object-fit: fill;
+    
   }
 }
 
 // login form size adjusts for mobile
 @media screen and (max-width: $mobile) {
-  .loginForm {
-      max-width: 30vh;
+  .loginContainer {
+    flex-direction: column;
   }
+
 }

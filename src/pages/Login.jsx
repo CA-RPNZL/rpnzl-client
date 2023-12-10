@@ -1,16 +1,14 @@
 // Import dependencies and styles
 import React from 'react';
-import '../styling/Login.css'; // Import the associated styling
-import '../assets/photos/login_image.jpg'
+import '../styling/Login.css';
+
+import loginImage from '../assets/photos/login_image.jpg';
 
 // Functional component for the Login page
 function Login() {
   return (
     <div className="loginContainer">
-      {/* Imgae for login screen */}
-       <div className="imageContainer">
-        <img className="loginImage" src="../assets/photos/login_image.jpg" alt="Login" />
-      </div>
+      <img className="loginImage" src={loginImage} alt="Login" />
       <div className="loginForm"> {/* Container for the login form */}
         <h2>Login</h2> 
         <form>
@@ -31,4 +29,5 @@ function Login() {
   );
 }
 
-export default Login; // Export the Login component
+// Export the Login component
+export default Login;
