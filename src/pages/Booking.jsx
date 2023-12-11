@@ -50,8 +50,8 @@ function Booking() {
     const [client, setClient] = useState(appointmentContextData.client);
     const [service, setService] = useState(appointmentContextData.service);
     const [hairstylist, setHairstylist] = useState(appointmentContextData.hairstylist);
-    const [date, setDate] = useState(appointmentContextData.date);
-    const [time, setTime] = useState(appointmentContextData.time);
+    const [startDateTime, setStartDateTime] = useState(appointmentContextData.selectedStartDateTime);
+    const [endDateTime, setEndDateTime] = useState(appointmentContextData.selectedEndDateTime);
 
     // Create state for next button
     const [disableNextBtn, setDisableNextBtn] = useState(false);
@@ -66,10 +66,10 @@ function Booking() {
             setService: setService,
             selectedHairstylist: hairstylist,
             setHairstylist: setHairstylist,
-            selectedDate: date,
-            setDate: setDate,
-            selectedTime: time,
-            setTime: setTime
+            startDateTime: startDateTime,
+            setStartDateTime: setStartDateTime,
+            endDateTime: endDateTime,
+            setEndDateTime: setEndDateTime
         }}>
             <div id="booking">
                 <div id="bookingModule">

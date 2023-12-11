@@ -5,8 +5,8 @@ export const appointmentContextData = {
         client: "",
         selectedService: "",
         selectedHairstylist: "",
-        selectedDate: "",
-        selectedTime: ""
+        selectedStartDateTime: "",
+        selectedEndDateTime: "",
 };
 
 

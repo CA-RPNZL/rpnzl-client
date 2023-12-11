@@ -6,13 +6,10 @@ import AppointmentContext from "../contexts/AppointmentContext";
 
 function Confirmation() {
     const appointment = useContext(AppointmentContext);
-
-    // Format date
-    const formattedDate = new Intl.DateTimeFormat('en-AU', {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    }).format(appointment.selectedDate);
+    
+    const selectedDate = new Date(appointment.startDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    const selecteStartTime = new Date(appointment.startDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedEndTime = new Date(appointment.endDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
 
     return (
             <div id="confirmationDiv">
@@ -27,12 +24,12 @@ function Confirmation() {
                     </div>
                     <div id="confirmedHairstylist">
                         <p className="confirmedHeader">Hairstylist</p>
-                        <p className="confirmedSelected">{appointment.selectedHairstylist.name}</p>
+                        <p className="confirmedSelected">{appointment.selectedHairstylist.firstName} {appointment.selectedHairstylist.lastName}</p>
                     </div>
                     <div id="confirmedDateTime">
                         <p className="confirmedHeader">Date and time</p>
-                        <p className="confirmedSelected">{formattedDate}</p>
-                        <p className="confirmedSelected">2:00PM - 4:30PM ({appointment.selectedService.duration} minutes)</p>
+                        <p className="confirmedSelected">{selectedDate}</p>
+                        <p className="confirmedSelected">{selecteStartTime} - {selectedEndTime} ({appointment.selectedService.duration} minutes)</p>
                     </div>
                 </div>
             </div>

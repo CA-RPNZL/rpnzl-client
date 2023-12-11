@@ -1,75 +1,101 @@
-import Calendar from "react-calendar";
 import "../styling/Booking.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
+import { DateSlotPicker } from "react-dateslot-picker";
+// import 'react-dateslot-picker/dist/style.css';
+
 
 function SelectDateTime() {
-    // Get today's date
-    const currentDate = new Date();
+    const appointment = useContext(AppointmentContext);
 
-    // Update AppointmentContext with selected date
-    const {selectedDate, setDate} = useContext(AppointmentContext);
+    // Update AppointmentContext with selected start date and time
+    const {selectedStartDateTime, setStartDateTime} = useContext(AppointmentContext);
+    
+    // Update AppointmentContext with calcualted end date and time
+    const {selectedEndDateTime, setEndDateTime} = useContext(AppointmentContext);
+    
+    // Create stae for list of existing appointments
+    const [appointmentList, setAppointmentList] = useState([]);
 
-    // // State for selected date
-    // const [selectedDate, setSelectedDate] = useState(currentDate);
+    // Create an array to store unavailable date/time timestamps
+    const unavailableDates = [];
+
+    // Fetch list of appointments by selected hairstylist
+    useEffect(() => {
+        const fetchAppointments = async () => {
+            try {
+                // Fetch data from API
+                let response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + appointment.selectedHairstylist._id);
+                // Save data as json
+                const responseData = await response.json();
+                // Update state
+                setAppointmentList(responseData);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchAppointments();
+    }, [appointment.selectedHairstylist])
 
 
-    // Update AppointmentContext with selected time
-    const {selectedTime, setTime} = useContext(AppointmentContext);
+    // Grab date/time from each appointment, convert to timestamp
+    appointmentList.map((bookedAppt) => {
 
-    // // State for selected time
-    // const [selectedTime, setSelectedTime] = useState(null);
+        // Obtain timestamp of the starting date/time of the booked appointment
+        let bookedApptStartTimestamp = new Date(bookedAppt.startDateTime).getTime();
+        
+        // Obtain timestamp of the ending date/time of the booked appointment
+        let bookedApptEndTimestamp = new Date(bookedAppt.endDateTime).getTime();
 
-    // Calendar function: format day of the week
-    const formatDay = (locale, date) => {
-        return date.toLocaleDateString(locale, {weekday: "long"}).charAt(0);
+        // Add the starting date/time of the booked appointment to the unavailability array
+        unavailableDates.push(bookedApptStartTimestamp);
+
+        // Calculate any timeslots that may fall within the appointment start and end time
+        // Add these timestamps to the unavailability array
+        let counter = bookedApptStartTimestamp + 900000;
+        while (counter <= bookedApptEndTimestamp) {
+            unavailableDates.push(counter);
+            counter += 900000;
+        }
+
+        return unavailableDates;
+    })
+
+
+
+    // react-dateslot-picker configuration
+    const props = {
+        
+        duration: 15,
+        dailyTimePair: [{
+            startTime: [9, 0],
+            endTime: [16, 0]
+        }],
+        fullBooking: unavailableDates,
+        onSelectDatetime: (timestamp) => {
+            console.log(timestamp);
+
+            // Format date using timestamp (milliseconds)
+            let startDateTime = new Date(timestamp);
+
+            // Calculate when the appointment will finish using the service duration (mins)
+            let endTimestamp = timestamp + appointment.selectedService.duration * 60000;
+            
+            // Format time appointment ends using end timestamp (milliseconds)
+            let endDateTime = new Date(endTimestamp);
+
+            // Update values in appointment context
+            setStartDateTime(startDateTime);
+            setEndDateTime(endDateTime);
+        }
     }
 
-    // Black out dates in the past
-    const tileDisabled = ({date}) => {
-        return date < currentDate;
-    }
-
-    //
-    const onChange = (value) => {
-        console.log(value);
-        setDate(value);
-    }
 
     return (
         <div id="selectDateTime">
             <h6 id="bookingHeading">Select date and time</h6>
-            <Calendar 
-                defaultValue={currentDate}
-                tileDisabled={tileDisabled}
-                formatShortWeekday={formatDay}
-                onChange={onChange}
-            />
-            <div id="timeSelector">
-                <div id="timeHeading">
-                    Time
-                </div>
-                <div id="morningTimeSlots">
-                    <div className="timeSubheading" id="morning">
-                        Morning
-                    </div>
-                    <button className="timeSlot">9:00am</button>
-                    <button className="timeSlot">9:30am</button>
-                    <button className="timeSlot">10:00am</button>
-                    <button className="timeSlot">10:30am</button>
-                </div>
-                <div id="afternoonTimeSlots">
-                    <div className="timeSubheading" id="afternoon">
-                        Afternoon
-                    </div>
-                    <button className="timeSlot">12:30pm</button>
-                    <button className="timeSlot">2:30pm</button>
-                    <button className="timeSlot">3:00pm</button>
-                    <button className="timeSlot">3:30pm</button>
-                    <button className="timeSlot">4:00pm</button>
-                    <button className="timeSlot">6:00pm</button>
-                </div>
-            </div>
+            <DateSlotPicker {...props} />
         </div>
     )
 }

@@ -5,14 +5,10 @@ import AppointmentContext from "../contexts/AppointmentContext";
 
 function PreConfirmation() {
     const appointment = useContext(AppointmentContext);
-    console.log(appointment);
-
-    // Format date
-    const formattedDate = new Intl.DateTimeFormat('en-AU', {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    }).format(appointment.selectedDate);
+    
+    const selectedDate = new Date(appointment.startDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    const selecteStartTime = new Date(appointment.startDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedEndTime = new Date(appointment.endDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
 
     return (
             <div id="preConfirmationDiv">
@@ -23,12 +19,12 @@ function PreConfirmation() {
                 </div>
                 <div id="preConfirmHairstylist">
                     <p className="preConfirmHeader">Hairstylist</p>
-                    <p className="preConfirmSelected">{appointment.selectedHairstylist.name}</p>
+                    <p className="preConfirmSelected">{appointment.selectedHairstylist.firstName} {appointment.selectedHairstylist.lastName}</p>
                 </div>
                 <div id="preConfirmDateTime">
                     <p className="preConfirmHeader">Date and time</p>
-                    <p className="preConfirmSelected">{formattedDate}</p>
-                    <p className="preConfirmSelected">2:00PM - 4:30PM ({appointment.selectedService.duration} minutes)</p>
+                    <p className="preConfirmSelected">{selectedDate}</p>
+                    <p className="preConfirmSelected">{selecteStartTime} - {selectedEndTime} ({appointment.selectedService.duration} minutes)</p>
                 </div>
             </div>
     )
