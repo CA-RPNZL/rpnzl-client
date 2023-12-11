@@ -6,22 +6,22 @@ const UserContext = createContext();
 // UserProvider component to wrap the app and provide user context
 export const UserProvider = ({ children }) => {
   // State to hold user data
-  const [user, setUser] = useState(null);
+  const [jwt, setJwt] = useState(null);
 
   // Function to handle user login
   const login = (token) => {
-    setUser({ token });
+    setJwt({ token });
   };
 
   // Function to handle user logout
   const logout = () => {
     // Clear user data on logout
-    setUser(null);
+    setJwt(null);
   };
 
   // Provide the user context to the app
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ jwt, login, logout }}>
       {children}
     </UserContext.Provider>
   );
