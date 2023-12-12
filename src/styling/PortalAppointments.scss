@@ -44,9 +44,17 @@
 
     }
     p {
-        margin: 12px 40px;
+        margin: 12px 20px;
         font-size: 11px;
         font-style: italic;
-        max-width: 30vw;
+    }
+}
+
+@media  screen and (min-width: $laptop) {
+    #portalApptsDiv {
+        p {
+            margin: 12px 40px;
+            max-width: 30vw;
+        }
     }
 }

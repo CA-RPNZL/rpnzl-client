@@ -1,39 +1,30 @@
 import { Button } from 'react-bootstrap';
 import "../styling/PortalAppointments.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faScissors, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+
+import Modal from '../components/Modal';
+import { useState } from 'react';
+import AppointmentCard from './AppointmentCard';
 
 function PortalAppointments() {
+    const [openCancelModal, setOpenCancelModal] = useState(false);
+    const [appointments, setAppointments] = useState([]);
     return (
         <div id="portalApptsDiv">
             <h2 id="yourNextApptIs">Your next appointment is</h2>
-            <div className="greenApptCards">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><FontAwesomeIcon icon={faScissors} /></td>
-                            <td>Colour and Cut</td>
-                        </tr>
-                        <tr>
-                            <td><FontAwesomeIcon icon={faCalendarDays} /></td>
-                            <td>November 20, 2023<br/>
-                                2:00PM - 4:30PM
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><FontAwesomeIcon icon={faUser} /></td>
-                            <td>with Michelle Smith</td>
-                        </tr>
-                    </tbody>
-                    
-                </table>
-            </div>
+                <AppointmentCard/>
             <div id="apptButtonDiv">
                 <Button className="apptButtons">Update Appointment</Button>
-                <Button className="apptButtons">Cancel Appointment</Button>
+                <Button className="apptButtons" onClick={() => setOpenCancelModal(true)}>Cancel Appointment</Button>
             </div>
             <p>Please note: Changes or cancellations must be made no less 
 than 24 hours prior to your appointment</p>
+            <Modal 
+                open={openCancelModal} 
+                onClose={() => setOpenCancelModal(false)}
+                heading={"Cancel Appointment"}
+                subheading={"Are you sure you want to cancel your appointment?"}
+                text={"Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment"}
+            />
         </div>
     )
 }

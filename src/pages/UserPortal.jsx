@@ -10,7 +10,7 @@ import Modal from '../components/Modal';
 
 
 function UserPortal() {
-    const [openModal, setOpenModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
     
     return (
         <div id="userPortalOuterDiv">  
@@ -27,8 +27,14 @@ function UserPortal() {
                     <PasswordForm />
                 </div>
                 <div id="deleteAccountDiv">
-                    <Button onClick={() => setOpenModal(true)}>DELETE ACCOUNT</Button>
-                    <Modal open={openModal} onClose={() => setOpenModal(false)}/>
+                    <Button onClick={() => setOpenDeleteModal(true)}>DELETE ACCOUNT</Button>
+                    <Modal 
+                        open={openDeleteModal} 
+                        onClose={() => setOpenDeleteModal(false)}
+                        heading={"Delete Account"}
+                        subheading={"Are you sure you want to delete your account?"}
+                        text={"Deleting your account will permanently delete your details and appointments."}
+                    />
                     <p>Please note: Once account is deleted your upcoming appointments will be deleted too</p>
                 </div>
                 

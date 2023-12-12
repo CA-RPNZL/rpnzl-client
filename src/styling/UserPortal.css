@@ -5,6 +5,9 @@
   align-items: center;
   flex-grow: 2;
 }
+#userPortalOuterDiv Button {
+  cursor: pointer;
+}
 
 #deleteAccountDiv {
   font-family: "Montserrat", sans-serif;
@@ -13,7 +16,7 @@
   align-items: center;
   flex-direction: column;
 }
-#deleteAccountDiv Button {
+#deleteAccountDiv Button:first-child {
   background-color: #E8EADD;
   border: 2px solid #ABAF95;
   border-radius: 4px;
@@ -27,7 +30,6 @@
   font-size: 11px;
   font-style: italic;
   padding: 10px 20px;
-  max-width: 30vw;
 }
 
 @media screen and (min-width: 1024px) {
@@ -41,6 +43,9 @@
     flex: 2;
     width: 45vw;
     height: 500px;
+  }
+  .userPortalDiv p {
+    max-width: 30vw;
   }
   .userPortalDiv .greeting {
     order: 1;
