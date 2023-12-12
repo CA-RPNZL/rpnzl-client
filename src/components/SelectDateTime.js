@@ -6,7 +6,11 @@ import { DateSlotPicker } from "react-dateslot-picker";
 
 
 function SelectDateTime() {
+    // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
+
+    // Create state for list of existing appointments
+    const [appointmentList, setAppointmentList] = useState([]);
 
     // Update AppointmentContext with selected start date and time
     const {selectedStartDateTime, setStartDateTime} = useContext(AppointmentContext);
@@ -14,29 +18,48 @@ function SelectDateTime() {
     // Update AppointmentContext with calcualted end date and time
     const {selectedEndDateTime, setEndDateTime} = useContext(AppointmentContext);
     
-    // Create stae for list of existing appointments
-    const [appointmentList, setAppointmentList] = useState([]);
+    // Update disableNextBtn
+    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    
 
     // Create an array to store unavailable date/time timestamps
     const unavailableDates = [];
 
     // Fetch list of appointments by selected hairstylist
     useEffect(() => {
-        const fetchAppointments = async () => {
+        const fetchHairstylistsAppointments = async () => {
             try {
-                // Fetch data from API
-                let response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + appointment.selectedHairstylist._id);
-                // Save data as json
-                const responseData = await response.json();
-                // Update state
-                setAppointmentList(responseData);
+                // If hairstylist has been selected, grab existing appointment data
+                if (appointment.selectedHairstylist._id !== undefined && appointment.selectedHairstylist._id !== "Any") {
+                    // Fetch data from API
+                    let response = await fetch(process.env.REACT_APP_API + "/appointments?hairstylist=" + appointment.selectedHairstylist._id);
+                    // Save data as json
+                    const responseData = await response.json();
+                    // Update state
+                    setAppointmentList(responseData);
+                } else {
+                    console.log("No hairstylist has been selected.")
+                }
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
 
-        fetchAppointments();
-    }, [appointment.selectedHairstylist])
+        const fetchAppointmentData = async () => {
+            if (selectedStartDateTime !== "") {
+                // Update Next button to be active
+                setDisableNextBtn(false);
+            } else {
+                // Update Next button to be disabled
+                setDisableNextBtn(true);
+            }
+        };
+
+        fetchHairstylistsAppointments();
+        fetchAppointmentData();
+
+
+    }, [appointment.selectedHairstylist, selectedStartDateTime, setDisableNextBtn])
 
 
     // Grab date/time from each appointment, convert to timestamp
@@ -88,8 +111,10 @@ function SelectDateTime() {
             // Update values in appointment context
             setStartDateTime(startDateTime);
             setEndDateTime(endDateTime);
+
         }
     }
+
 
 
     return (

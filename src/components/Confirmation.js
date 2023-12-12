@@ -7,9 +7,9 @@ import AppointmentContext from "../contexts/AppointmentContext";
 function Confirmation() {
     const appointment = useContext(AppointmentContext);
     
-    const selectedDate = new Date(appointment.startDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
-    const selecteStartTime = new Date(appointment.startDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
-    const selectedEndTime = new Date(appointment.endDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedDate = new Date(appointment.selectedStartDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    const selecteStartTime = new Date(appointment.selectedStartDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedEndTime = new Date(appointment.selectedEndDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
 
     return (
             <div id="confirmationDiv">

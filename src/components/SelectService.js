@@ -4,10 +4,19 @@ import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function SelectService() {
+    // Use AppointmentContext data
+    const appointment = useContext(AppointmentContext);
+
     // Create state for list of services
     const [servicesList, setServicesList] = useState([]);
+    
+    // Update AppointmentContext with selected service
+    const {selectedService, setService} = useContext(AppointmentContext);
 
-    // Fetch list of services
+    // Update disableNextBtn
+    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+
+    // Fetch list of services + appointment data
     // useEffect(fn, dependencyArray)
     useEffect(() => {
         const fetchServices = async () => {
@@ -21,14 +30,35 @@ function SelectService() {
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
+
+        const fetchAppointmentData = async () => {
+            
+            if (selectedService !== undefined) {
+                // Update input form element of selected service to be selected
+                document.getElementById(`input-${selectedService._id}`).checked = true;
+
+                // Update Next button to be active
+                setDisableNextBtn(false);
+            }
+        };
 
         fetchServices();
-    }, []);
 
-    // Update AppointmentContext with selected service
-    const {selectedService, setService} = useContext(AppointmentContext);
+        // Check servicesList has populated
+        if (servicesList.length > 0) {
+            fetchAppointmentData();
+        };
 
+    }, [servicesList, selectedService, setDisableNextBtn]);
+
+
+    function updateService(service) {
+        setService(service);
+        console.log(service);
+    }
+
+    
 
     return (
             <div id="selectServiceDiv">
@@ -38,14 +68,14 @@ function SelectService() {
                         <div className="selectService" key={service._id}>
                             <input 
                                 type="radio" 
-                                id={service._id} 
+                                id={`input-${service._id}`} 
                                 name="selectService" 
                                 className="serviceInput" 
-                                onChange={() => setService(service)} 
+                                onChange={() => updateService(service)} 
                             />
-                            <label htmlFor={service._id} className="serviceName">{service.name}</label>
-                            <label htmlFor={service._id} className="servicePrice">{service.price}</label>
-                            <label htmlFor={service._id} className="serviceDuration">{`${service.duration} minutes`}</label>
+                            <label htmlFor={`input-${service._id}`} className="serviceName">{service.name}</label>
+                            <label htmlFor={`input-${service._id}`} className="servicePrice">{service.price}</label>
+                            <label htmlFor={`input-${service._id}`} className="serviceDuration">{`${service.duration} minutes`}</label>
                         </div>
                     ))}
                 </form>

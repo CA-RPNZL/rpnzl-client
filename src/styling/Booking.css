@@ -133,7 +133,7 @@
   border: 1px solid #ABAF95;
 }
 
-button:disabled.dateslotpicker-bg-red-500 {
+#selectDateTime button:disabled.dateslotpicker-bg-red-500 {
   text-decoration-line: none;
 }
 
@@ -210,7 +210,7 @@ button.dateslotpicker-bg-\[\#1e1c22\] {
   text-decoration-line: line-through;
 }
 
-button:disabled {
+#selectDateTime button:disabled {
   text-decoration-line: line-through;
 }
 

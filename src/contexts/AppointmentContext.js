@@ -7,6 +7,7 @@ export const appointmentContextData = {
         selectedHairstylist: "",
         selectedStartDateTime: "",
         selectedEndDateTime: "",
+        disableNextBtn: true
 };
 
 

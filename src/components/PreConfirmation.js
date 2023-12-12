@@ -4,11 +4,33 @@ import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function PreConfirmation() {
+    // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
     
-    const selectedDate = new Date(appointment.startDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
-    const selecteStartTime = new Date(appointment.startDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
-    const selectedEndTime = new Date(appointment.endDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    // Update disableNextBtn
+    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+
+    // 
+    const fetchAppointmentData = async () => {
+
+        // If missing client ID (e.g. user is not logged in)
+        if (appointment.selectedClient === "") {
+            console.log("Error: Missing client ID.");
+            // Update Next button to be disabled
+            setDisableNextBtn(true);
+        }
+
+    }
+    fetchAppointmentData();
+    
+    // Update start date with date formatting
+    const selectedDate = new Date(appointment.selectedStartDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    
+    // Update start date with time formatting
+    const selectedStartTime = new Date(appointment.selectedStartDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    
+    // Update end date with time formatting
+    const selectedEndTime = new Date(appointment.selectedEndDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
 
     return (
             <div id="preConfirmationDiv">
@@ -24,7 +46,7 @@ function PreConfirmation() {
                 <div id="preConfirmDateTime">
                     <p className="preConfirmHeader">Date and time</p>
                     <p className="preConfirmSelected">{selectedDate}</p>
-                    <p className="preConfirmSelected">{selecteStartTime} - {selectedEndTime} ({appointment.selectedService.duration} minutes)</p>
+                    <p className="preConfirmSelected">{selectedStartTime} - {selectedEndTime} ({appointment.selectedService.duration} minutes)</p>
                 </div>
             </div>
     )

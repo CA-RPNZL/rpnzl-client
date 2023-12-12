@@ -54,22 +54,24 @@ function Booking() {
     const [endDateTime, setEndDateTime] = useState(appointmentContextData.selectedEndDateTime);
 
     // Create state for next button
-    const [disableNextBtn, setDisableNextBtn] = useState(false);
+    const [disableNextBtn, setDisableNextBtn] = useState(appointmentContextData.disableNextBtn);
 
 
 
     return (
         <AppointmentContext.Provider value={{
-            client: client,
+            selectedClient: client,
             setClient: setClient,
             selectedService: service,
             setService: setService,
             selectedHairstylist: hairstylist,
             setHairstylist: setHairstylist,
-            startDateTime: startDateTime,
+            selectedStartDateTime: startDateTime,
             setStartDateTime: setStartDateTime,
-            endDateTime: endDateTime,
-            setEndDateTime: setEndDateTime
+            selectedEndDateTime: endDateTime,
+            setEndDateTime: setEndDateTime,
+            disableNextBtn: disableNextBtn,
+            setDisableNextBtn: setDisableNextBtn
         }}>
             <div id="booking">
                 <div id="bookingModule">
