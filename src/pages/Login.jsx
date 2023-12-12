@@ -18,7 +18,7 @@ function Login() {
     try {
       console.log('Sending login request...');
   
-      // Call your authentication API
+      // Call authentication API
       const result = await fetch(process.env.REACT_APP_API + "/login", {
         method: 'POST',
         headers: {
@@ -32,7 +32,7 @@ function Login() {
       if (result.ok) {
         const userData = await result.json();
         console.log('Authentication successful. User data:', userData);
-        // Assuming your API returns a token, update the login function accordingly
+        // Return API token, update the login function accordingly
         login(userData.token);
       } else {
         console.log('Authentication failed. Status:', result.status);
