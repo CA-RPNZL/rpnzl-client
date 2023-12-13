@@ -22,7 +22,7 @@ function SelectService() {
         const fetchServices = async () => {
             try {
                 // Fetch data from API
-                let response = await fetch(process.env.REACT_APP_API + "/services")
+                let response = await fetch(process.env.REACT_APP_API + "/services");
                 // Save data as json
                 const responseData = await response.json();
                 // Update state
@@ -33,8 +33,7 @@ function SelectService() {
         };
 
         const fetchAppointmentData = async () => {
-            
-            if (selectedService !== undefined) {
+            if (selectedService !== "") {
                 // Update input form element of selected service to be selected
                 document.getElementById(`input-${selectedService._id}`).checked = true;
 

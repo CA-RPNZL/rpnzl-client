@@ -30,7 +30,7 @@ function SelectDateTime() {
         const fetchHairstylistsAppointments = async () => {
             try {
                 // If hairstylist has been selected, grab existing appointment data
-                if (appointment.selectedHairstylist._id !== undefined && appointment.selectedHairstylist._id !== "Any") {
+                if (appointment.selectedHairstylist._id !== "" && appointment.selectedHairstylist._id !== "Any") {
                     // Fetch data from API
                     let response = await fetch(process.env.REACT_APP_API + "/appointments?hairstylist=" + appointment.selectedHairstylist._id);
                     // Save data as json

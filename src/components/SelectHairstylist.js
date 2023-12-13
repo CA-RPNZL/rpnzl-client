@@ -34,7 +34,7 @@ function SelectHairstylist() {
         };
 
         const fetchAppointmentData = async () => {
-            if (selectedHairstylist !== undefined &&  selectedHairstylist !== "Any") {
+            if (selectedHairstylist !== "" &&  selectedHairstylist !== "Any") {
                 // Update input form element of selected hairstylist to be selected
                 document.getElementById(`input-${selectedHairstylist._id}`).checked = true;
     

@@ -12,6 +12,6 @@ export const appointmentContextData = {
 
 
 // Create the context for appointment data
-const AppointmentContext = createContext();
+const AppointmentContext = createContext(appointmentContextData);
 
 export default AppointmentContext;
