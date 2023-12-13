@@ -1,9 +1,8 @@
 import React from "react";
 import '../styling/Aboutpage.css';
-import Hairdressers from "../components/HairdresserInfo";
 import teamImage from "../assets/photos/team_photo.jpg";
 import BookNowButton from "../components/BookNowButton";
-import AboutCarousel from "../components/AboutCarousel";
+import HairdresserSection from "../components/HairdresserSection";
 
 function Aboutpage() {
   return (
@@ -36,8 +35,8 @@ function Aboutpage() {
             <p>Meet the <span>RPNZL</span> team</p>
           </div>
         </div>
-        <AboutCarousel />
-        <Hairdressers />
+        <HairdresserSection />
+        <BookNowButton className="bookNowButtonBottom" />
       </div>
     </div>
   )
