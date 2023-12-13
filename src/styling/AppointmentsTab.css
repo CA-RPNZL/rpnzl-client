@@ -1,0 +1,21 @@
+.appointmentTab {
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.appointmentTab #appointmentHeader #clientname {
+  font-weight: bold;
+}
+.appointmentTab #appointmentHeader #hairstylistname {
+  color: #555;
+}
+.appointmentTab #appointmentHeader #servicename {
+  text-decoration: underline;
+}
+.appointmentTab #appointmentHeader #duration {
+  color: #888;
+}/*# sourceMappingURL=AppointmentsTab.css.map */

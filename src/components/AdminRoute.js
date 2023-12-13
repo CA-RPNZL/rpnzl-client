@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/UserContext';
 
-const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
+const AdminRoute = ({ component: Component, adminOnly, ...rest }) => {
   const { jwt, userData } = useUserContext();
 
   return (
@@ -10,20 +10,20 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
       {...rest}
       render={(props) => {
         if (!jwt) {
-          // Redirect to login if not authenticated
-          return <Redirect to="/login" />;
+          // Navigate to login if not authenticated
+          return <Navigate to="/login" />;
         }
 
         if (adminOnly && !userData?.is_admin) {
-          // Redirect to 404 or unauthorized page for non-admin users
-          return <Redirect to="/unauthorized" />;
+          // Navigate to 404 or unauthorized page for non-admin users
+          return <Navigate to="/unauthorized" />;
         }
 
         // Render the component if authenticated and authorized
-        return <Component {...props} />;
+        return Component ? <Component {...props} /> : null;
       }}
     />
   );
 };
 
-export default ProtectedRoute;
+export default AdminRoute;

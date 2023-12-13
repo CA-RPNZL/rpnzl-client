@@ -1,0 +1,42 @@
+// Import variables
+@import './variables';
+
+#appointments {
+  padding: 20px 0px;
+  background-color: $offwhite;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h1 {
+    font-family: 'Titan One', sans-serif;
+    text-decoration: underline;
+  }
+
+  #appointmentcontainer {
+    margin: 0 auto;
+    max-width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+// Media query for tablet and mobile
+@media screen and (max-width: calc($laptop - 115px)) {
+  #appointments {
+    #appointmentcontainer {
+      flex-flow: column wrap;
+    }
+  }
+}
+
+// Media query for mobile
+@media screen and (max-width: $mobile) {
+  #appointments {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

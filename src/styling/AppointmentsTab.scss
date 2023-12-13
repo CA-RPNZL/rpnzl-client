@@ -1,0 +1,29 @@
+.appointmentTab {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    // Use flexbox to make the child divs appear in a row
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  
+    #appointmentHeader {
+      // Style individual divs within #appointmentHeader
+      #clientname {
+        font-weight: bold;
+      }
+  
+      #hairstylistname {
+        color: #555;
+      }
+  
+      #servicename {
+        text-decoration: underline;
+      }
+  
+      #duration {
+        color: #888;
+      }
+    }
+  }
