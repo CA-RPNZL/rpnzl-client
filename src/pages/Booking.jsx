@@ -6,7 +6,7 @@ import SelectHairstylist from "../components/SelectHairstylist";
 import SelectDateTime from "../components/SelectDateTime";
 import PreConfirmation from "../components/PreConfirmation";
 import Confirmation from "../components/Confirmation";
-import AppointmentContext, { appointmentContextData } from "../contexts/AppointmentContext";
+import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function Booking() {
@@ -17,14 +17,14 @@ function Booking() {
     const [page, setPage] = useState(0);
 
     // Create states for appointment data
-    const [client, setClient] = useState(appointmentContextData.client);
-    const [service, setService] = useState(appointmentContextData.selectedService);
-    const [hairstylist, setHairstylist] = useState(appointmentContextData.selectedHairstylist);
-    const [startDateTime, setStartDateTime] = useState(appointmentContextData.selectedStartDateTime);
-    const [endDateTime, setEndDateTime] = useState(appointmentContextData.selectedEndDateTime);
+    const [client, setClient] = useState(appointment.client);
+    const [service, setService] = useState(appointment.selectedService);
+    const [hairstylist, setHairstylist] = useState(appointment.selectedHairstylist);
+    const [startDateTime, setStartDateTime] = useState(appointment.selectedStartDateTime);
+    const [endDateTime, setEndDateTime] = useState(appointment.selectedEndDateTime);
 
     // Create state for next button
-    const [disableNextBtn, setDisableNextBtn] = useState(appointmentContextData.disableNextBtn);
+    const [disableNextBtn, setDisableNextBtn] = useState(appointment.disableNextBtn);
 
     // Set up page condition
     const showPage = () => {

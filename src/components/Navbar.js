@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
 import "../styling/Navbar.css";
 import React, { useState } from 'react';
+import { useUserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
+    // Toggle open and close nav bar
     const [toggle, setToggle]= useState(false);
+
+    // JWT
+    const { jwt } = useUserContext();
+    console.log(jwt)
+
+    // Create logInLink variable
+    let logInLink;
+
+    // Logged in / account link
+    if (!jwt) {
+        // Show link to log in page
+         logInLink = <Link to="/login">Log In</Link>
+    } else {
+        // Show link to account page
+        logInLink = <Link to="/userportal">Account</Link>
+    }
     
     return (
         <div id="navHeader">
@@ -22,9 +40,8 @@ const Navbar = () => {
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="contactus">Contact Us</Link></li>
                         <li><Link to="/booking">Book Now</Link></li>
-                        <li><Link to="/login">Log In</Link></li>
+                        <li>{logInLink}</li>
                         <li><Link to="/signup">Sign Up</Link></li>
-                        <li><Link to="/userportal">Account</Link></li>
                     </ul>
                 </nav>
             </header>
