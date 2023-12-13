@@ -32,8 +32,9 @@ function Login() {
       if (result.ok) {
         const userData = await result.json();
         console.log('Authentication successful. User data:', userData);
-        // Return API token, update the login function accordingly
-        login(userData.token);
+        
+        // Return API token, and additional user data
+        login(userData);
       } else {
         console.log('Authentication failed. Status:', result.status);
         setError('Invalid username or password');
