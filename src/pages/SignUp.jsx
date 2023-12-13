@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import '../styling/SignUp.css';
 import signUpImage from '../assets/photos/signup_image.jpg';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 
@@ -17,7 +19,7 @@ function SignUp() {
   // Navigation hook for URL change
   const navigate = useNavigate();
 
-  // Use process.env to access environment variables
+  // Uses process.env to access environment variables
   const REACT_APP_API = process.env.REACT_APP_API;
 
   // Function to handle form submission
@@ -30,7 +32,7 @@ function SignUp() {
     // Check if password length is under 8
     if (password.length < 8) {
       // Display warning message in the console
-      console.warn("Password must exceed 8 characters.");
+      toast.warning("Password must exceed 8 characters.");
       return;
     }
 
@@ -38,6 +40,7 @@ function SignUp() {
     if (password !== confirmPassword) {
       // Display error message in the console
       console.error("Password and Confirm Password do not match.");
+      toast.error("Password and Confirm Password do not match.");
       return;
     }
 
@@ -45,6 +48,7 @@ function SignUp() {
     if (!strongPasswordRegex.test(password)) {
       // Display error message in the console
       console.error("Password must contain at least one letter, one number, and one symbol.");
+      toast.error("Password must contain at least one letter, one number, and one symbol.");
       return;
     }
   
@@ -64,6 +68,7 @@ function SignUp() {
   
       // Log successful response 
       console.log("Welcome to RPNZL!");
+      toast.success("Welcome to RPNZL!");
 
       // Navigate to login page
       navigate("/contactus");
@@ -73,9 +78,10 @@ function SignUp() {
       console.error("Error during signup:", error);
   
       if (error.response) {
-        // Log server response error to the console
+        // Log server response error to the console / user
         console.error("Server responded with:", error.response.data);
         console.error(error.response.data.message || "Error has occurred");
+        toast.error(error.response.data.message || "Error has occurred");
       } else {
         // Log generic error message in console
         console.error("An error occurred during signup");
