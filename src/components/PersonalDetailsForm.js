@@ -23,7 +23,7 @@ function PersonalDetailsForm() {
         };
 
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/users/id/656f1c1d32569c9ead6025b9" , {
+            const response = await fetch(process.env.REACT_APP_API + "/users/id/6578349c89c5f2baff440d1c" , {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ function PersonalDetailsForm() {
 
             const data = await response.json();
             console.log(data);
-               
+
             navigate("/userportal");
             window.location.reload();
         } 

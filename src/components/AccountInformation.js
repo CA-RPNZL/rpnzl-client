@@ -7,7 +7,7 @@ function AccountInformation() {
     useEffect (() => {
         const fetchAccountInformation = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/users/id/656f1c1d32569c9ead6025b9");
+                let response = await fetch(process.env.REACT_APP_API + "/users/id/6578349c89c5f2baff440d1c");
                 
                 const responseData = await response.json();
                 setUserData(responseData)
