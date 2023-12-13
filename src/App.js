@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ContactUs from './pages/ContactUs';
 import Homepage from './pages/Homepage';
+import UserPortal from './pages/UserPortal';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Services from './pages/Services';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/services" element={<Services />}/>
           <Route path="/signup" element={<SignUp />}/> 
+          <Route path="/userportal" element={<UserPortal />}/>
         </Routes>
         <Footer />
         <ToastContainer
