@@ -4,7 +4,7 @@ import '../styling/BookNowButton.css';
 function BookNowButton() {
     return (
         <div id="bookNowBtnContainer">
-            <Button href="#" className="bookNowButton">BOOK NOW</Button>
+            <Button href="/booking" className="bookNowButton">BOOK NOW</Button>
         </div>
     )
 }

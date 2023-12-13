@@ -1,0 +1,105 @@
+@import "../_variables";
+
+// Preconfirmation and confirmation screen
+
+.preConfirmHeader, .confirmedHeader {
+    margin-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.preConfirmSelected, .confirmedSelected {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+// Confirmation screen
+
+#confirmationDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    #bookingHeading {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    #bookingSuccessImage {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+        place-self: center;
+        text-align: center;
+        
+        img {
+            max-width: 30%;
+        }
+    }
+
+    #confirmationDetails {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+
+        // Setting for child elements
+        display: grid;
+    }
+}
+
+
+// Media query for tablet
+@media screen and (min-width: $tablet) {
+    #confirmationDiv {
+        #confirmationDetails {
+            grid-row: 3 / 5;
+
+            #confirmedService {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+
+            #confirmedHairstylist {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+            }
+
+            #confirmedDateTime {
+                grid-column: 1 / 3;
+                grid-row: 4 / 5;
+            }
+        }
+    }
+}
+
+
+// Media query for laptop (and desktop)
+@media screen and (min-width: $laptop) {
+    #confirmationDiv {
+        #bookingSuccessImage {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+
+            img {
+                max-width: 50%;
+            }
+        }
+        #confirmationDetails {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+
+            #confirmedService {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+            #confirmedHairstylist {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+
+            #confirmedDateTime {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+        }
+    }
+}

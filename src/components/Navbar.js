@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import "../styling/Navbar.css";
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 
 const Navbar = () => {
     const [toggle, setToggle]= useState(false);
@@ -8,9 +9,9 @@ const Navbar = () => {
         <div id="navHeader">
             <header id="header">
                 <div className="container">
-                    <a href="#" id="logo">
+                    <Link to="/" id="logo">
                         RPNZL
-                    </a>
+                    </Link>
                 </div>
                 <div id="menu" onClick={() => setToggle(!toggle)}>
                     <i id="menu-button" className={toggle ? "fas fa-times" : "fas fa-bars"}></i>
@@ -18,11 +19,12 @@ const Navbar = () => {
                 <nav> 
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Book Now</a></li>
-                        <li><a href="#">Log In</a></li>
-                        <li><a href="#">Account</a></li>
+                        <li><Link to="/services">Services</Link></li>
+                        <li><Link to="contactus">Contact Us</Link></li>
+                        <li><Link to="/booking">Book Now</Link></li>
+                        <li><Link to="/login">Log In</Link></li>
+                        <li><Link to="/signup">Sign Up</Link></li>
+                        <li><Link to="/userportal">Account</Link></li>
                     </ul>
                 </nav>
             </header>
