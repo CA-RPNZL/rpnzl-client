@@ -1,12 +1,13 @@
 import './App.css';
-import { ToastContainer, toast } from 'react-toastify'
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ContactUs from './pages/ContactUs';
 import Homepage from './pages/Homepage';
-import SignUp from './pages/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
 import Services from './pages/Services';
+import { ToastContainer, toast } from 'react-toastify';
+import SignUp from './pages/SignUp';
 
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />}/>
           <Route path="/contactus" element={<ContactUs />}/>
+          <Route path="/login" element={<Login />}/>
           <Route path="/services" element={<Services />}/>
+          <Route path="/signup" element={<SignUp />}/>
         </Routes>
         <Footer />
         <ToastContainer
@@ -31,7 +34,7 @@ function App() {
           draggable
           pauseOnHover
           theme="light"
-          toastStyle={{ backgroundColor: '#36413fe0', color: '#f8f8f8', border: '#f8f8f8' }}
+          toastStyle={{ backgroundColor: '#E8EADD', color: '#FBF8F0', border: '#ABAF95' }}
           />
       </BrowserRouter>
     </div>
@@ -39,3 +42,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
