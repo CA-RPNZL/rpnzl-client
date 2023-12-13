@@ -1,8 +1,8 @@
 // Import dependencies and styles
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../styling/Login.css';
 import { useUserContext } from '../contexts/UserContext';
-
 import loginImage from '../assets/photos/login_image.jpg';
 
 // Functional component for the Login page
@@ -11,6 +11,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,6 +36,13 @@ function Login() {
         
         // Return API token, and additional user data
         login(userData);
+
+        if (userData.is_admin) {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+
       } else {
         console.log('Authentication failed. Status:', result.status);
         setError('Invalid username or password');
