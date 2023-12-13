@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import SignUp from './pages/SignUp';
 
 
+
 function App() {
   return (
     <div className="App">
@@ -20,7 +21,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/services" element={<Services />}/>
-          <Route path="/signup" element={<SignUp />}/>
+          <Route path="/signup" element={<SignUp />}/> 
         </Routes>
         <Footer />
         <ToastContainer
