@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.greetingDiv {
+    height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    .profileIcon {
+        padding: 10px;
+    }
+    #greeting {
+        padding-left: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+}

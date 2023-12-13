@@ -77,6 +77,8 @@
 
 }
 
+
+// Media query for laptop +
 @media screen and (min-width: calc($laptop + 115px)) {
     #contactPageContainer {
         flex-direction: row;

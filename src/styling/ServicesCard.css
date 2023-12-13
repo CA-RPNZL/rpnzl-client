@@ -1,6 +1,6 @@
 .servicescard {
-  width: 500px;
-  margin: 30px 80px;
+  width: 30vw;
+  margin: 30px 50px;
   display: flex;
   flex-direction: column;
 }
@@ -29,19 +29,31 @@
   min-height: 5vh;
 }
 
-@media (min-width: 768px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1280px) {
   .servicescard {
-    margin: 0px 0px 50px;
+    width: 400px;
+    margin: 30px 30px;
   }
-}
-@media (max-width: 480px) {
-  .servicescard {
-    margin: 0px 0px 30px;
-  }
-  .servicescard #servicesheader #servicename {
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
     font-size: 1.5rem;
   }
-  .servicescard #servicesheader #serviceprice {
-    font-size: 1rem;
+}
+@media screen and (max-width: 1023px) {
+  .servicescard {
+    width: 80vw;
+    max-width: 500px;
+    margin: 0px 0px 50px;
+  }
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .servicescard {
+    width: 80vw;
+    margin: 0px 0px 30px;
+  }
+  .servicescard #servicesheader #servicename, .servicescard #servicesheader #serviceprice {
+    font-size: 1.2rem;
   }
 }/*# sourceMappingURL=ServicesCard.css.map */

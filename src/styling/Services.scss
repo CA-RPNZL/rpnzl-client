@@ -15,7 +15,7 @@
 
     #servicescontainer {
         margin: 0 auto;
-        max-width: 80vw;
+        max-width: 90vw;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -26,9 +26,22 @@
     }
 }
 
-// Media query for Mobile
-@media (max-width: $mobile) {
-    h1 {
-        font-size: 2rem;
+
+// Media query for tablet and mobile
+@media screen and (max-width: calc($laptop - 115px)) {
+    #services {
+        #servicescontainer {
+            flex-flow: column wrap;
+        }
+    }
+}
+
+
+// Media query for mobile
+@media screen and (max-width: $mobile) {
+    #services {           
+        h1 {
+            font-size: 2rem;
+        }
     }
 }
