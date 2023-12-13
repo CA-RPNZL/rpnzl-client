@@ -1,0 +1,95 @@
+.signUpContainer {
+  display: flex;
+  flex-grow: 2;
+  justify-content: space-between;
+  text-align: center;
+  background-color: #FBF8F0;
+}
+
+.signUpImage {
+  display: flex;
+  width: 50vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.signUpForm {
+  flex-grow: 2;
+  margin: auto;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.signUpForm h2 {
+  margin-bottom: 20px;
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+  color: #D51E01;
+}
+.signUpForm form {
+  display: flex;
+  flex-direction: column;
+}
+.signUpForm form .inputGroup {
+  margin-bottom: 15px;
+}
+.signUpForm form .inputGroup label {
+  margin-bottom: 8px;
+  display: block;
+}
+.signUpForm form .inputGroup input {
+  width: 90%;
+  max-width: 300px;
+  min-width: 200px;
+  border-radius: 10px;
+  border: 2px #ABAF95 solid;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.signUpForm form .signUpButton {
+  border: 2px solid #D51E01;
+  background-color: #FDEDEB;
+  font-family: "Titan One", sans-serif;
+  color: #D51E01;
+  font-size: 30px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+}
+.signUpForm form .signUpButton:hover {
+  background-color: #D51E01;
+  color: white;
+}
+
+@media screen and (max-width: 799px) {
+  .signUpForm {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 350px;
+    height: 80%;
+    background-color: #FBF8F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin-top: 50px;
+  }
+  .signUpImage {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .signUpForm {
+    width: 250px;
+    margin-top: 20px;
+  }
+}/*# sourceMappingURL=SignUp.css.map */
