@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import AppointmentsTab from '../components/AdminAppointmentsTab'; // Make sure to use the correct path
 import "../styling/AdminPortal.css"
 
 
 function AdminPortal() {
     const [appointments, setAppointments] = useState([]);
+    const [activeTab, setActiveTab] = useState('appointments');
 
     useEffect(() => {
         const fetchAppointments = async () => {
@@ -23,9 +25,11 @@ function AdminPortal() {
 
         fetchAppointments();
     }, []);
+
+    
     return (
         <div id="appointments">
-            <h1>Appoitnments</h1>
+            <h1>Appointments</h1>
             <div id="appointmentcontainer">
                   {/* Populate cards if appointmentss contains a value */}
             {appointments.length > 0 && 

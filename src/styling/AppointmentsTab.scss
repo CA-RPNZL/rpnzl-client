@@ -9,6 +9,10 @@
     padding: 10px;
   
     #appointmentHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px;
       // Style individual divs within #appointmentHeader
       #clientname {
         font-weight: bold;
@@ -19,7 +23,7 @@
       }
   
       #servicename {
-        text-decoration: underline;
+        text-decoration:line-through;
       }
   
       #duration {
