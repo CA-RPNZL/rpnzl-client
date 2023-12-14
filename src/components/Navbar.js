@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useUserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
+    const { logout } = useUserContext();
+
     // Toggle open and close nav bar
     const [toggle, setToggle]= useState(false);
 
@@ -20,7 +22,7 @@ const Navbar = () => {
          logInLink = <Link to="/login">Log in</Link>
     } else {
         // Show link to log out
-        logInLink = <Link to="/">Log out</Link>
+        logInLink = <Link onClick={logout}>Log out</Link>
     }
 
     // Create logInLink variable
