@@ -1,0 +1,45 @@
+@import "../_variables";
+
+// Select service screen
+
+.selectService {
+    margin:0 auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr;
+    margin-bottom: 15px;
+    row-gap: 5px;
+
+    .serviceInput {
+        grid-column: 1 / 2;
+    }
+
+    .serviceName {
+        grid-column: 2 / 3;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .servicePrice {
+        grid-column: 3 / 4;
+        text-align: left;
+    }
+
+    .serviceDuration {
+        grid-column: 2 / 4;
+        font-style: italic;
+        font-size: 0.8rem;
+        text-align: left;
+    }
+
+}
+
+
+// Media query for tablet
+@media screen and (min-width: $tablet) {
+    .selectService {
+        width: 80%;
+        grid-template-columns: 1fr 5fr 3fr;
+    }
+}
+
+

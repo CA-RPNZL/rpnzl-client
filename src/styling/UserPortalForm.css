@@ -1,0 +1,31 @@
+.userPortalForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+.userPortalForm h3 {
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+  font-size: 18px;
+}
+.userPortalForm .formFields {
+  font-family: "Montserrat", sans-serif;
+  margin: 5px;
+  width: 215px;
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.userPortalForm .formFields:focus {
+  background-color: #E8EADD;
+  outline: none;
+}
+.userPortalForm Button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bolder;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+}/*# sourceMappingURL=UserPortalForm.css.map */
