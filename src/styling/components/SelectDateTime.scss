@@ -1,0 +1,402 @@
+@import "../_variables";
+
+// CSS amended based on 'react-dateslot-picker/dist/style.css'
+
+.dateslotpicker-invisible {
+    visibility: hidden
+}
+
+.dateslotpicker-mx-auto {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.dateslotpicker-ml-2 {
+    margin-left: .5rem
+}
+
+.dateslotpicker-mt-2 {
+    margin-top: .5rem
+}
+
+.dateslotpicker-box-border {
+    box-sizing: border-box
+}
+
+// Aligning wrapping container div
+#selectDateTime > .dateslotpicker-flex {
+    justify-content: space-between;
+}
+
+.dateslotpicker-flex {
+    display: flex;
+
+    button {
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+.dateslotpicker-grid {
+    display: grid;
+    text-align: center;
+}
+
+.dateslotpicker-h-4 {
+    height: 1rem
+}
+
+// Label: days of the week
+.dateslotpicker-h-7 {
+    height: 1.75rem;
+    font-weight: bold;
+}
+
+.dateslotpicker-h-8 {
+    height: 2rem
+}
+
+// Timeslot - height
+.dateslotpicker-h-\[13rem\] {
+    // height: 13rem
+}
+
+.dateslotpicker-h-\[16rem\] {
+    height: 16rem
+}
+
+.dateslotpicker-h-\[17rem\] {
+    height: 17rem
+}
+
+.dateslotpicker-w-1\/5 {
+    width: 20%
+}
+
+.dateslotpicker-w-4 {
+    width: 1rem
+}
+
+.dateslotpicker-w-4\/5 {
+    margin: 0 auto;
+    width: 80%;
+}
+
+// Calendar - container width
+.dateslotpicker-w-\[18rem\] {
+    // width: 18rem
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+// Calendar component
+.dateslotpicker-pt-5 {
+    padding: 1rem 0;
+    background-color: white;
+    border: 3px solid $dark-green;
+    box-sizing: border-box;
+}
+
+// Calendar - Label: days of the week & days of the week - width
+.dateslotpicker-w-7 {
+    // width: 1.75rem
+}
+
+// Calendar days - width
+.dateslotpicker-w-8 {
+    margin: 0px auto;
+    width: 2rem
+}
+
+// Calendar day - selected day
+.dateslotpicker-bg-red-500 {
+    background-color: $light-green;
+    border: 1px solid $dark-green;
+}
+
+// Calendar day - selected day (overriding the line through)
+#selectDateTime button:disabled.dateslotpicker-bg-red-500  {
+    text-decoration-line: none;
+}
+
+.dateslotpicker-w-\[16rem\] {
+    width: 16rem
+}
+
+
+
+.dateslotpicker-cursor-pointer {
+    cursor: pointer
+}
+
+.dateslotpicker-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.dateslotpicker-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.dateslotpicker-grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr))
+}
+
+.dateslotpicker-flex-col {
+    flex-direction: column
+}
+
+.dateslotpicker-items-center {
+    align-items: center
+}
+
+.dateslotpicker-justify-center {
+    justify-content: center
+}
+
+.dateslotpicker-justify-between {
+    justify-content: space-between
+}
+
+.dateslotpicker-gap-2 {
+    gap: .5rem
+}
+
+.dateslotpicker-overflow-auto {
+    overflow: auto
+}
+
+.dateslotpicker-rounded-full {
+    border-radius: 9999px
+}
+
+.dateslotpicker-rounded-md {
+    border-radius: .375rem
+}
+
+.dateslotpicker-rounded-bl-2xl {
+    // border-bottom-left-radius: 1rem
+}
+
+.dateslotpicker-rounded-br-2xl {
+    // border-bottom-right-radius: 1rem
+}
+
+.dateslotpicker-rounded-tl-2xl {
+    // border-top-left-radius: 1rem
+}
+
+.dateslotpicker-rounded-tr-2xl {
+    // border-top-right-radius: 1rem
+}
+
+.dateslotpicker-border-none {
+    border-style: none
+}
+
+// Background colour for component
+.dateslotpicker-bg-\[\#1e1c22\] {
+    background-color: transparent;
+}
+
+// Timeslot - selected button
+button.dateslotpicker-bg-\[\#1e1c22\] {
+    background-color: white;
+    border: 3px solid $dark-green;
+    box-sizing: border-box;
+}
+
+// Time slot button background - dsiabled
+.dateslotpicker-bg-\[\#2b2b2b96\] {
+    background-color: lightgray;
+    text-decoration-line: line-through;
+}
+
+// Time slot - styilng disabled buttons
+#selectDateTime button:disabled {
+    text-decoration-line: line-through;
+}
+
+//  Time slot button background
+.dateslotpicker-bg-\[\#333\] {
+    background-color: white;
+}
+
+
+.dateslotpicker-bg-transparent {
+    background-color: transparent
+}
+
+.dateslotpicker-px-1 {
+    padding-left: .25rem;
+    padding-right: .25rem
+}
+
+.dateslotpicker-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem
+}
+
+.dateslotpicker-py-\[\.6rem\] {
+    padding-top: .6rem;
+    padding-bottom: .6rem
+}
+
+.dateslotpicker-pb-4 {
+    padding-bottom: 1rem
+}
+
+
+.dateslotpicker-text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem
+}
+
+.dateslotpicker-text-xs {
+    font-size: .75rem;
+    line-height: 1rem
+}
+
+.dateslotpicker-font-bold {
+    font-weight: 700
+}
+
+//  Time slot font colour
+.dateslotpicker-text-blue-500 {
+    color: black;
+}
+
+// Labels: days of the week and disabled days
+.dateslotpicker-text-gray-500 {
+    color: black;
+}
+
+// Calendar day - current date
+.dateslotpicker-text-green-500 {
+    font-weight: bold;
+    background-color: $offwhite;
+    border-radius: 100%;
+}
+
+// Month and navigation arrows
+.dateslotpicker-text-red-500 {
+    color: black;
+    text-transform: uppercase;
+}
+
+// Calendar day - date text
+.dateslotpicker-text-white {
+    color: black;
+}
+
+.dateslotpicker-no-underline {
+    text-decoration-line: none
+}
+
+.dateslotpicker-outline-none {
+    outline: 2px solid transparent;
+    outline-offset: 2px
+}
+
+
+
+// Media query for laptop+
+@media (min-width: $laptop) {
+    .md\:dateslotpicker-mt-0 {
+        margin-top: 0
+    }
+
+    .md\:dateslotpicker-box-border {
+        box-sizing: border-box
+    }
+
+
+    // Width of calendar
+    .dateslotpicker-w-\[18rem\] {
+        // width: 18rem
+        width: 50%;
+    }
+
+    // Time slot - times grid - height
+    .md\:dateslotpicker-h-\[13rem\] {
+        // height: 13rem
+    }
+    // Time slot - height
+    .md\:dateslotpicker-h-\[18rem\] {
+        // height: 18rem
+        height: 100%;
+    }
+
+    // Time slot - times grid - width
+    .md\:dateslotpicker-w-\[14rem\] {
+        // width: 14rem
+    }
+
+    // Time slot - width
+    .md\:dateslotpicker-w-\[16rem\] {
+        // width: 16rem
+        width: 50%;
+    }
+
+    // Layout for calendar and time slot - desktop
+    .md\:dateslotpicker-flex-row {
+        flex-direction: row
+    }
+
+    .md\:dateslotpicker-rounded-bl-2xl {
+        // border-bottom-left-radius: 1rem
+    }
+
+    .md\:dateslotpicker-rounded-bl-none {
+        // border-bottom-left-radius: 0
+    }
+
+    .md\:dateslotpicker-rounded-br-2xl {
+        // border-bottom-right-radius: 1rem
+    }
+
+    .md\:dateslotpicker-rounded-tl-2xl {
+        // border-top-left-radius: 1rem
+    }
+
+    .md\:dateslotpicker-rounded-tr-2xl {
+        // border-top-right-radius: 1rem
+    }
+
+    .md\:dateslotpicker-rounded-tr-none {
+        // border-top-right-radius: 0
+    }
+
+    // Padding for calendar
+    .md\:dateslotpicker-p-5 {
+        // padding: 1.25rem
+    }
+
+    .md\:dateslotpicker-px-0 {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    // Time slot - spacing top and bottom
+    .md\:dateslotpicker-py-\[2\.5rem\] {
+        padding: 1rem;
+    }
+
+    .md\:dateslotpicker-pb-0 {
+        padding-bottom: 0
+    }
+
+    // Time slot - time grid - padding
+    .md\:dateslotpicker-pr-\[1rem\] {
+        padding: 0 1rem
+    }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    // display: none
+}
+
+.scrollbar-hide {
+    // -ms-overflow-style: none;
+    // scrollbar-width: none
+}

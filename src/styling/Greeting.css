@@ -1,0 +1,13 @@
+.greetingDiv {
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+}
+.greetingDiv .profileIcon {
+  padding: 10px;
+}
+.greetingDiv #greeting {
+  padding-left: 10px;
+  font-family: "Montserrat", sans-serif;
+}/*# sourceMappingURL=Greeting.css.map */

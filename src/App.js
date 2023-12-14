@@ -1,8 +1,10 @@
 import './App.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import Booking from './pages/Booking';
 import ContactUs from './pages/ContactUs';
 import Homepage from './pages/Homepage';
+import UserPortal from './pages/UserPortal';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Services from './pages/Services';
@@ -18,10 +20,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />}/>
+          <Route path="/services" element={<Services />}/>
           <Route path="/contactus" element={<ContactUs />}/>
           <Route path="/login" element={<Login />}/>
-          <Route path="/services" element={<Services />}/>
           <Route path="/signup" element={<SignUp />}/> 
+          <Route path="/userportal" element={<UserPortal />}/>
+          <Route path="/booking" element={<Booking />}>
+          </Route>
         </Routes>
         <Footer />
         <ToastContainer

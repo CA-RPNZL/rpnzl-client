@@ -1,0 +1,68 @@
+@import './variables.scss';
+
+#userPortalOuterDiv {
+    background-color: $offwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+    Button {
+        cursor: pointer;
+    }
+}
+#deleteAccountDiv {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    Button:first-child  {
+        background-color: $light-green;
+        border: 2px solid $dark-green;
+        border-radius: 4px;
+        margin-top: 40px;
+        font-weight: bolder;
+        padding: 5px 10px;
+        font-family: 'Montserrat', sans-serif;
+        width: 180px;
+    }
+    p {
+        font-size: 11px;
+        font-style: italic;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (min-width: $laptop) {
+    .userPortalDiv {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding-left: 2vw;
+        flex: 2;
+        width: 45vw;
+        height: 500px;
+        p {
+            max-width: 30vw;
+        }
+        .greeting {
+            order: 1;
+        }
+        .accountInformation {
+            order: 2;
+        }
+        #detailsForm {
+            order: 2;
+            display: flex;
+            flex-direction: row;
+        }
+        .portalAppointments {
+            order: 4;
+        }
+        #deleteAccountDiv {
+            order: 5;
+        }
+    }
+}
