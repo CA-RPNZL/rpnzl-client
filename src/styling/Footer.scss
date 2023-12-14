@@ -65,7 +65,7 @@
 }
 
 
-// Media query for Tablet
+// Media query for tablet
 @media screen and (max-width: $tablet) {
     #footer {
         &-logo {
@@ -84,8 +84,8 @@
 }
 
 
-// Media query for Mobile
-@media  (max-width: $mobile) {
+// Media query for mobile
+@media screen and (max-width: $mobile) {
     #footer {
         padding: 20px;
         flex-direction: column;

@@ -14,21 +14,22 @@ function ContactUs() {
                 <div className="greenContainer">
                     <h5 id="blackLogo">RPNZL</h5>
                     <table>
-                        <tr>
-                            <td>Phone:</td>
-                            <td>0423 987 654</td>
-                        </tr>
-                        <tr>
-                            <td>Address:<br/></td>
-                            <td>Level 2, 12 Hair St<br/>
-                                Sydney, NSW</td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td>rpnzlhair@gmail.com</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Phone:</td>
+                                <td>0423 987 654</td>
+                            </tr>
+                            <tr>
+                                <td>Address:<br/></td>
+                                <td>Level 2, 12 Hair St<br/>
+                                    Sydney, NSW</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>rpnzlhair@gmail.com</td>
+                            </tr>
+                        </tbody>  
                     </table>
-                    
                 </div>
                 <div id="buttonContainer">
                     <BookNowButton />

@@ -1,0 +1,53 @@
+#portalApptsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+}
+#portalApptsDiv #yourNextApptIs {
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+  font-size: 18px;
+  margin-top: 30px;
+}
+#portalApptsDiv .greenApptCards {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  border-radius: 5px;
+  width: 250px;
+  padding: 10px;
+  margin: 20px;
+  font-size: 12px;
+}
+#portalApptsDiv .greenApptCards table {
+  text-align: left;
+}
+#portalApptsDiv .greenApptCards table td {
+  padding: 5px 10px;
+}
+#portalApptsDiv #apptButtonDiv {
+  display: flex;
+  flex-direction: column;
+}
+#portalApptsDiv #apptButtonDiv .apptButtons {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bolder;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+}
+#portalApptsDiv p {
+  margin: 12px 20px;
+  font-size: 11px;
+  font-style: italic;
+}
+
+@media screen and (min-width: 1024px) {
+  #portalApptsDiv p {
+    margin: 12px 40px;
+    max-width: 30vw;
+  }
+}/*# sourceMappingURL=PortalAppointments.css.map */
