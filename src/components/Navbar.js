@@ -14,13 +14,25 @@ const Navbar = () => {
     // Create logInLink variable
     let logInLink;
 
-    // Logged in / account link
+    // Logged in / log out link
     if (!jwt) {
         // Show link to log in page
-         logInLink = <Link to="/login">Log In</Link>
+         logInLink = <Link to="/login">Log in</Link>
+    } else {
+        // Show link to log out
+        logInLink = <Link to="/">Log out</Link>
+    }
+
+    // Create logInLink variable
+    let signUpAccountLink;
+
+    // Sign up / Account link
+    if (!jwt) {
+        // Show link to sign up page
+        signUpAccountLink = <Link to="/signup">Sign up</Link>
     } else {
         // Show link to account page
-        logInLink = <Link to="/userportal">Account</Link>
+        signUpAccountLink = <Link to="/userportal">Account</Link>
     }
     
     return (
@@ -40,8 +52,8 @@ const Navbar = () => {
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="contactus">Contact Us</Link></li>
                         <li><Link to="/booking">Book Now</Link></li>
+                        <li>{signUpAccountLink}</li>
                         <li>{logInLink}</li>
-                        <li><Link to="/signup">Sign Up</Link></li>
                     </ul>
                 </nav>
             </header>
