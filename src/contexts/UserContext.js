@@ -8,6 +8,7 @@ export const UserProvider = ({ children }) => {
   // State to hold user data
   // const [userData, setUserData] = useState(null);
   const [jwt, setJwt] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
   const [isHairstylist, setIsHairstylist] = useState(null);
 
@@ -15,28 +16,23 @@ export const UserProvider = ({ children }) => {
   const login = (userData) => {
     console.log(userData);
     setJwt(userData.jwt);
+    setUserId(userData.userId);
     setIsAdmin(userData.isAdmin);
     setIsHairstylist(userData.isHairstylist);
-    // setUserData(user);
   };
 
   // Function to handle user logout
   const logout = () => {
     // Clear user data on logout
     setJwt(null);
+    setUserId(null);
     setIsAdmin(null);
     setIsHairstylist(null);
-    // setUserData(null);
   };
-
-  // Function to check if the user is an admin
-  // const isAdmin = () => {
-  //   return userData?.is_admin;
-  // };
 
   // Provide the user context to the app
   return (
-    <UserContext.Provider value={{ jwt, isAdmin, isHairstylist, login, logout, isAdmin }}>
+    <UserContext.Provider value={{ jwt, userId, isAdmin, isHairstylist, login, logout }}>
       {children}
     </UserContext.Provider>
   );
