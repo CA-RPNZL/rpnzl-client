@@ -15,6 +15,9 @@ function Booking() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
 
+    // Create state for error message
+    const [error, setError] = useState(null);
+
     // Set up page state
     const [page, setPage] = useState(0);
 
@@ -35,19 +38,24 @@ function Booking() {
 
     // Set up page condition
     const showPage = () => {
-        switch (page) {
-            case 0:
-                return <SelectService />;
-            case 1:
-                return <SelectHairstylist />;
-            case 2:
-                return <SelectDateTime />;
-            case 3:
-                return <PreConfirmation />;
-            case 4:
-                return <Confirmation />;
-            default:
-                return <SelectService />;
+        try {
+            switch (page) {
+                case 0:
+                    return <SelectService />;
+                case 1:
+                    return <SelectHairstylist />;
+                case 2:
+                    return <SelectDateTime />;
+                case 3:
+                    return <PreConfirmation />;
+                case 4:
+                    return <Confirmation />;
+                default:
+                    return <SelectService />;
+            }
+        } catch (error) {
+            console.error("An error occured:", error);
+            setError("An error occurred while loading the booking form.");
         }
     };
 
@@ -75,7 +83,7 @@ function Booking() {
             console.log(userId);
             setClient(userId)
         }
-    }, [jwt, navigate, userId]) // componentDidMount
+    }, [jwt, navigate, userId])
 
     // Confirm button functionality
     const confirm = async () => {
@@ -122,6 +130,7 @@ function Booking() {
             <div id="booking">
                 <div id="bookingModule">
                     {showPage()}
+                    {error && <p className="error-message">{error}</p>}
                     <div id="bookingBtns">
                         { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
                         { page < 3 && <WhiteButton label="Next" action={goNext} disabled={disableNextBtn} />}
