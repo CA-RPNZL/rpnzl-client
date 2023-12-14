@@ -6,7 +6,7 @@ import { useUserContext } from "../contexts/UserContext";
 const Navbar = () => {
 
     // Grab JWT, logout from User Context
-    const { jwt, logout } = useUserContext();
+    const { jwt, isAdmin, logout } = useUserContext();
 
     // Toggle open and close nav bar
     const [toggle, setToggle]= useState(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
     // Create logInLink variable
     let logInLink;
 
-    
+
     // Set up logic if user is not logged in
     if (!jwt) {
         // If user is not logged in:
@@ -34,9 +34,13 @@ const Navbar = () => {
         // Show link to log in page instead of log out
         logInLink = <Link to="/login">Log in</Link>
     } else {
-        // If user is logged in:
-        // Show link to account page instead of sign up
-        signUpAccountLink = <Link to="/userportal">Account</Link>
+        // If user is logged in, check if user is admin
+        if (isAdmin) {
+            signUpAccountLink = <Link to="/admin">Admin</Link>
+        } else {
+            // Show link to account page instead of sign up
+            signUpAccountLink = <Link to="/userportal">Account</Link>
+        }
         // Show link to log out instead of log out
         logInLink = <Link to="/" onClick={handleLogOut}>Log out</Link>
     }
