@@ -6,11 +6,12 @@ const UserContext = createContext();
 // UserProvider component to wrap the app and provide user context
 export const UserProvider = ({ children }) => {
   // State to hold user data
-  // const [userData, setUserData] = useState(null);
   const [jwt, setJwt] = useState(null);
   const [userId, setUserId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
   const [isHairstylist, setIsHairstylist] = useState(null);
+;
+
 
   // Function to handle user login
   const login = (userData) => {

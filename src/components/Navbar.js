@@ -1,40 +1,44 @@
-import { Link } from "react-router-dom";
 import "../styling/Navbar.css";
+import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { useUserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
-    const { logout } = useUserContext();
+
+    // Grab JWT, logout from User Context
+    const { jwt, logout } = useUserContext();
 
     // Toggle open and close nav bar
     const [toggle, setToggle]= useState(false);
 
-    // JWT
-    const { jwt } = useUserContext();
-    console.log(jwt)
 
-    // Create logInLink variable
-    let logInLink;
-
-    // Logged in / log out link
-    if (!jwt) {
-        // Show link to log in page
-         logInLink = <Link to="/login">Log in</Link>
-    } else {
-        // Show link to log out
-        logInLink = <Link onClick={logout}>Log out</Link>
+    // Function if a user logs out
+    const handleLogOut = () => {
+        setToggle(!toggle);
+        logout();
     }
+
 
     // Create logInLink variable
     let signUpAccountLink;
 
-    // Sign up / Account link
+    // Create logInLink variable
+    let logInLink;
+
+    
+    // Set up logic if user is not logged in
     if (!jwt) {
-        // Show link to sign up page
+        // If user is not logged in:
+        // Show link to sign up page instead of account page
         signUpAccountLink = <Link to="/signup">Sign up</Link>
+        // Show link to log in page instead of log out
+        logInLink = <Link to="/login">Log in</Link>
     } else {
-        // Show link to account page
+        // If user is logged in:
+        // Show link to account page instead of sign up
         signUpAccountLink = <Link to="/userportal">Account</Link>
+        // Show link to log out instead of log out
+        logInLink = <Link to="/" onClick={handleLogOut}>Log out</Link>
     }
     
     return (
@@ -50,7 +54,7 @@ const Navbar = () => {
                 </div>
                 <nav> 
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
-                        <li><a href="#">About</a></li>
+                        <li><Link to="/about">About</Link></li>
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="contactus">Contact Us</Link></li>
                         <li><Link to="/booking">Book Now</Link></li>

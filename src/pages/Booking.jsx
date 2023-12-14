@@ -1,5 +1,7 @@
-import { useContext, useState } from "react";
 import "../styling/Booking.css";
+import { useContext, useEffect, useState } from "react";
+import { useUserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
 import SelectHairstylist from "../components/SelectHairstylist";
@@ -16,12 +18,17 @@ function Booking() {
     // Set up page state
     const [page, setPage] = useState(0);
 
+    let navigate = useNavigate();
+
     // Create states for appointment data
     const [client, setClient] = useState(appointment.client);
     const [service, setService] = useState(appointment.selectedService);
     const [hairstylist, setHairstylist] = useState(appointment.selectedHairstylist);
     const [startDateTime, setStartDateTime] = useState(appointment.selectedStartDateTime);
     const [endDateTime, setEndDateTime] = useState(appointment.selectedEndDateTime);
+
+    // Grab data for JWT
+    const { jwt, userId } = useUserContext();
 
     // Create state for next button
     const [disableNextBtn, setDisableNextBtn] = useState(appointment.disableNextBtn);
@@ -56,6 +63,20 @@ function Booking() {
         setPage((previousPage) => previousPage + 1);
     }
 
+    useEffect(() => {
+        // Check if user is logged in
+        if (!jwt) {
+            // If user is not logged in, direct user to log in
+            navigate("/login")
+        } else {
+            // If user is logged in, direct user to booking form
+            navigate("/booking")
+            // Update client ID
+            console.log(userId);
+            setClient(userId)
+        }
+    }, [jwt, navigate, userId]) // componentDidMount
+
     // Confirm button functionality
     const confirm = async () => {
         // Set appointment data to be POSTed
@@ -69,7 +90,7 @@ function Booking() {
         }
 
         // POST request: /appointments
-        let response = await fetch(process.env.REACT_APP_API + "/appointments", {
+        await fetch(process.env.REACT_APP_API + "/appointments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -85,18 +106,18 @@ function Booking() {
 
     return (
         <AppointmentContext.Provider value={{
-            client: client,
-            setClient: setClient,
+            client,
+            setClient,
             selectedService: service,
-            setService: setService,
+            setService,
             selectedHairstylist: hairstylist,
-            setHairstylist: setHairstylist,
+            setHairstylist,
             selectedStartDateTime: startDateTime,
-            setStartDateTime: setStartDateTime,
+            setStartDateTime,
             selectedEndDateTime: endDateTime,
-            setEndDateTime: setEndDateTime,
-            disableNextBtn: disableNextBtn,
-            setDisableNextBtn: setDisableNextBtn
+            setEndDateTime,
+            disableNextBtn,
+            setDisableNextBtn
         }}>
             <div id="booking">
                 <div id="bookingModule">

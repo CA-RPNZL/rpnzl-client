@@ -1,6 +1,6 @@
 import "../styling/Booking.css";
-import successImage from '../assets/success.png';
 import { useContext } from "react";
+import successImage from '../assets/success.png';
 import AppointmentContext from "../contexts/AppointmentContext";
 
 

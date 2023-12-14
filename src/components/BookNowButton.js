@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import '../styling/BookNowButton.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function BookNowButton() {
     let navigate = useNavigate();
