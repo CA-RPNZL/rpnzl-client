@@ -1,7 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faScissors, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+
+
 function AppointmentCard() {
+
+    
+
+    
     return (
+        <div>
         <div className="greenApptCards">
             <table>
                 <tbody>
@@ -22,6 +29,9 @@ function AppointmentCard() {
                 </tbody>
             </table>
         </div>
+        
+    
+    </div>
     )
    
 }

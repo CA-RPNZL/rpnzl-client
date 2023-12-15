@@ -1,7 +1,8 @@
-import { Button } from "react-bootstrap";
+import { Button, Toast } from "react-bootstrap";
 import "../styling/UserPortalForm.css"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
 
 function PersonalDetailsForm() {
     const [firstName, setFirstName] = useState("");
@@ -14,7 +15,7 @@ function PersonalDetailsForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-
+        // only save updated fields
         const updatedData = {
             ...(firstName && { firstName }),
             ...(lastName && { lastName }),
@@ -41,6 +42,7 @@ function PersonalDetailsForm() {
 
             navigate("/userportal");
             window.location.reload();
+            toast.success("Successfully updated personal details.")
         } 
         catch (error) {
           console.error('Error updating user details:', error);
