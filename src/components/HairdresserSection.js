@@ -1,8 +1,8 @@
-// CombinedComponent.js
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../styling/HairdresserSection.css';
+import BookNowButton from "./BookNowButton";
 
 // Hairstylist one images
 import hairstylist_three from "../assets/photos/hairstylist_three.png";
@@ -97,6 +97,7 @@ function HairdresserComponent() {
       {hairdressers.map((hairdresser, index) => (
         <Hairdresser key={index} {...hairdresser} />
       ))}
+        <BookNowButton className="bookNowButton" />
     </div>
   );
 }

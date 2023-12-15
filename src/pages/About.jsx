@@ -36,7 +36,6 @@ function Aboutpage() {
           </div>
         </div>
         <HairdresserSection />
-        <BookNowButton className="bookNowButtonBottom" />
       </div>
     </div>
   )

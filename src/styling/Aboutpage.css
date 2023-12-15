@@ -89,7 +89,7 @@
   }
 }
 @media screen and (max-width: 480px) {
-  #aboutPageContainer .aboutRpnzl {
-    margin-left: 20px;
+  #aboutPageContainer .aboutRpnzlContainer .aboutRpnzl {
+    margin-left: 15px;
   }
 }/*# sourceMappingURL=Aboutpage.css.map */

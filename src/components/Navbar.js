@@ -18,7 +18,7 @@ const Navbar = () => {
                 </div>
                 <nav> 
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
-                        <li><a href="#">About</a></li>
+                        <li><a href="/about">About</a></li>
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="contactus">Contact Us</Link></li>
                         <li><Link to="/booking">Book Now</Link></li>
