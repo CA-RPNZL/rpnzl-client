@@ -1,8 +1,9 @@
-import { Button, Toast } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "../styling/UserPortalForm.css"
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
+import { useUserContext } from "../contexts/UserContext";
 
 function PersonalDetailsForm() {
     const [firstName, setFirstName] = useState("");
@@ -11,6 +12,8 @@ function PersonalDetailsForm() {
     const [mobileNumber, setMobileNumber] = useState("");
 
     const navigate = useNavigate();
+
+    const { jwt, userId } = useUserContext();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,11 +27,11 @@ function PersonalDetailsForm() {
         };
 
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/users/id/65798514e4c7de469fb6d65a" , {
+            const response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId , {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer `,
+                Authorization: `Bearer ${jwt}`,
                 },
                 body: JSON.stringify(updatedData),
             });
@@ -40,12 +43,19 @@ function PersonalDetailsForm() {
             const data = await response.json();
             console.log(data);
 
-            navigate("/userportal");
-            window.location.reload();
             toast.success("Successfully updated personal details.")
+            navigate("/userportal");
+            // window.location.reload();
+            
         } 
         catch (error) {
-          console.error('Error updating user details:', error);
+            console.error(error.response);
+            if (error.response && error.response.status === 409) {
+                toast.error("Email address already exists.");
+            } else {
+                toast.error("An error occurred while updating details.");
+            }
+          
         }
     }
 
