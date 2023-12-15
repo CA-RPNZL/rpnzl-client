@@ -37,10 +37,10 @@ function Login() {
         // Return API token, and additional user data
         login(userData);
 
-        if (userData.is_admin) {
+        if (userData.isAdmin) {
           navigate('/admin');
         } else {
-          navigate('/');
+          navigate('/userportal');
         }
 
       } else {

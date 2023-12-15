@@ -1,33 +1,24 @@
-import { useContext } from "react";
 import "../styling/Booking.css";
+import { useContext } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function PreConfirmation() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
-    
-
-    // Hardcoding the client
-    const {client, setClient} = useContext(AppointmentContext);
 
     // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    const {setDisableNextBtn} = useContext(AppointmentContext);
 
     // Fetch appointment data
     const fetchAppointmentData = async () => {
 
         // If missing client ID (e.g. user is not logged in)
         if (appointment.client === "") {
-            let response = await fetch(process.env.REACT_APP_API + "/users/id/6578338c2cf3aad56f6957cc");
-            const responseData = await response.json();
-            setClient(responseData);
+            console.error("Error: Missing client ID.");
 
-            console.log(responseData);
-            appointment.client = responseData;
-            console.log("Error: Missing client ID.");
             // Update Next button to be disabled
-            // setDisableNextBtn(true);
+            setDisableNextBtn(true);
         }
 
     }

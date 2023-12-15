@@ -28,7 +28,7 @@ function SelectService() {
                 // Update state
                 setServicesList(responseData);
             } catch (error) {
-                console.log(error);
+                console.error("An error occurred while fetching data:", error);
             }
         };
 
@@ -54,7 +54,6 @@ function SelectService() {
 
     function updateService(service) {
         setService(service);
-        console.log(service);
     }
 
     
