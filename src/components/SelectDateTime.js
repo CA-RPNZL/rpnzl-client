@@ -16,10 +16,10 @@ function SelectDateTime() {
     const {selectedStartDateTime, setStartDateTime} = useContext(AppointmentContext);
     
     // Update AppointmentContext with calcualted end date and time
-    const {selectedEndDateTime, setEndDateTime} = useContext(AppointmentContext);
+    const {setEndDateTime} = useContext(AppointmentContext);
     
     // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    const {setDisableNextBtn} = useContext(AppointmentContext);
     
 
     // Create an array to store unavailable date/time timestamps
