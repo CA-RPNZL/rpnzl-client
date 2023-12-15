@@ -24,7 +24,7 @@ function PersonalDetailsForm() {
         };
 
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/users/id/6578349c89c5f2baff440d1c" , {
+            const response = await fetch(process.env.REACT_APP_API + "/users/id/65798514e4c7de469fb6d65a" , {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
