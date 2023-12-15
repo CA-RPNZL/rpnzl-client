@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faScissors, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 
-function AppointmentCard() {
+function AppointmentCard(props) {
 
     
 
@@ -14,17 +14,17 @@ function AppointmentCard() {
                 <tbody>
                     <tr>
                         <td><FontAwesomeIcon icon={faScissors} /></td>
-                        <td>Colour and Cut</td>
+                        <td>{props.service}</td>
                     </tr>
                     <tr>
                         <td><FontAwesomeIcon icon={faCalendarDays} /></td>
-                        <td>November 20, 2023<br/>
-                            2:00PM - 4:30PM
+                        <td>{props.bookedDate}<br/>
+                            {props.bookedStartTime} - {props.bookedEndTime}
                         </td>
                     </tr>
                     <tr>
                         <td><FontAwesomeIcon icon={faUser} /></td>
-                        <td>with Michelle Smith</td>
+                        <td>with {props.hairstylist}</td>
                     </tr>
                 </tbody>
             </table>
