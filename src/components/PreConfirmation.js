@@ -1,5 +1,6 @@
 import "../styling/Booking.css";
 import { useContext } from "react";
+import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from "../functions/formatDate";
 import AppointmentContext from "../contexts/AppointmentContext";
 
 
@@ -25,13 +26,13 @@ function PreConfirmation() {
     fetchAppointmentData();
     
     // Update start date with date formatting
-    const selectedDate = new Date(appointment.selectedStartDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    const selectedDate = formattedAppointmentDate(appointment.selectedStartDateTime);
     
     // Update start date with time formatting
-    const selectedStartTime = new Date(appointment.selectedStartDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedStartTime = formattedAppointmentStartTime(appointment.selectedStartDateTime);
     
     // Update end date with time formatting
-    const selectedEndTime = new Date(appointment.selectedEndDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedEndTime = formattedAppointmentEndTime(appointment.selectedEndDateTime);
 
     return (
             <div id="preConfirmationDiv">
