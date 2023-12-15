@@ -1,6 +1,25 @@
 // Import variables
 @import './variables';
 
+#tab-buttons {
+  display: flex;
+  transition: 0.3s ease-in;
+  background-color: $offwhite;
+
+  a {
+    font-size: 35px;
+    color: black;
+    padding: 20px;
+    text-decoration: underline;
+    transition: font-size 0.3s ease; 
+
+    &:hover {
+      font-size: 37px;
+
+    }
+  }
+}
+
 #appointments {
   padding: 20px 0px;
   background-color: $offwhite;
@@ -11,7 +30,7 @@
 
   h1 {
     font-family: 'Titan One', sans-serif;
-    text-decoration: underline;
+
   }
 
   #appointmentcontainer {
@@ -21,5 +40,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+#users {
+  background-color: $offwhite;
+
+  h1 {
+    display: flex;
+    font-family: 'Titan One', sans-serif;
+    padding-left: 30px;
   }
 }

@@ -1,4 +1,4 @@
-// import "../styling/UsersTab.css";
+import "../styling/UsersTab.css";
 
 function UsersTab(props) {
     return (

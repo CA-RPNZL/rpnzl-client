@@ -54,14 +54,15 @@ function AdminPortal() {
     return (
         <div>
             <div id="tab-buttons">
-                <button onClick={() => handleTabChange('appointments')}>Appointments</button>
-                <button onClick={() => handleTabChange('users')}>Users</button>
-                <button onClick={() => handleTabChange('services')}>Services</button>
+                <a href="#" onClick={() => handleTabChange('appointments')}>Bookings</a>
+                <a href="#" onClick={() => handleTabChange('users')}>Customers</a>
+                <a href="#" onClick={() => handleTabChange('services')}>Services</a>
             </div>
+
 
             {activeTab === 'appointments' && (
                 <div id="appointments">
-                    <h1>Appointments</h1>
+                    <h1>Bookings</h1>
                     <div id="appointmentcontainer">
                         {appointments.length > 0 &&
                             appointments.map((appointment) => (
