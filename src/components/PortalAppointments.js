@@ -7,8 +7,8 @@ import Modal from '../components/Modal';
 import AppointmentCard from './AppointmentCard';
 
 function PortalAppointments() {
-    // Grab data for JWT
-    const { userId, is_hairstylist } = useUserContext();
+    // Grab data from UserContext
+    const { userId, isHairstylist } = useUserContext();
 
     // Create state for list of appointments
     const [appointmentsList, setAppointmentsList] = useState([]);
@@ -17,27 +17,29 @@ function PortalAppointments() {
     const [openCancelModal, setOpenCancelModal] = useState(false);
 
     useEffect(() => {
-        try {
-            const fetchListAppointments = async () => {
+        const fetchAppointments = async () => {
+            try {
                 let response;
                 // If user is a customer
-                if (userId !== "" && (!is_hairstylist)) {
+                if (userId !== "" && (!isHairstylist)) {
                     // Grab all existing appointments for user
-                    response = await fetch(process.env.REACT_APP_API + "/appointments/user/" + userId);
+                    response = await fetch(process.env.REACT_APP_API + "/appointments/user/" + userId + "?pastAppt=false");
                 // If user is a hairstylist
-                } else if (userId !== "" && is_hairstylist) {
+                } else if (userId !== "" && isHairstylist) {
                     // Grab all existing appointments for hairstylist
-                    response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + userId);
+                    response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + userId + "?pastAppt=false");
                 }
                 const responseData = await response.json();
                 setAppointmentsList(responseData);
                 console.log(responseData);
-                fetchListAppointments();
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
-    }, [userId, is_hairstylist]);
+
+        fetchAppointments();
+
+    }, [userId, isHairstylist]);
 
     // Update start date with date formatting
     const formattedAppointmentDate = (date) => new Date(date).toLocaleDateString("en-AU", { dateStyle: "long"});
@@ -61,7 +63,9 @@ function PortalAppointments() {
                 showIndicators={true}
                 width={300}
                 emulateTouch>
-                {appointmentsList.map(appointment => (
+                {/* Populate cards if appointments contains a value */}
+                {appointmentsList.length > 0 && 
+                appointmentsList.map(appointment => (
                     <AppointmentCard 
                         key={appointment._id}
                         service={appointment.service} 
@@ -69,6 +73,7 @@ function PortalAppointments() {
                         bookedStartTime={formattedAppointmentStartTime(appointment.startDateTime)} 
                         bookedEndTime={formattedAppointmentEndTime(appointment.endDateTime)}
                         hairstylist={appointment.hairstylist}
+                        client={appointment.client}
                         />
                 ))}
             </Carousel>

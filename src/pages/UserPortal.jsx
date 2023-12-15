@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button } from 'react-bootstrap';
 import AccountInformation from '../components/AccountInformation';
 import Greeting from '../components/Greeting';
@@ -7,10 +7,31 @@ import PersonalDetailsForm from '../components/PersonalDetailsForm';
 import PasswordForm from '../components/PasswordForm';
 import "../styling/UserPortal.css"
 import Modal from '../components/Modal';
+import { useUserContext } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function UserPortal() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+    // Grab data for JWT
+    const { jwt, userId } = useUserContext();
+
+    let navigate = useNavigate();
+
+    // Check if user is logged in before loading user portal
+    useEffect(() => {
+        // Check if user is logged in
+        if (!jwt) {
+            // If user is not logged in, direct user to log in
+            navigate("/login")
+        } else {
+            // If user is logged in, direct user to booking form
+            navigate("/userportal")
+            // Update client ID
+            console.log("User ID is: " + userId);
+        }
+    }, [jwt, navigate, userId])
     
     return (
         <div id="userPortalOuterDiv">  
