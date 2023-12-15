@@ -10,44 +10,42 @@ function AppointmentCard(props) {
     
 
     return (
-        <div>
-        <div className="greenApptCards">
-            <table>
-                <tbody>
-                    <tr>
-                        <td><FontAwesomeIcon icon={faScissors} /></td>
-                        <td>{props.service.name}</td>
-                    </tr>
-                    <tr>
-                        <td><FontAwesomeIcon icon={faCalendarDays} /></td>
-                        <td>{props.bookedDate}<br/>
-                            {props.bookedStartTime} - {props.bookedEndTime}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><FontAwesomeIcon icon={faUser} /></td>
-                        <td>with {props.hairstylist.firstName} {props.hairstylist.lastName}</td>
-                    </tr>
-                    {/* If user is hairstylist, show client's name */}
-                    { isHairstylist && 
+        <div id={props.id}>
+            <div className="greenApptCards">
+                <table>
+                    <tbody>
                         <tr>
-                            <td><FontAwesomeIcon icon={faUserClock} /></td>
-                            <td>for {props.client.firstName} {props.client.lastName}</td>
+                            <td><FontAwesomeIcon icon={faScissors} /></td>
+                            <td>{props.service.name}</td>
                         </tr>
-                    }
-                    {/* If user is hairstylist, show client's phone number */}
-                    { isHairstylist && 
                         <tr>
-                            <td><FontAwesomeIcon icon={faPhone} /></td>
-                            <td>{props.client.mobileNumber}</td>
+                            <td><FontAwesomeIcon icon={faCalendarDays} /></td>
+                            <td>{props.bookedDate}<br/>
+                                {props.bookedStartTime} - {props.bookedEndTime}
+                            </td>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                        <tr>
+                            <td><FontAwesomeIcon icon={faUser} /></td>
+                            <td>with {props.hairstylist.firstName} {props.hairstylist.lastName}</td>
+                        </tr>
+                        {/* If user is hairstylist, show client's name */}
+                        { isHairstylist && 
+                            <tr>
+                                <td><FontAwesomeIcon icon={faUserClock} /></td>
+                                <td>for {props.client.firstName} {props.client.lastName}</td>
+                            </tr>
+                        }
+                        {/* If user is hairstylist, show client's phone number */}
+                        { isHairstylist && 
+                            <tr>
+                                <td><FontAwesomeIcon icon={faPhone} /></td>
+                                <td>{props.client.mobileNumber}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-        
-    
-    </div>
     )
    
 }
