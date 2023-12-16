@@ -7,32 +7,36 @@ import PersonalDetailsForm from '../components/PersonalDetailsForm';
 import PasswordForm from '../components/PasswordForm';
 import "../styling/UserPortal.css"
 import Modal from '../components/Modal';
-import { useUserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../contexts/UserContext';
+import { toast } from 'react-toastify'
 
 
 function UserPortal() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
-    // Grab data for JWT
-    const { jwt, userId } = useUserContext();
-
-    let navigate = useNavigate();
-
-    // Check if user is logged in before loading user portal
-    useEffect(() => {
-        // Check if user is logged in
-        if (!jwt) {
-            // If user is not logged in, direct user to log in
-            navigate("/login")
-        } else {
-            // If user is logged in, direct user to booking form
-            navigate("/userportal")
-            // Update client ID
-            console.log("User ID is: " + userId);
-        }
-    }, [jwt, navigate, userId])
     
+    const { jwt, userId, logout } = useUserContext();
+
+    const navigate = useNavigate();
+
+    const handleDeleteClick = async () => {
+        try {
+                let response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${jwt}`,
+                }, 
+            });
+            logout();
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("userId");
+            navigate("/")
+            toast.success("Deleted user successfully");
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div id="userPortalOuterDiv">  
             <div className="userPortalDiv">
@@ -48,10 +52,12 @@ function UserPortal() {
                     <PasswordForm />
                 </div>
                 <div id="deleteAccountDiv">
+                    {/* If delete button clicked, open modal window to confirm */}
                     <Button onClick={() => setOpenDeleteModal(true)}>DELETE ACCOUNT</Button>
                     <Modal 
                         open={openDeleteModal} 
                         onClose={() => setOpenDeleteModal(false)}
+                        handleClick={() => handleDeleteClick()}
                         heading={"Delete Account"}
                         subheading={"Are you sure you want to delete your account?"}
                         text={"Deleting your account will permanently delete your details and appointments."}

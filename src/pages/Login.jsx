@@ -38,6 +38,10 @@ function Login() {
         // Return API token, and additional user data
         await login(userData);
 
+        // Store token in local storage
+        localStorage.setItem('jwt', userData.jwt);
+        localStorage.setItem('userId', userData.userId);
+
         if (userData.isAdmin) {
           navigate('/admin');
         } else {

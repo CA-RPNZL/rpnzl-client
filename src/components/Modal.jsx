@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Button } from 'react-bootstrap';
 import "../styling/Modal.css"
 
-const Modal = ({action, open, heading, subheading, text, onClose}) => {
+const Modal = ({open, heading, subheading, text, onClose, handleClick}) => {
     if (!open) {
         return null;
     }
@@ -16,7 +16,7 @@ const Modal = ({action, open, heading, subheading, text, onClose}) => {
                     <p>{text}</p>
                 </div>
                 <div id="modalButtons">
-                    <Button onClick={action}>{heading}</Button>
+                    <Button onClick={handleClick}>{heading}</Button>
                     <Button onClick={onClose}>Back</Button>
                 </div>
             </div>

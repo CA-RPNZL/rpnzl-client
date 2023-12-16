@@ -42,7 +42,8 @@ function PasswordForm() {
             return;
         }
         try {
-            const response = await fetch(process.env.REACT_APP_API + '/users/changepassword', {
+            const userId = localStorage.getItem("userId");
+            const response = await fetch(process.env.REACT_APP_API + '/changepassword/' + userId, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json',
