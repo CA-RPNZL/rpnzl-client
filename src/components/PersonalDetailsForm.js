@@ -1,9 +1,8 @@
-import { Button } from "react-bootstrap";
 import "../styling/UserPortalForm.css"
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify'
-import { useUserContext } from "../contexts/UserContext";
+import { toast } from 'react-toastify';
 
 
 function PersonalDetailsForm() {

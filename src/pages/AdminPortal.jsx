@@ -1,8 +1,8 @@
+import "../styling/AdminPortal.css";
 import React, { useEffect, useState } from 'react';
 import AppointmentsTab from '../components/AdminAppointmentsTab'; 
 import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
-import "../styling/AdminPortal.css";
 
 function AdminPortal() {
     const [appointments, setAppointments] = useState([]);
