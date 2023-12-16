@@ -130,7 +130,7 @@ function PortalAppointments() {
             heading={"Cancel appointment"}
             subheading={"Are you sure you want to cancel your appointment?"}
             text={"Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment"}
-            action={handleCancelBtn}
+            handleClick={handleCancelBtn}
             />              
         </div>
     )
