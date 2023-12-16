@@ -1,0 +1,44 @@
+#tab-buttons {
+  display: flex;
+  transition: 0.3s ease-in;
+  background-color: #FBF8F0;
+}
+#tab-buttons a {
+  font-size: 35px;
+  color: black;
+  padding: 20px;
+  text-decoration: underline;
+  transition: font-size 0.3s ease;
+}
+#tab-buttons a:hover {
+  font-size: 37px;
+}
+
+#appointments {
+  padding: 20px 0px;
+  background-color: #FBF8F0;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+#appointments h1 {
+  font-family: "Titan One", sans-serif;
+}
+#appointments #appointmentcontainer {
+  margin: 0 auto;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#users {
+  background-color: #FBF8F0;
+}
+#users h1 {
+  display: flex;
+  font-family: "Titan One", sans-serif;
+  padding-left: 30px;
+}/*# sourceMappingURL=AdminPortal.css.map */

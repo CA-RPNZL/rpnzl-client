@@ -1,0 +1,17 @@
+@import './variables';
+
+.UsersTab {
+    background-color: $offwhite;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    padding: 10px; 
+  }
+  
+  #servicename,
+  #description,
+  #price,
+  #isHairstylist {
+    flex: 1;
+  }
+  

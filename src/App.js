@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import UserPortal from './pages/UserPortal';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
+import AdminPortal from './pages/AdminPortal';
 import Services from './pages/Services';
 import { ToastContainer, toast } from 'react-toastify';
 import SignUp from './pages/SignUp';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element={<Aboutpage />}/>
           <Route path="/services" element={<Services />}/>
           <Route path="/contactus" element={<ContactUs />}/>
+          <Route path="/admin" element={<AdminPortal />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<SignUp />}/> 
           <Route path="/userportal" element={<UserPortal />}/>
