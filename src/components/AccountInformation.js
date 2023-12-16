@@ -27,18 +27,21 @@ function AccountInformation() {
             }
         }
         fetchAccountInformation();
-    }, []);
+    }, [userData]);
 
 
     return (
         <div id="accountInfoDiv">
             <h3>Account Information</h3>
-            <div id="greenAccountDiv">
-                <p>First Name: {userData.firstName}</p>
-                <p>Last Name: {userData.lastName}</p>
-                <p>E-mail: {userData.email}</p>
-                <p>Phone: {userData.mobileNumber}</p>
-            </div>
+            {userData ? (
+                <div id="greenAccountDiv">
+                    <p>First Name: {userData.firstName}</p>
+                    <p>Last Name: {userData.lastName}</p>
+                    <p>E-mail: {userData.email}</p>
+                    <p>Phone: {userData.mobileNumber}</p>
+                </div>
+            ) : (
+                <p>Loading...</p>)}
         </div>
     )
 }

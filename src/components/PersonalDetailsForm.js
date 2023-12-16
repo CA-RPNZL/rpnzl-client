@@ -32,7 +32,7 @@ function PersonalDetailsForm() {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${jwt}`,
+                'authtoken': jwt,
                 },
                 body: JSON.stringify(updatedData),
             });
@@ -45,8 +45,6 @@ function PersonalDetailsForm() {
 
             toast.success("Successfully updated personal details.");
             navigate("/userportal");
-            window.location.reload();
-            
         } 
         catch (error) {
             console.error(error);
