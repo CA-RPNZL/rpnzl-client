@@ -111,48 +111,54 @@ function PortalAppointments() {
 
     return (
         <div id="portalApptsDiv">
-            <h2 id="yourNextApptIs">Your next appointment is</h2>
-            <Carousel
-                axis="horizontal" 
-                showThumbs={false} 
-                showArrows={true}
-                showStatus={false}
-                showIndicators={true}
-                width={300}
-                emulateTouch
-            >
-                {/* Populate cards if appointments contains a value */}
-                {appointmentsList.length > 0 && 
-                appointmentsList.map(appointment => (
-                    <AppointmentCard 
-                        key={appointment._id}
-                        id={appointment._id}
-                        service={appointment.service} 
-                        bookedDate={bookedDate(appointment)} 
-                        bookedStartTime={bookedStartTime(appointment)} 
-                        bookedEndTime={bookedEndTime(appointment)}
-                        hairstylist={appointment.hairstylist}
-                        client={appointment.client}
-                        />
-                ))}
-            </Carousel>
+            {appointmentsList.length === 0 ?
+            <p id="noAppts">You do not have any upcoming appointments.</p>
+            :
+            <div id="hasAppts">
+                <h2 id="yourNextApptIs">Your next appointment is</h2>
+                <Carousel
+                    axis="horizontal" 
+                    showThumbs={false} 
+                    showArrows={true}
+                    showStatus={false}
+                    showIndicators={true}
+                    width={300}
+                    emulateTouch
+                >
+                    {/* Populate cards if appointments contains a value */}
+                    {appointmentsList.length > 0 && 
+                    appointmentsList.map(appointment => (
+                        <AppointmentCard 
+                            key={appointment._id}
+                            id={appointment._id}
+                            service={appointment.service} 
+                            bookedDate={bookedDate(appointment)} 
+                            bookedStartTime={bookedStartTime(appointment)} 
+                            bookedEndTime={bookedEndTime(appointment)}
+                            hairstylist={appointment.hairstylist}
+                            client={appointment.client}
+                            />
+                    ))}
+                </Carousel>
 
-            <div id="apptButtonDiv">
-                <Button className="apptButtons">Update appointment</Button>
-                <Button className="apptButtons" onClick={() => setOpenCancelModal(true)}>Cancel appointment</Button>
+                <div id="apptButtonDiv">
+                    <Button className="apptButtons">Update appointment</Button>
+                    <Button className="apptButtons" onClick={() => setOpenCancelModal(true)}>Cancel appointment</Button>
+                </div>
+
+                <p>Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment</p>
+
+                {/* Cancel appointment button modal */}
+                <Modal 
+                open={openCancelModal} 
+                onClose={() => setOpenCancelModal(false)}
+                heading={"Cancel appointment"}
+                subheading={"Are you sure you want to cancel your appointment?"}
+                text={"Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment"}
+                handleClick={handleCancelBtn}
+                />   
             </div>
-
-            <p>Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment</p>
-
-            {/* Cancel appointment button modal */}
-            <Modal 
-            open={openCancelModal} 
-            onClose={() => setOpenCancelModal(false)}
-            heading={"Cancel appointment"}
-            subheading={"Are you sure you want to cancel your appointment?"}
-            text={"Please note: Changes or cancellations must be made no less than 24 hours prior to your appointment"}
-            handleClick={handleCancelBtn}
-            />              
+            }           
         </div>
     )
 }
