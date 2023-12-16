@@ -23,7 +23,7 @@ function Login() {
       const result = await fetch(process.env.REACT_APP_API + "/login", {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password }),
       });
@@ -31,11 +31,12 @@ function Login() {
       console.log('Received response:', result);
   
       if (result.ok) {
+
         const userData = await result.json();
         console.log('Authentication successful. User data:', userData);
         
         // Return API token, and additional user data
-        login(userData);
+        await login(userData);
 
         if (userData.isAdmin) {
           navigate('/admin');

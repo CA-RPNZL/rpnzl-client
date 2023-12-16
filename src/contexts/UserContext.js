@@ -15,7 +15,12 @@ export const UserProvider = ({ children }) => {
 
   // Function to handle user login
   const login = (userData) => {
-    console.log(userData);
+    // Store in local storage
+    localStorage.setItem("authtoken", userData.jwt);
+    localStorage.setItem("userid", userData.userId)
+
+
+    // Store in response
     setJwt(userData.jwt);
     setUserId(userData.userId);
     setIsAdmin(userData.isAdmin);
