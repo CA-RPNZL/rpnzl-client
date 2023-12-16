@@ -10,10 +10,19 @@ function AdminPortal() {
     const [services, setServices] = useState([]);
     const [activeTab, setActiveTab] = useState('appointments');
 
+    // Grab JWT from local storage
+    const jwt = localStorage.getItem("jwt");
+
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/appointments");
+                let response = await fetch(process.env.REACT_APP_API + "/appointments", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setAppointments(responseData);
                 console.log(response);
@@ -24,7 +33,13 @@ function AdminPortal() {
 
         const fetchUsers = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/users");
+                let response = await fetch(process.env.REACT_APP_API + "/users", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setUsers(responseData);
             } catch (error) {
@@ -34,7 +49,13 @@ function AdminPortal() {
 
         const fetchServices = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/services");
+                let response = await fetch(process.env.REACT_APP_API + "/services", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setServices(responseData);
             } catch (error) {
@@ -45,7 +66,7 @@ function AdminPortal() {
         fetchAppointments();
         fetchUsers();
         fetchServices();
-    }, []);
+    }, [jwt]);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
