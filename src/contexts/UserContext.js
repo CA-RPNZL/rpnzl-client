@@ -18,6 +18,8 @@ export const UserProvider = ({ children }) => {
     // Store in local storage
     localStorage.setItem("authtoken", userData.jwt);
     localStorage.setItem("userid", userData.userId)
+    localStorage.setItem("isadmin", userData.isAdmin)
+    localStorage.setItem("ishairstylist", userData.isHairstylist)
 
 
     // Store in response
