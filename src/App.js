@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Services from './pages/Services';
 import { ToastContainer, toast } from 'react-toastify';
 import SignUp from './pages/SignUp';
+import Aboutpage from './pages/About';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />}/>
+          <Route path="/about" element={<Aboutpage />}/>
           <Route path="/services" element={<Services />}/>
           <Route path="/contactus" element={<ContactUs />}/>
           <Route path="/login" element={<Login />}/>

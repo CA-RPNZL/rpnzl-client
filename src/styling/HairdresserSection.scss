@@ -1,0 +1,82 @@
+@import './variables.scss';
+
+.hairdresser-component {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.hairdresser-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 20px 100px;
+}
+
+.carouselContainer {
+  flex: 1;
+  order: 1;
+  margin-top: 20px;
+}
+
+.hairdresser-bio {
+  flex: 1;
+  order: 2; 
+  padding: 0 20px;
+}
+
+.hairdresserBio,
+.hairdresserService {
+  background-color: $light-green;
+  border: 2px $dark-green solid; 
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hairdresserName {
+  font-family: 'Titan One', sans-serif;
+  font-size: 25px;
+}
+
+.hairdresser {
+  width: 100%; 
+  max-width: 350px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 60px $dark-purple; 
+  background-color: $purple; 
+
+  img {
+    border-radius: 15px;
+  }
+}
+
+.bookNowButton {
+  position: relative;
+  margin: 30px;
+
+}
+
+/* Media screen for mobile*/
+@media only screen and (max-width: 650px) {
+  .hairdresser-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  .carouselContainer {
+    margin-bottom: 5px; 
+    margin-top: 30px;
+    order: 2; 
+  }
+
+  .hairdresser-bio {
+    order: 1;
+  }
+}
