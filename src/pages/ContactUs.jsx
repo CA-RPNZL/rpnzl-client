@@ -1,12 +1,13 @@
+import "../styling/ContactUs.css"
 import BookNowButton from "../components/BookNowButton";
 import buildingPhoto from '../assets/photos/contactus_image.jpg';
-import "../styling/ContactUs.css"
+
 
 function ContactUs() {
     return (
         <div id="contactPageContainer">
             <div className="imageContainer">
-                <img src={buildingPhoto} />
+                <img src={buildingPhoto} alt="RPNZL hair salon's building" />
             </div>
             <div className="whiteContainer">
                 <h3 className="heading">Get in touch</h3>
