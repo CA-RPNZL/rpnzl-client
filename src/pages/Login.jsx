@@ -1,7 +1,7 @@
 // Import dependencies and styles
+import '../styling/Login.css';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import '../styling/Login.css';
 import { useUserContext } from '../contexts/UserContext';
 import loginImage from '../assets/photos/login_image.jpg';
 
@@ -37,10 +37,6 @@ function Login() {
         
         // Return API token, and additional user data
         await login(userData);
-
-        // Store token in local storage
-        localStorage.setItem('jwt', userData.jwt);
-        localStorage.setItem('userId', userData.userId);
 
         if (userData.isAdmin) {
           navigate('/admin');

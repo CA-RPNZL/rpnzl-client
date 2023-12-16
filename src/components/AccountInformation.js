@@ -1,6 +1,5 @@
+import "../styling/AccountInformation.css";
 import { useEffect, useState } from "react";
-import "../styling/AccountInformation.css"
-import { useUserContext } from "../contexts/UserContext";
 
 function AccountInformation() {
     const [userData, setUserData] = useState({});
@@ -10,12 +9,12 @@ function AccountInformation() {
         const fetchAccountInformation = async () => {
             try {
                 const jwt = localStorage.getItem("jwt");
-                const userId = localStorage.getItem("userId")
+                const userId = localStorage.getItem("userId");
                 let response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
                     method: 'GET',
                     headers: {
                       'Content-Type': 'application/json',
-                      Authorization: `Bearer ${jwt}`,
+                      authtoken: jwt
                     },
                 });
                 

@@ -1,12 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faScissors, faCalendarDays, faPhone, faUserClock } from '@fortawesome/free-solid-svg-icons';
-import { useUserContext } from '../contexts/UserContext';
 
 
 function AppointmentCard(props) {
-    // Grab data from UserContext
-    const { isHairstylist } = useUserContext();
-
+    // Grab isHairstylist from local storage
+    const isHairstylist = localStorage.getItem("isHairstylist");
     
 
     return (
@@ -29,14 +27,14 @@ function AppointmentCard(props) {
                             <td>with {props.hairstylist.firstName} {props.hairstylist.lastName}</td>
                         </tr>
                         {/* If user is hairstylist, show client's name */}
-                        { isHairstylist && 
+                        { isHairstylist === "true" && 
                             <tr>
                                 <td><FontAwesomeIcon icon={faUserClock} /></td>
                                 <td>for {props.client.firstName} {props.client.lastName}</td>
                             </tr>
                         }
                         {/* If user is hairstylist, show client's phone number */}
-                        { isHairstylist && 
+                        { isHairstylist === "true" && 
                             <tr>
                                 <td><FontAwesomeIcon icon={faPhone} /></td>
                                 <td>{props.client.mobileNumber}</td>

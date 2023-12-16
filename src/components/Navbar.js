@@ -11,10 +11,10 @@ const Navbar = () => {
     const { logout } = useUserContext();
 
     // Grab JWT from local storage
-    const jwt = localStorage.getItem("authtoken");
+    const jwt = localStorage.getItem("jwt");
 
-    // Grab JWT from local storage
-    const isAdmin = localStorage.getItem("isadmin");
+    // Grab isAdmin from local storage
+    const isAdmin = localStorage.getItem("isAdmin");
 
 
     // Function if a user logs out

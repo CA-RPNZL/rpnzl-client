@@ -9,7 +9,7 @@ function Services() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                // Fetch data from API
+                // Fetch data from API - no authorisation required
                 let response = await fetch(process.env.REACT_APP_API + "/services")
                 // Save data as json
                 const responseData = await response.json();

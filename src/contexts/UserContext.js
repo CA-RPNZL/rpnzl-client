@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
   const [isHairstylist, setIsHairstylist] = useState(null);
-;
+
 
 
   // Function to handle user login
@@ -22,10 +22,10 @@ export const UserProvider = ({ children }) => {
     setIsHairstylist(userData.isHairstylist);
 
     // Store in local storage
-    localStorage.setItem("authtoken", userData.jwt);
-    localStorage.setItem("userid", userData.userId)
-    localStorage.setItem("isadmin", userData.isAdmin)
-    localStorage.setItem("ishairstylist", userData.isHairstylist)
+    localStorage.setItem("jwt", userData.jwt);
+    localStorage.setItem("userId", userData.userId)
+    localStorage.setItem("isAdmin", userData.isAdmin)
+    localStorage.setItem("isHairstylist", userData.isHairstylist)
   };
 
   // Function to handle user logout

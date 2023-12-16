@@ -15,7 +15,9 @@ import { toast } from 'react-toastify'
 function UserPortal() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     
-    const { jwt, userId, logout } = useUserContext();
+    const { logout } = useUserContext();
+    const jwt = localStorage.getItem("jwt");
+    const userId = localStorage.getItem("userId");
 
     const navigate = useNavigate();
 
@@ -25,12 +27,10 @@ function UserPortal() {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${jwt}`,
+                    authtoken: jwt,
                 }, 
             });
             logout();
-            localStorage.removeItem("jwt");
-            localStorage.removeItem("userId");
             navigate("/")
             toast.success("Deleted user successfully");
         } catch (error) {
