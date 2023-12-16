@@ -1,7 +1,7 @@
 import "../styling/Booking.css";
+import { DateSlotPicker } from "react-dateslot-picker";
 import { useContext, useEffect, useState } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
-import { DateSlotPicker } from "react-dateslot-picker";
 // import 'react-dateslot-picker/dist/style.css';
 
 
@@ -63,7 +63,7 @@ function SelectDateTime() {
 
 
     // Grab date/time from each appointment, convert to timestamp
-    appointmentList.map((bookedAppt) => {
+    appointmentList.length > 0 && appointmentList.map((bookedAppt) => {
 
         // Obtain timestamp of the starting date/time of the booked appointment
         let bookedApptStartTimestamp = new Date(bookedAppt.startDateTime).getTime();

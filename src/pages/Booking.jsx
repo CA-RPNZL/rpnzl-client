@@ -1,6 +1,5 @@
 import "../styling/Booking.css";
 import { useContext, useEffect, useState } from "react";
-import { useUserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
@@ -30,8 +29,11 @@ function Booking() {
     const [startDateTime, setStartDateTime] = useState(appointment.selectedStartDateTime);
     const [endDateTime, setEndDateTime] = useState(appointment.selectedEndDateTime);
 
-    // Grab data for JWT
-    const { jwt, userId } = useUserContext();
+    // Grab JWT from local storage
+    const jwt = localStorage.getItem("jwt");
+
+    // Grab userId from local storage
+    const userId = localStorage.getItem("userId");
 
     // Create state for next button
     const [disableNextBtn, setDisableNextBtn] = useState(appointment.disableNextBtn);
@@ -101,7 +103,8 @@ function Booking() {
         await fetch(process.env.REACT_APP_API + "/appointments", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                authtoken: jwt
             },
             // converts appointmentData to a JSON string
             body: JSON.stringify(appointmentData)

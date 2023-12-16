@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 import { useUserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
-
-    // Grab JWT, logout from User Context
-    const { jwt, isAdmin, logout } = useUserContext();
-
     // Toggle open and close nav bar
     const [toggle, setToggle]= useState(false);
+
+    // Grab logout from User Context
+    const { logout } = useUserContext();
+
+    // Grab JWT from local storage
+    const jwt = localStorage.getItem("jwt");
+
+    // Grab isAdmin from local storage
+    const isAdmin = localStorage.getItem("isAdmin");
 
 
     // Function if a user logs out
@@ -35,10 +40,10 @@ const Navbar = () => {
         logInLink = <Link to="/login">Log in</Link>
     } else {
         // If user is logged in, check if user is admin
-        if (isAdmin) {
+        if (isAdmin === "true") {
+            // Show link to account page instead of sign up
             signUpAccountLink = <Link to="/admin">Admin</Link>
         } else {
-            // Show link to account page instead of sign up
             signUpAccountLink = <Link to="/userportal">Account</Link>
         }
         // Show link to log out instead of log out
@@ -60,7 +65,7 @@ const Navbar = () => {
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/services">Services</Link></li>
-                        <li><Link to="contactus">Contact Us</Link></li>
+                        <li><Link to="/contactus">Contact Us</Link></li>
                         <li><Link to="/booking">Book Now</Link></li>
                         <li>{signUpAccountLink}</li>
                         <li>{logInLink}</li>

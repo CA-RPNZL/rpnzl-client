@@ -1,7 +1,9 @@
-import { Button } from "react-bootstrap";
 import "../styling/UserPortalForm.css"
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 
 function PersonalDetailsForm() {
     const [firstName, setFirstName] = useState("");
@@ -10,11 +12,11 @@ function PersonalDetailsForm() {
     const [mobileNumber, setMobileNumber] = useState("");
 
     const navigate = useNavigate();
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-
+        // only save updated fields
         const updatedData = {
             ...(firstName && { firstName }),
             ...(lastName && { lastName }),
@@ -23,11 +25,13 @@ function PersonalDetailsForm() {
         };
 
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/users/id/6578349c89c5f2baff440d1c" , {
+            const jwt = localStorage.getItem("jwt");
+            const userId = localStorage.getItem("userId")
+            const response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId , {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer `,
+                'authtoken': jwt,
                 },
                 body: JSON.stringify(updatedData),
             });
@@ -37,13 +41,13 @@ function PersonalDetailsForm() {
             }
 
             const data = await response.json();
-            console.log(data);
 
+            toast.success("Successfully updated personal details.");
             navigate("/userportal");
-            window.location.reload();
         } 
         catch (error) {
-          console.error('Error updating user details:', error);
+            console.error(error);
+            toast.error("An error occurred while updating details.");
         }
     }
 

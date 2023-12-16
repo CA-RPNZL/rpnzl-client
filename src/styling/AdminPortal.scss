@@ -1,0 +1,63 @@
+// Import variables
+@import './variables';
+
+#adminPortal {
+  background-color: $offwhite;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  
+  .portalTabDiv {
+    display: flex;
+    flex-direction: column;
+    
+    .portalTabHeader {
+      margin: 0 auto;
+      width: 90vw;
+
+      h1 {
+        text-align: left;
+        font-family: 'Titan One', sans-serif;
+      }
+    }
+  }
+}
+
+#tab-buttons {
+  display: flex;
+  transition: 0.3s ease-in;
+  background-color: $offwhite;
+
+  a {
+    font-size: 35px;
+    color: black;
+    padding: 20px;
+    text-decoration: underline;
+    transition: font-size 0.3s ease; 
+
+    &:hover {
+      font-size: 37px;
+
+    }
+  }
+}
+
+#appointments {
+  padding: 20px 0px;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+  #appointmentcontainer {
+    margin: 0 auto;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+#users {
+}
