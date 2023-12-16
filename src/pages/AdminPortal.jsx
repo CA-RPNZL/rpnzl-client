@@ -73,7 +73,7 @@ function AdminPortal() {
     };
 
     return (
-        <div>
+        <div id="adminPortal">
             <div id="tab-buttons">
                 <a href="#" onClick={() => handleTabChange('appointments')}>Bookings</a>
                 <a href="#" onClick={() => handleTabChange('users')}>Customers</a>
@@ -82,9 +82,11 @@ function AdminPortal() {
 
 
             {activeTab === 'appointments' && (
-                <div id="appointments">
-                    <h1>Bookings</h1>
-                    <div id="appointmentcontainer">
+                <div id="appointments" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Bookings</h1>
+                    </div>
+                    <div id="appointmentcontainer" className="portalTabData">
                         {appointments.length > 0 &&
                             appointments.map((appointment) => (
                                 <AppointmentsTab
@@ -100,9 +102,11 @@ function AdminPortal() {
             )}
 
             {activeTab === 'users' && (
-                <div id="users">
-                    <h1>Users</h1>
-                    <div id="user-container">
+                <div id="users" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Users</h1>
+                    </div>
+                    <div id="user-container" className="portalTabData">
                         {users.map((user) => (
                             <UsersTab
                                 key={user._id}
@@ -118,9 +122,11 @@ function AdminPortal() {
             )}
 
             {activeTab === 'services' && (
-                <div id="services">
-                    <h1>Services</h1>
-                    <div id="service-container">
+                <div id="services" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Services</h1>
+                    </div>
+                    <div id="service-container" className="portalTabData">
                         {services.map((service) => (
                             <ServicesTab
                                 key={service._id}
