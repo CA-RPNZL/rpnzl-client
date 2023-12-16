@@ -15,18 +15,17 @@ export const UserProvider = ({ children }) => {
 
   // Function to handle user login
   const login = (userData) => {
-    // Store in local storage
-    localStorage.setItem("authtoken", userData.jwt);
-    localStorage.setItem("userid", userData.userId)
-    localStorage.setItem("isadmin", userData.isAdmin)
-    localStorage.setItem("ishairstylist", userData.isHairstylist)
-
-
     // Store in response
     setJwt(userData.jwt);
     setUserId(userData.userId);
     setIsAdmin(userData.isAdmin);
     setIsHairstylist(userData.isHairstylist);
+
+    // Store in local storage
+    localStorage.setItem("authtoken", userData.jwt);
+    localStorage.setItem("userid", userData.userId)
+    localStorage.setItem("isadmin", userData.isAdmin)
+    localStorage.setItem("ishairstylist", userData.isHairstylist)
   };
 
   // Function to handle user logout
@@ -36,6 +35,7 @@ export const UserProvider = ({ children }) => {
     setUserId(null);
     setIsAdmin(null);
     setIsHairstylist(null);
+    localStorage.clear();
   };
 
   // Provide the user context to the app
