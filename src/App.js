@@ -5,6 +5,7 @@ import Booking from './pages/Booking';
 import ContactUs from './pages/ContactUs';
 import Homepage from './pages/Homepage';
 import UserPortal from './pages/UserPortal';
+import Aboutpage from './pages/About';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import AdminPortal from './pages/AdminPortal';

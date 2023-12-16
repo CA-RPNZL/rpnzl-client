@@ -102,4 +102,6 @@ function HairdresserComponent() {
   );
 }
 
+
 export default HairdresserComponent;
+
