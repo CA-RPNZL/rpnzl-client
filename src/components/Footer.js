@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "../styling/Footer.css";
+import { Link } from "react-router-dom";
 import React from "react";
 
 const Footer = () => (
@@ -9,7 +9,7 @@ const Footer = () => (
             </div>
 
             <div className="logoContainer">
-                <Link to="/services" id="footer-logo">
+                <Link to="/" id="footer-logo">
                     RPNZL
                 </Link>
 
