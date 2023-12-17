@@ -37,29 +37,16 @@ function SelectHairstylist() {
     // Fetch appointment data
     useEffect(() => {
         const fetchAppointmentData = async () => {
-            try {
-                // If selected hairstylist is "any"
-                if (hairstylistList.length > 0 && selectedHairstylist === "Any") {
-                    // Get random number from hairstylist list
-                    let randomNumber = Math.floor(Math.random()*hairstylistList.length);
-                    let randomHairstylist = hairstylistList[randomNumber];
-                    setHairstylist(randomHairstylist);
-
-                    // Update Next button to be active
-                    setDisableNextBtn(false);
-                } else if (hairstylistList.length > 0 && selectedHairstylist !== "") {
-                    // Update Next button to be active
-                    setDisableNextBtn(false);
-                } else {
-                    // Update Next button to be disabled
-                    setDisableNextBtn(true);
-                };
-            } catch (error) {
-                console.error("An error occurred while fetching data:", error);
+            if (selectedHairstylist !== "") {
+                // Update Next button to be active
+                setDisableNextBtn(false);
+            } else {
+                // Update Next button to be disabled
+                setDisableNextBtn(true);
             };
         };
         fetchAppointmentData();
-    }, [hairstylistList, selectedHairstylist, setDisableNextBtn, setHairstylist]);
+    }, [selectedHairstylist, setDisableNextBtn]);
 
     // Check if selectedHairstylist already has a value
     useEffect(() => {
@@ -70,8 +57,18 @@ function SelectHairstylist() {
 
     // Update selectedHairstylist
     const updateHairstylist = (selectedHairstylist) => {
-        setHairstylist(selectedHairstylist);
-        console.log(selectedHairstylist);
+        // If selected hairstylist is "any"
+        if (hairstylistList.length > 0 && selectedHairstylist === "Any") {
+            // Get random number from hairstylist list
+            let randomNumber = Math.floor(Math.random()*hairstylistList.length);
+            let randomHairstylist = hairstylistList[randomNumber];
+            console.log(randomHairstylist);
+            setHairstylist(randomHairstylist);
+            updateInputBtn(randomHairstylist);
+        } else {
+            setHairstylist(selectedHairstylist);
+            console.log(selectedHairstylist);
+        }
 
         // Update Next button to be active
         setDisableNextBtn(false);
@@ -94,7 +91,7 @@ function SelectHairstylist() {
                             id="input-hairstylistAny" 
                             name="selectHairstylist" 
                             className="hairstylistInput" 
-                            onChange={() => setHairstylist("Any")} 
+                            onChange={() => updateHairstylist("Any")} 
                             checked={selectedHairstylist && selectedHairstylist._id === "input-hairstylistAny"}
                         />
                         <div>
