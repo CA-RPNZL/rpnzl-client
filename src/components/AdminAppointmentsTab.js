@@ -8,7 +8,7 @@ function AppointmentsTab(props) {
                 <div id="hairstylistname">{props.hairstylist.firstName}</div>
                 <div id="servicename">{props.service.name}</div>
                 <div id="duration">{props.duration}</div>
-                <button onClick={props.onDelete}>Delete</button>
+                <button onClick={props.onDelete} id="button">Delete</button>
         </div>
     )
 }
