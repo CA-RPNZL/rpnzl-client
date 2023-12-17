@@ -10,11 +10,12 @@ import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/UserContext';
 import { toast } from 'react-toastify'
+import Loader from '../components/Loader';
 
 
 function UserPortal() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    
+    const [loading, setLoading] = useState(false);
     const { logout } = useUserContext();
     const jwt = localStorage.getItem("jwt");
     const userId = localStorage.getItem("userId");
@@ -22,12 +23,14 @@ function UserPortal() {
     const navigate = useNavigate();
 
     const handleDeleteClick = async () => {
+        setLoading(true);
+
         try {
                 let response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    authtoken: jwt,
+                    "authtoken": jwt,
                 }, 
             });
             logout();
@@ -35,6 +38,8 @@ function UserPortal() {
             toast.success("Deleted user successfully");
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
     return (
@@ -51,6 +56,7 @@ function UserPortal() {
                     <PersonalDetailsForm className="personalDetailsForm"/>
                     <PasswordForm />
                 </div>
+                
                 <div id="deleteAccountDiv">
                     {/* If delete button clicked, open modal window to confirm */}
                     <Button onClick={() => setOpenDeleteModal(true)}>DELETE ACCOUNT</Button>
@@ -66,6 +72,7 @@ function UserPortal() {
                 </div>
                 
             </div>
+            <Loader open={loading}/>
         </div>
         
     )

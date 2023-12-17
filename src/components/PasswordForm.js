@@ -105,6 +105,7 @@ function PasswordForm() {
                 placeholder='Confirm new password'
                 onChange={(event) => setConfirmPassword(event.target.value)}/>
             <Button type="submit">Update Password</Button>
+            <Loader open={loading}/>
         </form>
         </div>
         
