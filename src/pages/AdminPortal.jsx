@@ -170,7 +170,7 @@ function AdminPortal() {
       </div>
 
       {activeTab === 'appointments' && (
-        <div id="appointments" className="portalTabDiv">
+        <div id="appointmentsAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Bookings</h1>
           </div>
@@ -191,9 +191,9 @@ function AdminPortal() {
       )}
 
       {activeTab === 'users' && (
-        <div id="users" className="portalTabDiv">
+        <div id="usersAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
-            <h1>Users</h1>
+            <h1>Customers</h1>
           </div>
           <div id="user-container" className="portalTabData">
             {users.map((user) => (
@@ -213,7 +213,7 @@ function AdminPortal() {
       )}
 
       {activeTab === 'services' && (
-        <div id="services" className="portalTabDiv">
+        <div id="servicesAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Services</h1>
           </div>
