@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useUserContext } from '../contexts/UserContext';
 import loginImage from '../assets/photos/login_image.jpg';
+import Loader from '../components/Loader';
 
 // Functional component for the Login page
 function Login() {
@@ -13,8 +14,12 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
   
     try {
       console.log('Sending login request...');
@@ -51,6 +56,8 @@ function Login() {
     } catch (error) {
       console.error('Authentication error:', error);
       setError('An error occurred during authentication');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,7 +91,8 @@ function Login() {
             <button type="submit" className="loginButton">Submit</button> 
           </div>
         </form>
-      </div>
+        <Loader open={loading} />
+      </div>   
     </div>
   );
 }

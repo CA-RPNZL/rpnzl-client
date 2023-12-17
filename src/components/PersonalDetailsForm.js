@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Loader from "./Loader";
 
 
 function PersonalDetailsForm() {
@@ -11,10 +12,16 @@ function PersonalDetailsForm() {
     const [email, setEmail] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
 
+    // Make loading animation invisible at first
+    const [loading, setLoading] = useState(false)
+
     const navigate = useNavigate();
     
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        // open the loading screen
+        setLoading(true);
     
         // only save updated fields
         const updatedData = {
@@ -49,6 +56,9 @@ function PersonalDetailsForm() {
             console.error(error);
             toast.error("An error occurred while updating details.");
         }
+        finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -75,6 +85,7 @@ function PersonalDetailsForm() {
                 placeholder='Phone'
                 onChange={(event) => setMobileNumber(event.target.value)}/>
             <Button type="submit">Update Details</Button>
+            <Loader open={loading}/>
         </form>
     )
 }

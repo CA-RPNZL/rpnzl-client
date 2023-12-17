@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import Loader from "../components/Loader";
 
 
 function SignUp() {
@@ -16,6 +17,8 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   // Navigation hook for URL change
   const navigate = useNavigate();
 
@@ -25,6 +28,8 @@ function SignUp() {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
   
     // Define a regex pattern for a strong password
     const strongPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -71,7 +76,7 @@ function SignUp() {
       toast.success("Welcome to RPNZL!");
 
       // Navigate to login page
-      navigate("/contactus");
+      navigate("/login");
     } catch (error) {
 
       // Log error message on console
@@ -86,6 +91,8 @@ function SignUp() {
         // Log generic error message in console
         console.error("An error occurred during signup");
       }
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -167,6 +174,7 @@ function SignUp() {
             <button type="submit" className="signUpButton">SIGN UP</button> 
           </div>
         </form>
+        <Loader open={loading} />
       </div>
     </div>
   );
