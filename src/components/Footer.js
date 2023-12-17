@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styling/Footer.css";
 import React from "react";
 
@@ -8,9 +9,9 @@ const Footer = () => (
             </div>
 
             <div className="logoContainer">
-                <a href="#" id="footer-logo">
+                <Link to="/services" id="footer-logo">
                     RPNZL
-                </a>
+                </Link>
 
             </div>
             <div id="social-media">

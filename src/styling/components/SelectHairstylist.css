@@ -1,0 +1,9 @@
+.selectHairstylist {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.selectHairstylist .hairstylistIcon {
+  margin-right: 10px;
+}/*# sourceMappingURL=SelectHairstylist.css.map */

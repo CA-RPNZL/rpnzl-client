@@ -1,36 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../styling/ReviewCarousel.css'
-/*import Carousel from 'react-bootstrap/Carousel';
-
-function UncontrolledExample() {
-    return (
-      <Carousel>
-        <Carousel.Item>
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    );
-  }
-  
-export default UncontrolledExample;*/
 
 function ReviewCarousel() {
     return (  
@@ -41,7 +11,7 @@ function ReviewCarousel() {
                     showThumbs={false} 
                     showArrows={true}
                     showStatus={false}
-                    showIndicators={true}
+                    showIndicators={false}
                     autoPlay
                     infiniteLoop  
                     emulateTouch>

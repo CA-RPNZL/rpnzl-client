@@ -1,10 +1,17 @@
 import Button from 'react-bootstrap/Button';
 import '../styling/BookNowButton.css';
+import { useNavigate } from 'react-router-dom';
 
 function BookNowButton() {
+    let navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/booking")
+    };
+
     return (
         <div id="bookNowBtnContainer">
-            <Button href="#" className="bookNowButton">BOOK NOW</Button>
+            <Button onClick={handleClick} className="bookNowButton">BOOK NOW</Button>
         </div>
     )
 }

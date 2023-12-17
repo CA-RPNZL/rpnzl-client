@@ -1,0 +1,67 @@
+#userPortalOuterDiv {
+  background-color: #FBF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+}
+#userPortalOuterDiv Button {
+  cursor: pointer;
+}
+
+#deleteAccountDiv {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#deleteAccountDiv Button:first-child {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  border-radius: 4px;
+  margin-top: 40px;
+  font-weight: bolder;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+  width: 180px;
+}
+#deleteAccountDiv p {
+  font-size: 11px;
+  font-style: italic;
+  padding: 10px 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .userPortalDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2vw;
+    flex: 2;
+    width: 45vw;
+    height: 600px;
+  }
+  .userPortalDiv p {
+    max-width: 30vw;
+  }
+  .userPortalDiv .greeting {
+    order: 1;
+  }
+  .userPortalDiv .accountInformation {
+    order: 2;
+  }
+  .userPortalDiv #detailsForm {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+  }
+  .userPortalDiv .portalAppointments {
+    order: 4;
+  }
+  .userPortalDiv #deleteAccountDiv {
+    order: 5;
+  }
+}/*# sourceMappingURL=UserPortal.css.map */

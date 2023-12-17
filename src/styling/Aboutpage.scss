@@ -1,0 +1,119 @@
+@import './variables.scss';
+
+#aboutPageContainer {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $offwhite;
+
+  #aboutHeading {
+    h1 {
+      font-size: 50px;
+      padding: 30px 40px 0;
+      float: left;
+      clear: left;
+      font-family: 'Montserrat', sans-serif;
+
+      span {
+        font-family: 'superPlants', sans-serif;
+        width: 1em;
+      }
+    }
+  }
+
+  .aboutRpnzlContainer {
+    display: flex;
+    flex-direction: row;
+
+    .aboutRpnzl {
+      min-width: 50%;
+      height: auto;
+      margin-left: 60px;
+      background-color: $light-green;
+      border: 4px $dark-green solid;
+      border-radius: 20px;
+
+      #aboutPara {
+        padding: 18px;
+        font-size: 1.5em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        line-height: 1.5;
+
+        .bookNowButton {
+          position: relative;
+          top: auto;
+          left: 30%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    .image-container {
+      padding: 30px 10px;
+      display: flex;
+      align-items: center;
+      
+      .teamImage {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+      }
+    }
+  }
+
+  .meetTeamContainer {
+    padding: 30px 0;
+
+    #meetTeamText {
+      background-color: $pale-pink;
+      border-top: 2px $red solid;
+      border-bottom: 2px $red solid;
+      text-align: center;
+
+      p {
+        font-size: 35px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+
+        span {
+          font-family: 'superPlants', sans-serif;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: calc($laptop + 100px)) {
+    .aboutRpnzl {
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (max-width: calc($tablet + 330px)) {
+    .aboutRpnzlContainer {
+      display: flex;
+      flex-direction: column;
+
+      .aboutRpnzl {
+        width: 90%;
+        margin-left: 30px;
+        font-size: 14px;
+      }
+
+      .image-container {
+        padding-top: 20px;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+
+    .aboutRpnzlContainer{
+    .aboutRpnzl {
+      margin-left: 15px;
+    }
+  }
+  }
+}
