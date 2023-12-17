@@ -8,6 +8,7 @@ import SelectDateTime from "../components/SelectDateTime";
 import PreConfirmation from "../components/PreConfirmation";
 import Confirmation from "../components/Confirmation";
 import AppointmentContext from "../contexts/AppointmentContext";
+import Loader from "../components/Loader";
 
 
 function Booking() {
@@ -40,8 +41,12 @@ function Booking() {
     // Import useLocation
     const location = useLocation();
 
+    // Create state for loading
+    const [loading, setLoading] = useState(false);
+
     // Set up page condition
     const showPage = () => {
+
         try {
             switch (page) {
                 case 0:
@@ -117,35 +122,13 @@ function Booking() {
 
 
     // Confirm button functionality
-    const confirmAppt = async () => {
-        // Set appointment data to be POSTed
-        const appointmentData = {
-            "client": client,
-            "startDateTime": selectedStartDateTime,
-            "endDateTime": selectedEndDateTime,
-            "hairstylist": selectedHairstylist,
-            "service": selectedService,
-            "duration": selectedService.duration
-        };
+    const confirmAppt = async (e) => {
+        e.preventDefault();
 
-        // POST request: /appointments
-        await fetch(process.env.REACT_APP_API + "/appointments", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authtoken: jwt
-            },
-            // converts appointmentData to a JSON string
-            body: JSON.stringify(appointmentData)
-        }).then(response => response.json());
+        setLoading(true);
 
-        setPage((previousPage) => previousPage + 1);
-    };
-
-    // Update button functionality
-    const updateAppt = async () => {
-        if (appId) {
-            // Set appointment data to be PATCHed
+        try {
+            // Set appointment data to be POSTed
             const appointmentData = {
                 "client": client,
                 "startDateTime": selectedStartDateTime,
@@ -155,9 +138,9 @@ function Booking() {
                 "duration": selectedService.duration
             };
     
-            // PATCH request: /appointments
-            await fetch(process.env.REACT_APP_API + "/appointments/id/" + appId, {
-                method: "PATCH",
+            // POST request: /appointments
+            await fetch(process.env.REACT_APP_API + "/appointments", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     authtoken: jwt
@@ -167,9 +150,51 @@ function Booking() {
             }).then(response => response.json());
     
             setPage((previousPage) => previousPage + 1);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        };
+    };
 
-        } else {
-            console.log("This appointment ID doesn't exist:" + appId);
+    // Update button functionality
+    const updateAppt = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
+        try {
+            if (appId) {
+                // Set appointment data to be PATCHed
+                const appointmentData = {
+                    "client": client,
+                    "startDateTime": selectedStartDateTime,
+                    "endDateTime": selectedEndDateTime,
+                    "hairstylist": selectedHairstylist,
+                    "service": selectedService,
+                    "duration": selectedService.duration
+                };
+        
+                // PATCH request: /appointments
+                await fetch(process.env.REACT_APP_API + "/appointments/id/" + appId, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authtoken: jwt
+                    },
+                    // converts appointmentData to a JSON string
+                    body: JSON.stringify(appointmentData)
+                }).then(response => response.json());
+        
+                setPage((previousPage) => previousPage + 1);
+    
+            } else {
+                console.log("This appointment ID doesn't exist:" + appId);
+            };
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
         };
     };
 
@@ -187,6 +212,7 @@ function Booking() {
                     { page === 3 && appId && <WhiteButton label="Update" action={updateAppt} disabled={disableNextBtn} />}
                 </div>
             </div>
+            <Loader open={loading} />
         </div>                                                                                                                
     );
 }

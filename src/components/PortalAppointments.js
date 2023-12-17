@@ -2,11 +2,12 @@ import "../styling/PortalAppointments.css"
 import { Carousel } from 'react-responsive-carousel';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from "../functions/formatDate";
 import Modal from '../components/Modal';
 import AppointmentCard from './AppointmentCard';
+import Loader from "./Loader";
 
-import { useNavigate } from "react-router-dom";
 
 
 function PortalAppointments() {
@@ -28,9 +29,14 @@ function PortalAppointments() {
     // Import useNavigate
     const navigate = useNavigate();
 
+    // Create state for loading
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         // Fetch list of existing appointments
         const fetchAppointments = async () => {
+            setLoading(true);
+
             try {
                 let response;
                 // If user is a customer
@@ -59,6 +65,8 @@ function PortalAppointments() {
                 console.log(responseData);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -79,7 +87,11 @@ function PortalAppointments() {
     
 
     // 'Cancel Appointment' button functionality
-    const handleCancelBtn = async () => {
+    const handleCancelBtn = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
         try {
             // Get id of current appointment shown in carousel
             const currentApptId = document.querySelector("li.selected div").id;
@@ -111,12 +123,18 @@ function PortalAppointments() {
             console.log("Delete successful");
         } catch (error) {
             console.error("Error deleting appointment:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
 
     // 'Update appointment' button functionality
-    const handleUpdateBtn = async () => {
+    const handleUpdateBtn = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
         try {
             // Fetch appointment data to store in state
 
@@ -150,6 +168,8 @@ function PortalAppointments() {
             navigate("/booking", { state: {updateAppointmentData}});
         } catch (error) {
             console.error("Error preparing to update appointment:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -205,7 +225,8 @@ function PortalAppointments() {
                 handleClick={handleCancelBtn}
                 />   
             </div>
-            }           
+            } 
+            <Loader open={loading} />          
         </div>
     )
 }
