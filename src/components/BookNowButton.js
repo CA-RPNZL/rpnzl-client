@@ -9,11 +9,15 @@ function BookNowButton() {
     let navigate = useNavigate();
     
     // Reset stored appointment data function
-    const {resetAppointment} = useContext(AppointmentContext);
+    const {resetAppointment, setAppId} = useContext(AppointmentContext);
 
     const handleClick = () => {
         // Reset current stored data
         resetAppointment();
+
+        // Reset appId
+        setAppId(null);
+
 
         // Go to booking page
         navigate("/booking");

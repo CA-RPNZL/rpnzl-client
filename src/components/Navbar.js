@@ -21,7 +21,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     // Reset stored appointment data function
-    const {resetAppointment} = useContext(AppointmentContext);
+    const {resetAppointment, setAppId} = useContext(AppointmentContext);
 
 
     // Function if a user logs out
@@ -43,6 +43,19 @@ const Navbar = () => {
         setToggle(!toggle);
         // Reset current stored data if service input changes
         resetAppointment();
+        // Reset appId
+        setAppId(null);
+    }
+
+    // Function to handle link clicks
+    const handleLogoClick = (path, event) => {
+        event.preventDefault();
+        // Navigate to path
+        navigate(path);
+        // Reset current stored data if service input changes
+        resetAppointment();
+        // Reset appId
+        setAppId(null);
     }
 
 
@@ -76,7 +89,7 @@ const Navbar = () => {
         <div id="navHeader">
             <header id="header">
                 <div className="container">
-                    <Link onClick={(event) => handleClick("/", event)} id="logo">
+                    <Link onClick={(event) => handleLogoClick("/", event)} id="logo">
                         RPNZL
                     </Link>
                 </div>
@@ -87,8 +100,8 @@ const Navbar = () => {
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
                         <li><Link onClick={(event) => handleClick("/about", event)}>About</Link></li>
                         <li><Link onClick={(event) => handleClick("/services", event)}>Services</Link></li>
-                        <li><Link onClick={(event) => handleClick("/contactus", event)}>Contact Us</Link></li>
-                        <li><Link onClick={(event) => handleClick("/booking", event)}>Book Now</Link></li>
+                        <li><Link onClick={(event) => handleClick("/contactus", event)}>Contact us</Link></li>
+                        <li><Link onClick={(event) => handleClick("/booking", event)}>Book now</Link></li>
                         <li>{signUpAccountLink}</li>
                         <li>{logInLink}</li>
                     </ul>
