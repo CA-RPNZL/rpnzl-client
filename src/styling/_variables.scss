@@ -14,3 +14,20 @@ $desktop: 1280px;
 $tablet: 768px;
 $mobile: 480px;
 $laptop: 1024px;
+
+$button-styles: (
+  background-color: $light-green,
+  border: 2px solid $dark-green,
+  font-family: 'Montserrat',
+  border-radius: 4px,
+  margin: 10px,
+  font-weight: bolder,
+  padding: 10px,
+  cursor: pointer,
+  transition: 0.1s ease-out,
+  text-decoration: none,
+);
+$button-hover-styles: (
+  background-color: $dark-green,
+  color: white,
+);
