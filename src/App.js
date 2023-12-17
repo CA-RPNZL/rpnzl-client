@@ -12,7 +12,6 @@ import AdminPortal from './pages/AdminPortal';
 import Services from './pages/Services';
 import { ToastContainer, toast } from 'react-toastify';
 import SignUp from './pages/SignUp';
-import Aboutpage from './pages/About';
 
 
 
