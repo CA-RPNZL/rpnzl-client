@@ -11,4 +11,21 @@
 #price,
 #isHairstylist {
   flex: 1;
+}
+
+#button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  font-family: "Montserrat";
+  border-radius: 4px;
+  margin: 10px;
+  font-weight: bolder;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+}
+#button:hover {
+  background-color: #ABAF95;
+  color: white;
 }/*# sourceMappingURL=UsersTab.css.map */

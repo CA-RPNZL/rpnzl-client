@@ -1,7 +1,7 @@
 import "../styling/Loader.css"
 import { ThreeDots } from  'react-loader-spinner';
 
-function Loader(open) {
+function Loader({open}) {
     if (!open) {
         return null;
     }
