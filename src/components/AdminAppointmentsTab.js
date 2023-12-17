@@ -1,4 +1,5 @@
 import "../styling/AppointmentsTab.css";
+import React from "react";
 
 function AppointmentsTab(props) {
     return (
@@ -7,6 +8,7 @@ function AppointmentsTab(props) {
                 <div id="hairstylistname">{props.hairstylist.firstName}</div>
                 <div id="servicename">{props.service.name}</div>
                 <div id="duration">{props.duration}</div>
+                <button onClick={props.onDelete}>Delete</button>
         </div>
     )
 }

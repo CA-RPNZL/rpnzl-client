@@ -7,6 +7,7 @@ function ServicesTab(props) {
                 <div id="description">{props.description}</div>
                 <div id="price">{props.price}</div>
                 <div id="duration">{props.duration}</div>
+                <button onClick={props.onDelete}>Delete</button>
         </div>
     )
 }

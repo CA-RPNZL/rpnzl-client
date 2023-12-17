@@ -7,6 +7,7 @@ function UsersTab(props) {
                 <div id="description">{props.mobileNumber}</div>
                 <div id="price">{props.email}</div>
                 <div id="isHairstylist">{props.is_hairstylist}</div>
+                <button onClick={props.onDelete}>Delete</button>
         </div>
     )
 }
