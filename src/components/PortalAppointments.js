@@ -6,6 +6,8 @@ import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppoint
 import Modal from '../components/Modal';
 import AppointmentCard from './AppointmentCard';
 
+import { useNavigate } from "react-router-dom";
+
 
 function PortalAppointments() {
     // Grab jwt from local storage
@@ -22,6 +24,9 @@ function PortalAppointments() {
 
     // Create state for modal
     const [openCancelModal, setOpenCancelModal] = useState(false);
+
+    // Import useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch list of existing appointments
@@ -70,15 +75,17 @@ function PortalAppointments() {
     // Format appointment end time
     const bookedEndTime = (appointment) => formattedAppointmentEndTime(appointment.endDateTime);
 
+
     
+
     // 'Cancel Appointment' button functionality
     const handleCancelBtn = async () => {
         try {
             // Get id of current appointment shown in carousel
             const currentApptId = document.querySelector("li.selected div").id;
-    
+
             // Get ID of selected appointment
-            console.log(currentApptId)
+            console.log("Current appointment ID: " + currentApptId);
     
             // Cancel appointment
     
@@ -105,7 +112,46 @@ function PortalAppointments() {
         } catch (error) {
             console.error("Error deleting appointment:", error);
         }
-    }
+    };
+
+
+    // 'Update appointment' button functionality
+    const handleUpdateBtn = async () => {
+        try {
+            // Fetch appointment data to store in state
+
+            // Get id of current appointment shown in carousel
+            const currentApptId = document.querySelector("li.selected div").id;
+            
+            // Get ID of selected appointment
+            console.log("Current appointment ID: " + currentApptId);
+    
+            // GET request: /appointments/id/:id
+            const result = await fetch(process.env.REACT_APP_API + "/appointments/id/" + currentApptId, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authtoken": jwt
+                },
+            }).then(response => response.json());
+
+            const updateAppointmentData = {
+                appId: result._id,
+                client: result.client,
+                service: result.service,
+                hairstylist: result.hairstylist,
+                startDateTime: result.startDateTime,
+                endDateTime: result.endDateTime
+            }
+
+            // Navigate to booking page with appointment data
+            // navigate("/new-route", { state: { key: "value" } });
+            console.log(updateAppointmentData);
+            navigate("/booking", { state: {updateAppointmentData}});
+        } catch (error) {
+            console.error("Error preparing to update appointment:", error);
+        }
+    };
 
 
 
@@ -141,8 +187,9 @@ function PortalAppointments() {
                     ))}
                 </Carousel>
 
+
                 <div id="apptButtonDiv">
-                    <Button className="apptButtons">Update appointment</Button>
+                    <Button className="apptButtons" onClick={handleUpdateBtn}>Update appointment</Button>
                     <Button className="apptButtons" onClick={() => setOpenCancelModal(true)}>Cancel appointment</Button>
                 </div>
 

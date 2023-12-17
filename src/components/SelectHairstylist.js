@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
 import "../styling/Booking.css";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import AppointmentContext from "../contexts/AppointmentContext";
@@ -8,17 +8,16 @@ import AppointmentContext from "../contexts/AppointmentContext";
 function SelectHairstylist() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
-
-    // Create state for list of hairstylist
-    const [hairstylistList, setHairstylistList] = useState([]);
-    
-    // Update AppointmentContext with selected hairstylist
     const {selectedHairstylist, setHairstylist} = useContext(AppointmentContext);
-    
+    const {appId} = useContext(AppointmentContext);
+
     // Update disableNextBtn
     const {setDisableNextBtn} = useContext(AppointmentContext);
 
-    // Fetch list of hairstylists + appointment data
+    // Create state for list of hairstylists
+    const [hairstylistList, setHairstylistList] = useState([]);
+
+    // Fetch list of hairstylists
     useEffect(() => {
         const fetchHairstylists = async () => {
             try {
@@ -30,47 +29,58 @@ function SelectHairstylist() {
                 setHairstylistList(responseData);
             } catch (error) {
                 console.log(error);
-            }
+            };
         };
-
-        const fetchAppointmentData = async () => {
-            if (selectedHairstylist !== "" &&  selectedHairstylist !== "Any") {
-                // Update input form element of selected hairstylist to be selected
-                document.getElementById(`input-${selectedHairstylist._id}`).checked = true;
-    
-                // Update Next button to be active
-                setDisableNextBtn(false);
-            } else if (selectedHairstylist === "Any") {
-                // Update input form element of selected hairstylist to be selected
-                document.getElementById("input-hairstylistAny").checked = true;
-
-                // Get random number from hairstylist list
-                let randomNumber = Math.floor(Math.random()*hairstylistList.length);
-                let randomHairstylist = hairstylistList[randomNumber];
-                console.log(randomHairstylist);
-                setHairstylist(randomHairstylist);
-    
-                // Update Next button to be active
-                setDisableNextBtn(false);
-            } else {
-                // Update Next button to be disabled
-                setDisableNextBtn(true);
-            }
-        };
-
         fetchHairstylists();
-        
-        // Check hairstylistList has populated
-        if (hairstylistList.length > 0) {
-            fetchAppointmentData();
+    }, [appointment]);
+
+    // Fetch appointment data
+    useEffect(() => {
+        const fetchAppointmentData = async () => {
+            try {
+                // If selected hairstylist is "any"
+                if (hairstylistList.length > 0 && selectedHairstylist === "Any") {
+                    // Get random number from hairstylist list
+                    let randomNumber = Math.floor(Math.random()*hairstylistList.length);
+                    let randomHairstylist = hairstylistList[randomNumber];
+                    setHairstylist(randomHairstylist);
+
+                    // Update Next button to be active
+                    setDisableNextBtn(false);
+                } else if (hairstylistList.length > 0 && selectedHairstylist !== "") {
+                    // Update Next button to be active
+                    setDisableNextBtn(false);
+                } else {
+                    // Update Next button to be disabled
+                    setDisableNextBtn(true);
+                };
+            } catch (error) {
+                console.error("An error occurred while fetching data:", error);
+            };
         };
+        fetchAppointmentData();
+    }, [hairstylistList, selectedHairstylist, setDisableNextBtn, setHairstylist]);
 
-    }, [appointment.selectedService, hairstylistList, selectedHairstylist, setHairstylist, setDisableNextBtn]);
+    // Check if selectedHairstylist already has a value
+    useEffect(() => {
+        if (appId) {
+            updateHairstylist(selectedHairstylist);
+        }
+    });
 
+    // Update selectedHairstylist
+    const updateHairstylist = (selectedHairstylist) => {
+        setHairstylist(selectedHairstylist);
+        console.log(selectedHairstylist);
 
-    function updateHairstylist(hairstylist) {
-        setHairstylist(hairstylist);
-    }
+        // Update Next button to be active
+        setDisableNextBtn(false);
+    };
+    
+    // Update input radio button
+    function updateInputBtn(hairstylist) {
+        return selectedHairstylist && selectedHairstylist._id === hairstylist._id;
+    };
 
 
 
@@ -85,6 +95,7 @@ function SelectHairstylist() {
                             name="selectHairstylist" 
                             className="hairstylistInput" 
                             onChange={() => setHairstylist("Any")} 
+                            checked={selectedHairstylist && selectedHairstylist._id === "input-hairstylistAny"}
                         />
                         <div>
                             <label htmlFor="input-hairstylistAny" className="hairstylistName">No preference</label>
@@ -98,6 +109,7 @@ function SelectHairstylist() {
                                 name="selectHairstylist" 
                                 className="hairstylistInput" 
                                 onChange={() => updateHairstylist(hairstylist)}
+                                checked={updateInputBtn(hairstylist)}
                             />
                             <div>
                                 <FontAwesomeIcon icon={faUser} className="hairstylistIcon" />
@@ -107,7 +119,7 @@ function SelectHairstylist() {
                     ))}
                 </form>
             </div>
-    )
+    );
 }
 
 export default SelectHairstylist;
