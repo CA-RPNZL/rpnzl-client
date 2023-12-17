@@ -16,7 +16,7 @@ function SelectHairstylist() {
     const {selectedHairstylist, setHairstylist} = useContext(AppointmentContext);
     
     // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    const {setDisableNextBtn} = useContext(AppointmentContext);
 
     // Fetch list of hairstylists + appointment data
     useEffect(() => {
@@ -69,7 +69,6 @@ function SelectHairstylist() {
 
 
     function updateHairstylist(hairstylist) {
-        console.log(hairstylist);
         setHairstylist(hairstylist);
     }
 

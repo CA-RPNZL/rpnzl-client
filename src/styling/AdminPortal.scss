@@ -1,6 +1,28 @@
 // Import variables
 @import './variables';
 
+#adminPortal {
+  background-color: $offwhite;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  
+  .portalTabDiv {
+    display: flex;
+    flex-direction: column;
+    
+    .portalTabHeader {
+      margin: 0 auto;
+      width: 90vw;
+
+      h1 {
+        text-align: left;
+        font-family: 'Titan One', sans-serif;
+      }
+    }
+  }
+}
+
 #tab-buttons {
   display: flex;
   transition: 0.3s ease-in;
@@ -22,16 +44,10 @@
 
 #appointments {
   padding: 20px 0px;
-  background-color: $offwhite;
   flex-grow: 2;
   display: flex;
   flex-direction: row;
   text-align: center;
-
-  h1 {
-    font-family: 'Titan One', sans-serif;
-
-  }
 
   #appointmentcontainer {
     margin: 0 auto;
@@ -44,11 +60,4 @@
 }
 
 #users {
-  background-color: $offwhite;
-
-  h1 {
-    display: flex;
-    font-family: 'Titan One', sans-serif;
-    padding-left: 30px;
-  }
 }

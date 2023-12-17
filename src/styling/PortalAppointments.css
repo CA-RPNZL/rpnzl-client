@@ -5,6 +5,16 @@
   flex-wrap: wrap;
   font-family: "Montserrat", sans-serif;
 }
+#portalApptsDiv #noAppts {
+  margin: 50px 0px;
+  font-size: 1.2rem;
+}
+#portalApptsDiv #hasAppts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
 #portalApptsDiv #yourNextApptIs {
   font-family: "Titan One", sans-serif;
   font-weight: lighter;
@@ -38,6 +48,7 @@
   font-weight: bolder;
   padding: 5px 10px;
   font-family: "Montserrat", sans-serif;
+  max-width: 180px;
 }
 #portalApptsDiv p {
   margin: 12px 20px;
@@ -46,6 +57,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  #portalApptsDiv #noAppts {
+    margin: 100px 0px;
+    font-size: 1.2rem;
+  }
   #portalApptsDiv p {
     margin: 12px 40px;
     max-width: 30vw;

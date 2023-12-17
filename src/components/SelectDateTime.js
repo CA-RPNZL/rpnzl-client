@@ -1,7 +1,7 @@
 import "../styling/Booking.css";
+import { DateSlotPicker } from "react-dateslot-picker";
 import { useContext, useEffect, useState } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
-import { DateSlotPicker } from "react-dateslot-picker";
 // import 'react-dateslot-picker/dist/style.css';
 
 
@@ -16,10 +16,10 @@ function SelectDateTime() {
     const {selectedStartDateTime, setStartDateTime} = useContext(AppointmentContext);
     
     // Update AppointmentContext with calcualted end date and time
-    const {selectedEndDateTime, setEndDateTime} = useContext(AppointmentContext);
+    const {setEndDateTime} = useContext(AppointmentContext);
     
     // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    const {setDisableNextBtn} = useContext(AppointmentContext);
     
 
     // Create an array to store unavailable date/time timestamps
@@ -63,7 +63,7 @@ function SelectDateTime() {
 
 
     // Grab date/time from each appointment, convert to timestamp
-    appointmentList.map((bookedAppt) => {
+    appointmentList.length > 0 && appointmentList.map((bookedAppt) => {
 
         // Obtain timestamp of the starting date/time of the booked appointment
         let bookedApptStartTimestamp = new Date(bookedAppt.startDateTime).getTime();

@@ -1,8 +1,8 @@
+import "../styling/AdminPortal.css";
 import React, { useEffect, useState } from 'react';
 import AppointmentsTab from '../components/AdminAppointmentsTab'; 
 import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
-import "../styling/AdminPortal.css";
 
 function AdminPortal() {
     const [appointments, setAppointments] = useState([]);
@@ -10,10 +10,19 @@ function AdminPortal() {
     const [services, setServices] = useState([]);
     const [activeTab, setActiveTab] = useState('appointments');
 
+    // Grab JWT from local storage
+    const jwt = localStorage.getItem("jwt");
+
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/appointments");
+                let response = await fetch(process.env.REACT_APP_API + "/appointments", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setAppointments(responseData);
                 console.log(response);
@@ -24,7 +33,13 @@ function AdminPortal() {
 
         const fetchUsers = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/users");
+                let response = await fetch(process.env.REACT_APP_API + "/users", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setUsers(responseData);
             } catch (error) {
@@ -34,7 +49,13 @@ function AdminPortal() {
 
         const fetchServices = async () => {
             try {
-                let response = await fetch(process.env.REACT_APP_API + "/services");
+                let response = await fetch(process.env.REACT_APP_API + "/services", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authtoken: jwt,
+                    }
+                });
                 const responseData = await response.json();
                 setServices(responseData);
             } catch (error) {
@@ -45,14 +66,14 @@ function AdminPortal() {
         fetchAppointments();
         fetchUsers();
         fetchServices();
-    }, []);
+    }, [jwt]);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
 
     return (
-        <div>
+        <div id="adminPortal">
             <div id="tab-buttons">
                 <a href="#" onClick={() => handleTabChange('appointments')}>Bookings</a>
                 <a href="#" onClick={() => handleTabChange('users')}>Customers</a>
@@ -61,9 +82,11 @@ function AdminPortal() {
 
 
             {activeTab === 'appointments' && (
-                <div id="appointments">
-                    <h1>Bookings</h1>
-                    <div id="appointmentcontainer">
+                <div id="appointments" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Bookings</h1>
+                    </div>
+                    <div id="appointmentcontainer" className="portalTabData">
                         {appointments.length > 0 &&
                             appointments.map((appointment) => (
                                 <AppointmentsTab
@@ -79,9 +102,11 @@ function AdminPortal() {
             )}
 
             {activeTab === 'users' && (
-                <div id="users">
-                    <h1>Users</h1>
-                    <div id="user-container">
+                <div id="users" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Users</h1>
+                    </div>
+                    <div id="user-container" className="portalTabData">
                         {users.map((user) => (
                             <UsersTab
                                 key={user._id}
@@ -97,9 +122,11 @@ function AdminPortal() {
             )}
 
             {activeTab === 'services' && (
-                <div id="services">
-                    <h1>Services</h1>
-                    <div id="service-container">
+                <div id="services" className="portalTabDiv">
+                    <div className="portalTabHeader">
+                        <h1>Services</h1>
+                    </div>
+                    <div id="service-container" className="portalTabData">
                         {services.map((service) => (
                             <ServicesTab
                                 key={service._id}

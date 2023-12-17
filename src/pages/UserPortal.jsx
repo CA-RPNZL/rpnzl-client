@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button } from 'react-bootstrap';
 import AccountInformation from '../components/AccountInformation';
 import Greeting from '../components/Greeting';
@@ -7,11 +7,36 @@ import PersonalDetailsForm from '../components/PersonalDetailsForm';
 import PasswordForm from '../components/PasswordForm';
 import "../styling/UserPortal.css"
 import Modal from '../components/Modal';
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../contexts/UserContext';
+import { toast } from 'react-toastify'
 
 
 function UserPortal() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     
+    const { logout } = useUserContext();
+    const jwt = localStorage.getItem("jwt");
+    const userId = localStorage.getItem("userId");
+
+    const navigate = useNavigate();
+
+    const handleDeleteClick = async () => {
+        try {
+                let response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    authtoken: jwt,
+                }, 
+            });
+            logout();
+            navigate("/")
+            toast.success("Deleted user successfully");
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div id="userPortalOuterDiv">  
             <div className="userPortalDiv">
@@ -27,10 +52,12 @@ function UserPortal() {
                     <PasswordForm />
                 </div>
                 <div id="deleteAccountDiv">
+                    {/* If delete button clicked, open modal window to confirm */}
                     <Button onClick={() => setOpenDeleteModal(true)}>DELETE ACCOUNT</Button>
                     <Modal 
                         open={openDeleteModal} 
                         onClose={() => setOpenDeleteModal(false)}
+                        handleClick={() => handleDeleteClick()}
                         heading={"Delete Account"}
                         subheading={"Are you sure you want to delete your account?"}
                         text={"Deleting your account will permanently delete your details and appointments."}

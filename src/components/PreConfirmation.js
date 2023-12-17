@@ -1,46 +1,38 @@
-import { useContext } from "react";
 import "../styling/Booking.css";
+import { useContext } from "react";
+import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from "../functions/formatDate";
 import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function PreConfirmation() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
-    
-
-    // Hardcoding the client
-    const {client, setClient} = useContext(AppointmentContext);
 
     // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    const {setDisableNextBtn} = useContext(AppointmentContext);
 
     // Fetch appointment data
     const fetchAppointmentData = async () => {
 
         // If missing client ID (e.g. user is not logged in)
         if (appointment.client === "") {
-            let response = await fetch(process.env.REACT_APP_API + "/users/id/6578338c2cf3aad56f6957cc");
-            const responseData = await response.json();
-            setClient(responseData);
+            console.error("Error: Missing client ID.");
 
-            console.log(responseData);
-            appointment.client = responseData;
-            console.log("Error: Missing client ID.");
             // Update Next button to be disabled
-            // setDisableNextBtn(true);
+            setDisableNextBtn(true);
         }
 
     }
     fetchAppointmentData();
     
     // Update start date with date formatting
-    const selectedDate = new Date(appointment.selectedStartDateTime).toLocaleDateString("en-AU", { dateStyle: "long"});
+    const selectedDate = formattedAppointmentDate(appointment.selectedStartDateTime);
     
     // Update start date with time formatting
-    const selectedStartTime = new Date(appointment.selectedStartDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedStartTime = formattedAppointmentStartTime(appointment.selectedStartDateTime);
     
     // Update end date with time formatting
-    const selectedEndTime = new Date(appointment.selectedEndDateTime).toLocaleTimeString("en-AU", { timeStyle: "short"});
+    const selectedEndTime = formattedAppointmentEndTime(appointment.selectedEndDateTime);
 
     return (
             <div id="preConfirmationDiv">
