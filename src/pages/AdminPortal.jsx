@@ -1,9 +1,11 @@
+import '../styling/AdminPortal.css';
 import React, { useEffect, useState } from 'react';
+import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from '../functions/formatDate';
 import AppointmentsTab from '../components/AdminAppointmentsTab';
 import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
 import Modal from '../components/Modal';
-import '../styling/AdminPortal.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
@@ -16,7 +18,11 @@ function AdminPortal() {
   // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
 
+  // Import useNavigate
+  const navigate = useNavigate();
+
   useEffect(() => {
+    // Fetch list of appointments
     const fetchAppointments = async () => {
       try {
         let response = await fetch(`${process.env.REACT_APP_API}/appointments`, {
@@ -28,12 +34,13 @@ function AdminPortal() {
         });
         const responseData = await response.json();
         setAppointments(responseData);
-        console.log(response);
+        console.log(responseData);
       } catch (error) {
         console.log(error);
       }
     };
 
+    // Fetch list of users
     const fetchUsers = async () => {
       try {
         let response = await fetch(`${process.env.REACT_APP_API}/users`, {
@@ -50,6 +57,7 @@ function AdminPortal() {
       }
     };
 
+    // Fetch list of services
     const fetchServices = async () => {
       try {
         let response = await fetch(`${process.env.REACT_APP_API}/services`, {
@@ -71,10 +79,12 @@ function AdminPortal() {
     fetchServices();
   }, [jwt]);
 
+  // Switch between tabs
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  // Modal for delete button
   const getDeleteModalContent = () => {
     switch (activeTab) {
       case 'appointments':
@@ -104,18 +114,46 @@ function AdminPortal() {
     }
   };
 
+  // 'Update' button functionality
+  const handleUpdateClick = async (e, appointment) => {
+    e.preventDefault();
+    console.log("Update appointment: " + appointment._id);
+    try {
+      // Prepare appointment data to be sent
+      const updateAppointmentData = {
+        appId: appointment._id,
+        client: appointment.client,
+        service: appointment.service,
+        hairstylist: appointment.hairstylist,
+        startDateTime: appointment.startDateTime,
+        endDateTime: appointment.endDateTime
+      }
+      
+      // Navigate to booking page with appointment data
+      console.log(updateAppointmentData);
+      navigate("/booking", { state: {updateAppointmentData}});
+
+    } catch (error) {
+      console.error("Error preparing to update appointment:", error);
+    }
+  };
+
+  // 'Delete' button functionality
+  // Opens up confirmation modal
   const handleDeleteClick = (appointmentId) => {
     // Open the delete confirmation modal
     setSelectedAppointmentId(appointmentId);
     setOpenDeleteModal(true);
   };
 
+  // Modal 'Back' button functionality
   const handleCancelDelete = () => {
     // Handle canceling the delete operation
     setOpenDeleteModal(false);
     setSelectedAppointmentId(null);
   };
 
+  // Modal 'Delete Appointment' functionality
   const handleConfirmDelete = async () => {
     try {
       // Implement logic to confirm and delete based on the active tab
@@ -154,19 +192,30 @@ function AdminPortal() {
       console.error('Error deleting:', error);
     }
   };
+  
+  // Format appointment date
+  const bookedDate = (appointment) => formattedAppointmentDate(appointment.startDateTime);
+  
+  // Format appointment start time
+  const bookedStartTime = (appointment) => formattedAppointmentStartTime(appointment.startDateTime);
+
+  // Format appointment end time
+  const bookedEndTime = (appointment) => formattedAppointmentEndTime(appointment.endDateTime);
+
+
 
   return (
     <div id="adminPortal">
       <div id="tab-buttons">
-        <a href="#" onClick={() => handleTabChange('appointments')}>
+        <Link onClick={() => handleTabChange('appointments')}>
           Bookings
-        </a>
-        <a href="#" onClick={() => handleTabChange('users')}>
+        </Link>
+        <Link href="#" onClick={() => handleTabChange('users')}>
           Customers
-        </a>
-        <a href="#" onClick={() => handleTabChange('services')}>
+        </Link>
+        <Link href="#" onClick={() => handleTabChange('services')}>
           Services
-        </a>
+        </Link>
       </div>
 
       {activeTab === 'appointments' && (
@@ -183,6 +232,10 @@ function AdminPortal() {
                   hairstylist={appointment.hairstylist}
                   service={appointment.service}
                   duration={appointment.duration}
+                  date={bookedDate(appointment)}
+                  startTime={bookedStartTime(appointment)}
+                  endTime={bookedEndTime(appointment)}
+                  onUpdate={(e) => handleUpdateClick(e,appointment)}
                   onDelete={() => handleDeleteClick(appointment._id)}
                 />
               ))}
