@@ -7,9 +7,10 @@ import AppointmentContext from "../contexts/AppointmentContext";
 function PreConfirmation() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
-
-    // Update disableNextBtn
     const {setDisableNextBtn} = useContext(AppointmentContext);
+
+    // Grab data from local storage
+    const userId = localStorage.getItem("userId");
 
     useEffect(() => {
         // Fetch appointment data
@@ -24,7 +25,8 @@ function PreConfirmation() {
             }
         }
         fetchAppointmentData();
-    },[appointment, setDisableNextBtn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[appointment]);
 
     // Update start date with date formatting
     const selectedDate = formattedAppointmentDate(appointment.selectedStartDateTime);

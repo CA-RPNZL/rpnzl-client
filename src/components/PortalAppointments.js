@@ -11,13 +11,9 @@ import Loader from "./Loader";
 
 
 function PortalAppointments() {
-    // Grab jwt from local storage
+    // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-
-    // Grab userId from local storage
     const userId = localStorage.getItem("userId");
-    
-    // Grab isHairstylist from local storage
     const isHairstylist = localStorage.getItem("isHairstylist");
 
     // Create state for list of appointments

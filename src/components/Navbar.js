@@ -11,17 +11,15 @@ const Navbar = () => {
     // Grab logout from User Context
     const { logout } = useUserContext();
 
-    // Grab JWT from local storage
+    // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-
-    // Grab isAdmin from local storage
     const isAdmin = localStorage.getItem("isAdmin");
 
     // Import useNavigate
     const navigate = useNavigate();
 
     // Reset stored appointment data function
-    const {resetAppointment, setAppId} = useContext(AppointmentContext);
+    const {resetAppointment, setClient, setAppId} = useContext(AppointmentContext);
 
 
     // Function if a user logs out
@@ -30,6 +28,7 @@ const Navbar = () => {
         setToggle(!toggle);
         // Reset current stored data if service input changes
         resetAppointment();
+        setClient("");
         // Log out user
         logout();
     }
@@ -43,6 +42,7 @@ const Navbar = () => {
         setToggle(!toggle);
         // Reset current stored data if service input changes
         resetAppointment();
+        setClient("");
         // Reset appId
         setAppId(null);
     }
@@ -54,6 +54,7 @@ const Navbar = () => {
         navigate(path);
         // Reset current stored data if service input changes
         resetAppointment();
+        setClient("");
         // Reset appId
         setAppId(null);
     }

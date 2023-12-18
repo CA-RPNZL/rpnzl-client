@@ -30,10 +30,8 @@ function Booking() {
     // Set up page state
     const [page, setPage] = useState(0);
 
-    // Grab JWT from local storage
+    // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-
-    // Grab userId from local storage
     const userId = localStorage.getItem("userId");
 
     // Import useNavigate
@@ -42,8 +40,12 @@ function Booking() {
     // Import useLocation
     const location = useLocation();
 
+    // Get state property from useLocation
+    const { state } = location;
+
     // Create state for loading
     const [loading, setLoading] = useState(false);
+    
 
     // Set up page condition
     const showPage = () => {
@@ -94,16 +96,8 @@ function Booking() {
         }
     }, [jwt, navigate]);
 
-    // Set client ID
-    useEffect(() => {
-        // Update client ID
-        setClient(userId);
-    }, [setClient, userId]);
-
     // Checking if we're updating an appointment
     useEffect(() => {
-        // Get state property from useLocation
-        const { state } = location;
         
         // Check if updateAppointmentData exists
         if (state && state.updateAppointmentData) {
@@ -119,7 +113,22 @@ function Booking() {
             console.log("No updateAppointmentData exists, create a new booking.");
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location.state]);
+    }, []);
+
+    // Set client ID
+    useEffect(() => {
+        // If updating an appointment
+        if (state && state.updateAppointmentData && !client) {
+            setClient(state.updateAppointmentData.client);
+            console.log("I've reached the clientId point");
+            console.log("Current client: " + client);
+        } else {
+            // Update client ID
+            // setClient(userId);
+            console.log("I've reached the userId point");
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state, userId, client]);
 
 
     // Confirm button functionality

@@ -9,8 +9,11 @@ function SelectHairstylist() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
     const {selectedHairstylist, setHairstylist} = useContext(AppointmentContext);
-    const {appId} = useContext(AppointmentContext);
+    const {appId, setClient} = useContext(AppointmentContext);
 
+    // Grab data from local storage
+    const userId = localStorage.getItem("userId");
+    
     // Update disableNextBtn
     const {setDisableNextBtn} = useContext(AppointmentContext);
 
@@ -37,6 +40,13 @@ function SelectHairstylist() {
     // Fetch appointment data
     useEffect(() => {
         const fetchAppointmentData = async () => {
+    
+            // If missing client ID (e.g. user is not logged in)
+            if (appointment.client === "") {
+                console.error("Error: Missing client ID.");
+                setClient(userId);
+            }
+
             if (selectedHairstylist !== "") {
                 // Update Next button to be active
                 setDisableNextBtn(false);

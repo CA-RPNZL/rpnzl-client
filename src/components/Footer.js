@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
 
+
 const Footer = () => {
     // Reset stored appointment data function
-    const {resetAppointment} = useContext(AppointmentContext);
+    const {resetAppointment, setClient} = useContext(AppointmentContext);
 
     // Import useNavigate
     const navigate = useNavigate();
@@ -17,7 +18,10 @@ const Footer = () => {
         navigate(path);
         // Reset current stored data if service input changes
         resetAppointment();
+        setClient("");
     };
+
+
 
     return (
         <footer id="footer">
