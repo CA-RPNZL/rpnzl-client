@@ -53,7 +53,6 @@ function Booking() {
         try {
             switch (page) {
                 case 0:
-                    console.log("Hi location updating!");
                     return <SelectService />;
                 case 1:
                     return <SelectHairstylist />;
@@ -102,7 +101,6 @@ function Booking() {
         // Check if updateAppointmentData exists
         if (state && state.updateAppointmentData) {
             // Show updateAppointmentData
-            console.log("I can see appointment data!");
             console.log(state.updateAppointmentData);
             setAppId(state.updateAppointmentData.appId);
             setService(state.updateAppointmentData.service);
@@ -112,24 +110,13 @@ function Booking() {
         } else {
             console.log("No updateAppointmentData exists, create a new booking.");
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
-    // Set client ID
-    useEffect(() => {
         // If updating an appointment
         if (state && state.updateAppointmentData && !client) {
             setClient(state.updateAppointmentData.client);
-            console.log("I've reached the clientId point");
-            console.log("Current client: " + client);
-        } else {
-            // Update client ID
-            // setClient(userId);
-            console.log("I've reached the userId point");
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, userId, client]);
-
 
     // Confirm button functionality
     const confirmAppt = async (e) => {
