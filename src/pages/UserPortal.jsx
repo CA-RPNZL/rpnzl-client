@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import "../styling/UserPortal.css"
+import React, {useState} from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../contexts/UserContext';
+import { toast } from 'react-toastify'
 import AccountInformation from '../components/AccountInformation';
 import Greeting from '../components/Greeting';
 import PortalAppointments from '../components/PortalAppointments';
 import PersonalDetailsForm from '../components/PersonalDetailsForm';
 import PasswordForm from '../components/PasswordForm';
-import "../styling/UserPortal.css"
 import Modal from '../components/Modal';
-import { useNavigate } from 'react-router-dom';
-import { useUserContext } from '../contexts/UserContext';
-import { toast } from 'react-toastify'
 import Loader from '../components/Loader';
 
 
@@ -26,12 +26,12 @@ function UserPortal() {
         setLoading(true);
 
         try {
-                let response = await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
-                method: 'DELETE',
+            await fetch(process.env.REACT_APP_API + "/users/id/" + userId, {
+                method: "DELETE",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                     "authtoken": jwt,
-                }, 
+                },
             });
             logout();
             navigate("/")
@@ -73,8 +73,8 @@ function UserPortal() {
                 
             </div>
             <Loader open={loading}/>
-        </div>
-        
+        </div> 
     )
 }
+
 export default UserPortal
