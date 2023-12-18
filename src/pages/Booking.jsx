@@ -1,7 +1,7 @@
 import "../styling/Booking.css";
+import "../styling/WhiteButton.css";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import WhiteButton from "../components/WhiteButton";
 import SelectService from "../components/SelectService";
 import SelectHairstylist from "../components/SelectHairstylist";
 import SelectDateTime from "../components/SelectDateTime";
@@ -9,6 +9,7 @@ import PreConfirmation from "../components/PreConfirmation";
 import Confirmation from "../components/Confirmation";
 import AppointmentContext from "../contexts/AppointmentContext";
 import Loader from "../components/Loader";
+import { Button } from "react-bootstrap";
 
 
 function Booking() {
@@ -206,10 +207,11 @@ function Booking() {
                 {showPage()}
                 {error && <p className="error-message">{error}</p>}
                 <div id="bookingBtns">
-                    { page > 0 && page !== 4 && <WhiteButton label="Back" action={goBack} />}
-                    { page < 3 && <WhiteButton label="Next" action={goNext} disabled={disableNextBtn} />}
-                    { page === 3 && !appId && <WhiteButton label="Confirm" action={confirmAppt} disabled={disableNextBtn} />}
-                    { page === 3 && appId && <WhiteButton label="Update" action={updateAppt} disabled={disableNextBtn} />}
+                    { page > 0 && page !== 4 && <Button className="whiteButton" label="Back" onClick={goBack}>Back</Button>}
+                    { page < 3 && <Button className="whiteButton" label="Next" onClick={goNext} disabled={disableNextBtn}>Next</Button>}
+                    { page === 3 && !appId && <Button className="whiteButton" label="Confirm" onClick={confirmAppt} disabled={disableNextBtn}>Confirm</Button>}
+                    { page === 3 && appId && <Button className="whiteButton" label="Update" onClick={updateAppt} disabled={disableNextBtn}>Update</Button>}
+                    
                 </div>
             </div>
             <Loader open={loading} />
