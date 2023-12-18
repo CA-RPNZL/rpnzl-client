@@ -1,7 +1,8 @@
 // Import dependencies and styles
 import '../styling/Login.css';
+import '../styling/PinkButton.css';
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useUserContext } from '../contexts/UserContext';
 import loginImage from '../assets/photos/login_image.jpg';
 import Loader from '../components/Loader';
@@ -63,13 +64,15 @@ function Login() {
 
 
   return (
-    <div className="loginContainer">
-      <img className="loginImage" src={loginImage} alt="Login" />
-      <div className="loginForm"> {/* Container for the login form */}
+    <div id="loginContainer">
+    <div id="loginImageDiv">
+      {/* <img id="loginImage" src={loginImage} alt="Login" /> */}
+    </div>
+    <div id="loginFormDiv"> {/* Container for the login form */}
         <h2>Login</h2> 
-        <form onSubmit={handleLogin}>
+        <form id="loginForm" onSubmit={handleLogin}>
           <div className="inputGroup"> {/* Container for the username input */}
-            <label htmlFor="username">Username:</label> 
+            <label htmlFor="username">Email address:</label> 
             <input type="text" 
             id="username" 
             name="username" 
@@ -87,8 +90,11 @@ function Login() {
             /> 
             {error && <p className="error-message">{error}</p>}
           </div>
+          <div className="inputGroup">
+            <Link to="/signup">Don't have an account? Sign up <b>HERE</b></Link>
+          </div>
           <div className="inputGroup"> {/* Container for the submit button */}
-            <button type="submit" className="loginButton">Submit</button> 
+            <button type="submit" id="loginButton" className="pinkButton">Log in</button> 
           </div>
         </form>
         <Loader open={loading} />
