@@ -15,13 +15,13 @@
   border: 2px solid #ABAF95;
   font-family: "Montserrat";
   border-radius: 4px;
-  margin: 10px;
   font-weight: bolder;
   padding: 10px;
   cursor: pointer;
   transition: 0.1s ease-out;
   text-decoration: none;
   max-height: 40px;
+  max-width: 70px;
 }
 .appointmentTab #button:hover {
   background-color: #ABAF95;
