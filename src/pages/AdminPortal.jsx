@@ -3,7 +3,8 @@ import AppointmentsTab from '../components/AdminAppointmentsTab';
 import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
 import Modal from '../components/Modal';
-import '../styling/AdminPortal.css';
+import ModalForm from '../components/ModalAddForm';
+import { Button } from 'react-bootstrap';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
@@ -11,10 +12,38 @@ function AdminPortal() {
   const [services, setServices] = useState([]);
   const [activeTab, setActiveTab] = useState('appointments');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [openAddServiceModal, setOpenAddServiceModal] = useState(false);
+  const [newService, setNewService] = useState({
+    name: '',
+    price: '',
+    description: '',
+    duration: 0,
+  });
 
   // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
+
+  const fetchServicesData = async () => {
+    try {
+      let response = await fetch(`${process.env.REACT_APP_API}/services`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          authtoken: jwt,
+        },
+      });
+      const responseData = await response.json();
+      setServices(responseData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // Call fetchServicesData when the component mounts
+    fetchServicesData();
+  }, []);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -50,25 +79,8 @@ function AdminPortal() {
       }
     };
 
-    const fetchServices = async () => {
-      try {
-        let response = await fetch(`${process.env.REACT_APP_API}/services`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            authtoken: jwt,
-          },
-        });
-        const responseData = await response.json();
-        setServices(responseData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchAppointments();
     fetchUsers();
-    fetchServices();
   }, [jwt]);
 
   const handleTabChange = (tab) => {
@@ -104,16 +116,16 @@ function AdminPortal() {
     }
   };
 
-  const handleDeleteClick = (appointmentId) => {
+  const handleDeleteClick = (itemId) => {
     // Open the delete confirmation modal
-    setSelectedAppointmentId(appointmentId);
+    setSelectedItemId(itemId);
     setOpenDeleteModal(true);
   };
 
   const handleCancelDelete = () => {
     // Handle canceling the delete operation
     setOpenDeleteModal(false);
-    setSelectedAppointmentId(null);
+    setSelectedItemId(null);
   };
 
   const handleConfirmDelete = async () => {
@@ -121,9 +133,9 @@ function AdminPortal() {
       // Implement logic to confirm and delete based on the active tab
       switch (activeTab) {
         case 'appointments':
-          console.log('Appointment deleted:', selectedAppointmentId);
-          // Call API to delete the appointment using selectedAppointmentId
-          await fetch(`${process.env.REACT_APP_API}/appointments/id/${selectedAppointmentId}`, {
+          console.log('Appointment deleted:', selectedItemId);
+          // Call API to delete the appointment using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/appointments/id/${selectedItemId}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -132,27 +144,98 @@ function AdminPortal() {
           });
           // Update the appointments list
           setAppointments((prevAppointments) =>
-            prevAppointments.filter((appointment) => appointment._id !== selectedAppointmentId)
+            prevAppointments.filter((appointment) => appointment._id !== selectedItemId)
           );
           break;
         case 'users':
-          // Implement logic to delete a user
+          console.log('User deleted:', selectedItemId);
+          // Call API to delete the user using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/users/id/${selectedItemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              authtoken: jwt,
+            },
+          });
+          // Update the users list
+          setUsers((prevUsers) => prevUsers.filter((user) => user._id !== selectedItemId));
           break;
         case 'services':
-          // Implement logic to delete a service
+          console.log('Service deleted:', selectedItemId);
+          // Call API to delete the service using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/services/id/${selectedItemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              authtoken: jwt,
+            },
+          });
+          // Update the services list
+          setServices((prevServices) => prevServices.filter((service) => service._id !== selectedItemId));
           break;
         default:
           break;
       }
-
+  
       // Close the modal
       setOpenDeleteModal(false);
-      setSelectedAppointmentId(null);
-
+      setSelectedItemId(null);
+  
       console.log('Delete successful');
     } catch (error) {
       console.error('Error deleting:', error);
     }
+  };
+
+  // Function to handle changes in the new service form inputs
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewService((prevService) => ({
+      ...prevService,
+      [name]: value,
+    }));
+  };
+
+  // Function to open the add service modal
+  const handleOpenAddServiceModal = () => {
+    setOpenAddServiceModal(true);
+  };
+
+  // Function to close the add service modal
+  const handleCloseAddServiceModal = () => {
+    setOpenAddServiceModal(false);
+  };
+
+  // Function to handle the submission of the new service form
+  const handleAddService = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Perform the POST request to add a new service
+      const response = await fetch(`${process.env.REACT_APP_API}/services`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authtoken: jwt,
+        },
+        body: JSON.stringify(newService),
+      });
+
+      // Check if the request was successful
+      if (response.ok) {
+        // Refresh the list of services
+        fetchServicesData();
+        console.log('Service added successfully');
+      } else {
+        // Handle error if the request was not successful
+        console.error('Error adding service');
+      }
+    } catch (error) {
+      console.error('Error adding service:', error);
+    }
+
+    // Close the modal after submission
+    handleCloseAddServiceModal();
   };
 
   return (
@@ -205,7 +288,6 @@ function AdminPortal() {
                 email={user.email}
                 isHairstylist={user.is_hairstylist}
                 onDelete={() => handleDeleteClick(user._id)}
-
               />
             ))}
           </div>
@@ -216,6 +298,7 @@ function AdminPortal() {
         <div id="services" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Services</h1>
+            <Button onClick={handleOpenAddServiceModal}>Add Service</Button>
           </div>
           <div id="service-container" className="portalTabData">
             {services.map((service) => (
@@ -226,7 +309,6 @@ function AdminPortal() {
                 price={service.price}
                 duration={service.duration}
                 onDelete={() => handleDeleteClick(service._id)}
-
               />
             ))}
           </div>
@@ -240,6 +322,47 @@ function AdminPortal() {
         subheading={getDeleteModalContent().subheading}
         text={getDeleteModalContent().text}
       />
+      {/* Add Service Modal */}
+      <ModalForm
+        open={openAddServiceModal}
+        onClose={handleCloseAddServiceModal}
+        handleClick={handleAddService}
+        heading="Add Service"
+        subheading="Enter the details for the new service"
+        text=""
+      >
+        {/* Form for adding a new service */}
+        <form>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={newService.name}
+            onChange={handleInputChange}
+          />
+          <label>Price:</label>
+          <input
+            type="text"
+            name="price"
+            value={newService.price}
+            onChange={handleInputChange}
+          />
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            value={newService.description}
+            onChange={handleInputChange}
+          />
+          <label>Duration:</label>
+          <input
+            type="number"
+            name="duration"
+            value={newService.duration}
+            onChange={handleInputChange}
+          />
+        </form>
+      </ModalForm>
     </div>
   );
 }
