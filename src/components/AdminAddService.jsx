@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import ServicesTab from '../components/AdminServicesTab';
-import ModalForm from '../components/ModalAddForm';
+import React, { useState } from 'react';
+import ModalForm from '../components/ModalFormAdd';
 import { Button } from 'react-bootstrap';
 
-function AdminAddService() {
-    const [services, setServices] = useState([]);
+function AdminAddService({ updateServicesList }) {
     const [openAddServiceModal, setOpenAddServiceModal] = useState(false);
     const [newService, setNewService] = useState({
       name: '',
@@ -16,26 +14,6 @@ function AdminAddService() {
       // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
 
-  const fetchServicesData = async () => {
-    try {
-      let response = await fetch(`${process.env.REACT_APP_API}/services`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          authtoken: jwt,
-        },
-      });
-      const responseData = await response.json();
-      setServices(responseData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    // Call fetchServicesData when the component mounts
-    fetchServicesData();
-  }, []);
     // Function to handle changes in the new service form inputs
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -72,9 +50,9 @@ function AdminAddService() {
 
       // Check if the request was successful
       if (response.ok) {
-        // Refresh the list of services
-        fetchServicesData();
         console.log('Service added successfully');
+        // Trigger the function to update the services list in AdminPortal
+        updateServicesList();
       } else {
         // Handle error if the request was not successful
         console.error('Error adding service');
@@ -131,7 +109,6 @@ function AdminAddService() {
           />
         </form>
       </ModalForm>
-
     </div>
   )
 }
