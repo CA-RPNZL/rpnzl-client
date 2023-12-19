@@ -1,33 +1,29 @@
 @import './variables';
 
 #loginContainer {
-  display: flex;
   flex-grow: 2;
   background-color: $offwhite;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 40% 40% 1fr;
 }
 
 #loginImageDiv {
   background-image: url(../assets/photos/login_image.jpg);
   background-size: cover;
   background-position: bottom center;
-  width: 100vw;
-  flex-grow: 2;
+  width: 100%;
+  grid-column: 1 / 5;
+  grid-row: 1 / 5;
 }
 
 #loginFormDiv {
   background-color: $offwhite;
   border: 2px solid $red;
-  margin: 0 auto;
-  position: absolute;
-  z-index: 1;
-  width: 80vw;
-  min-width: 250px;
-  min-height: 50vh;
-  padding: 20px;
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  margin: 20px 0px;
+  padding: 0px 20px;
   box-sizing: border-box;
-  // Vertically align div
-  align-self: center;
   // Align children elements
   display: flex;
   flex-direction: column;
@@ -42,10 +38,9 @@
   }
 
   #loginForm {
-    margin: 0 auto;
 
     .inputGroup {
-      margin-bottom: 15x;
+      margin-bottom: 15px;
 
       a {
         text-decoration: underline;
@@ -78,10 +73,11 @@
 }
 
 
-// Media query for tablet
+// Media query for tablet+
 @media screen and (min-width: $tablet) {
   #loginFormDiv {
     #loginForm {
+      margin: 0px auto;
       width: 80%;
     }
   }
@@ -92,158 +88,17 @@
 @media screen and (min-width: $laptop) {
   #loginContainer {
     flex-direction: row;
+    min-height: 100%;
   }
 
   #loginImageDiv {
-    width: 50vw;
+    grid-column: 1 / 3;
+    grid-row: 1 / 5;
   }
 
   #loginFormDiv {
-    width: 50vw;
-    position: relative;
+    grid-column: 3 / 5;
+    grid-row: 1 / 5;
     border: none;
   }
 }
-
-
-
-
-//     // Styling for the submit button within the form
-//     .loginButton {
-//       border: 2px solid $red;
-//       background-color: $pale-pink;
-//       font-family: 'Titan One', sans-serif;
-//       color: $red;
-//       font-size: 14px;
-//       padding: 12px 20px;
-//       cursor: pointer;
-//       border-radius: 5px;
-//       transition: 0.1s ease-out;
-//       text-decoration: none;
-      
-//       &:hover {
-//         background-color: $red;
-//         color: white;
-//       }
-//     }
-//   }
-
-// }
-
-
-
-
-//   .loginForm {
-//     width: 60%; 
-//     max-width: 300px;
-//     height: 60%; 
-//     background-color: $offwhite;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 20px;
-//     border: 2px solid $dark-green;
-//     border-radius: 10px;
-//     box-shadow: 20px $dark-green;
-
-// /* Styling for the overall container of the login page */
-// .loginContainer {
-//   display: flex;
-//   flex-grow: 2;
-//   justify-content: space-between;
-//   text-align: center;
-//   background-color: $offwhite;
-// }
-
-// /* Styling for the image container on the left side */
-//   .loginImage {
-//     display: flex;
-//     flex-grow: 1;
-//     width: 50vw;
-//     height: 100vh;
-//     object-fit: cover;
-    
-//   }
-
-
-// // Styling for the login form within the container
-// .loginForm {
-//   flex-grow: 2;
-//   margin: auto;
-//   padding: 80px;
-//   text-align: center;
-//   font-family: 'Montserrat', sans-serif;
-
-//   h2 {
-//     margin-bottom: 20px;
-//     font-family: 'Titan One', sans-serif;
-//     font-weight: lighter;
-//   }
-
-//   // Styling for form element
-//   form {
-//     display: flex;
-//     flex-direction: column;
-
-//     // Styling for each input group within the form
-//     .inputGroup {
-//       margin-bottom: 15px;
-
-//       label {
-//         margin-bottom: 8px;
-//         display: block;
-//       }
-
-//       // Styling for input fields
-//       input {
-//         width: 100%;
-//         min-width: 120px;
-//         padding: 8px;
-//         box-sizing: border-box;
-//       }
-//     }
-
-//     // Styling for the submit button within the form
-//     .loginButton {
-//       border: 2px solid $red;
-//       background-color: $pale-pink;
-//       font-family: 'Titan One', sans-serif;
-//       color: $red;
-//       font-size: 14px;
-//       padding: 12px 20px;
-//       cursor: pointer;
-//       border-radius: 5px;
-//       transition: 0.1s ease-out;
-//       text-decoration: none;
-      
-//       &:hover {
-//         background-color: $red;
-//         color: white;
-//       }
-//     }
-//   }
-
-// }
-
-// // Login form size adjusts for tablet
-// @media screen and (max-width: $tablet) {
-//   .loginForm {
-//     top: 50%;
-//     left: 50%;
-//     position: absolute;
-//     transform: translate(-50%, -50%);
-//     width: 60%; 
-//     max-width: 300px;
-//     height: 60%; 
-//     background-color: $offwhite;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 20px;
-//     border: 2px solid $dark-green;
-//     border-radius: 10px;
-//     box-shadow: 20px $dark-green;
-//   }
-// }

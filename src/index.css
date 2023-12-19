@@ -19,12 +19,13 @@ body {
   height: 100%;
 }
 
-input {
-  font-family: 'Montserrat', sans-serif;
+#root {
+  margin: 0;
+  height: 100%;
 }
 
-#root {
-  height: 100%;
+input {
+  font-family: 'Montserrat', sans-serif;
 }
 
 code {
@@ -34,6 +35,7 @@ code {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 h1 {

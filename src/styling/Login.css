@@ -1,30 +1,27 @@
 #loginContainer {
-  display: flex;
   flex-grow: 2;
   background-color: #FBF8F0;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 40% 40% 1fr;
 }
 
 #loginImageDiv {
   background-image: url(../assets/photos/login_image.jpg);
   background-size: cover;
   background-position: bottom center;
-  width: 100vw;
-  flex-grow: 2;
+  width: 100%;
+  grid-column: 1/5;
+  grid-row: 1/5;
 }
 
 #loginFormDiv {
   background-color: #FBF8F0;
   border: 2px solid #D51E01;
-  margin: 0 auto;
-  position: absolute;
-  z-index: 1;
-  width: 80vw;
-  min-width: 250px;
-  min-height: 50vh;
-  padding: 20px;
+  grid-column: 2/4;
+  grid-row: 2/4;
+  margin: 20px 0px;
+  padding: 0px 20px;
   box-sizing: border-box;
-  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,11 +33,8 @@
   color: #D51E01;
   text-transform: uppercase;
 }
-#loginFormDiv #loginForm {
-  margin: 0 auto;
-}
 #loginFormDiv #loginForm .inputGroup {
-  margin-bottom: 15x;
+  margin-bottom: 15px;
 }
 #loginFormDiv #loginForm .inputGroup a {
   text-decoration: underline;
@@ -67,19 +61,22 @@
 
 @media screen and (min-width: 768px) {
   #loginFormDiv #loginForm {
+    margin: 0px auto;
     width: 80%;
   }
 }
 @media screen and (min-width: 1024px) {
   #loginContainer {
     flex-direction: row;
+    min-height: 100%;
   }
   #loginImageDiv {
-    width: 50vw;
+    grid-column: 1/3;
+    grid-row: 1/5;
   }
   #loginFormDiv {
-    width: 50vw;
-    position: relative;
+    grid-column: 3/5;
+    grid-row: 1/5;
     border: none;
   }
 }/*# sourceMappingURL=Login.css.map */
