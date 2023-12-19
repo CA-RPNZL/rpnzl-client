@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import '../styling/SignUp.css';
-import signUpImage from '../assets/photos/signup_image.jpg';
+import '../styling/PinkButton.css';
+import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Loader from "../components/Loader";
 
@@ -17,6 +17,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // Create state for loading overlay
   const [loading, setLoading] = useState(false);
 
   // Navigation hook for URL change
@@ -99,11 +100,12 @@ function SignUp() {
   
 
   return (
-    <div className="signUpContainer">
-        <img className="signUpImage" src={signUpImage} alt="SignUp" />
-      <div className="signUpForm"> 
-        <h2>SIGN UP</h2> 
-        <form onSubmit={handleSubmit}>
+    <div id="signUpContainer">
+      <div id="signUpImageDiv">
+      </div>
+      <div id="signUpFormDiv"> 
+        <h2>Sign up</h2> 
+        <form id="signUpForm" onSubmit={handleSubmit}>
           <div className="inputGroup">
             <label htmlFor="firstName">First Name:</label> 
             <input 
@@ -171,7 +173,7 @@ function SignUp() {
             /> 
           </div>
           <div className="inputGroup"> 
-            <button type="submit" className="signUpButton">SIGN UP</button> 
+            <button type="submit" id="signUpButton" className="pinkButton">Sign up</button> 
           </div>
         </form>
         <Loader open={loading} />

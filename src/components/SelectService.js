@@ -18,6 +18,10 @@ function SelectService() {
     // Create state for list of services
     const [servicesList, setServicesList] = useState([]);
 
+    // Create state for error message
+    const [error, setError] = useState(null);
+
+
 
     // Fetch list of services
     useEffect(() => {
@@ -31,6 +35,7 @@ function SelectService() {
                 setServicesList(responseData);
             } catch (error) {
                 console.error("An error occurred while fetching data:", error);
+                setError("An error occurred while loading the list of services. Please contact the salon to make a booking.");
             };
         };
         fetchServices();
@@ -90,6 +95,7 @@ function SelectService() {
                         </div>
                     ))}
                 </form>
+            {error && <p className="error-message">{error}</p>}
             </div>
     );
 }
