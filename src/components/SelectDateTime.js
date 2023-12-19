@@ -55,7 +55,8 @@ function SelectDateTime() {
             };
         };
         fetchAppointmentData();
-    }, [selectedStartDateTime, setDisableNextBtn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedStartDateTime]);
 
     // Check if selectedStartDateTime already has a value
     useEffect(() => {

@@ -108,7 +108,7 @@ function Booking() {
             setStartDateTime(state.updateAppointmentData.startDateTime);
             setEndDateTime(state.updateAppointmentData.endDateTime);
         } else {
-            console.log("No updateAppointmentData exists, create a new booking.");
+            console.log("No existing appointment data exists, creating a new booking.");
         }
 
         // If updating an appointment
