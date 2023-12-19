@@ -6,6 +6,7 @@ import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
 import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
+import AdminAddService from '../components/AdminAddService';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
@@ -269,6 +270,7 @@ function AdminPortal() {
         <div id="servicesAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Services</h1>
+            <AdminAddService />
           </div>
           <div id="service-container" className="portalTabData">
             {services.map((service) => (
