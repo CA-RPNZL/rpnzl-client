@@ -13,6 +13,7 @@ import AdminPortal from './pages/AdminPortal';
 import UserPortal from './pages/UserPortal';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import NotFound from './pages/NotFound';
 
 
 function App() {
@@ -23,15 +24,16 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Homepage />}/>
-            <Route path="/about" element={<Aboutpage />}/>
-            <Route path="/services" element={<Services />}/>
-            <Route path="/contactus" element={<ContactUs />}/>
-            <Route path="/admin" element={<AdminPortal />} />
-            <Route path="/login" element={<Login />}/>
-            <Route path="/signup" element={<SignUp />}/> 
-            <Route path="/userportal" element={<UserPortal />}/>
-            <Route path="/booking" element={<Booking />} />
+            <Route exact path="/" element={<Homepage />}/>
+            <Route exact path="/about" element={<Aboutpage />}/>
+            <Route exact path="/services" element={<Services />}/>
+            <Route exact path="/contactus" element={<ContactUs />}/>
+            <Route exact path="/admin" element={<AdminPortal />} />
+            <Route exact path="/login" element={<Login />}/>
+            <Route exact path="/signup" element={<SignUp />}/> 
+            <Route exact path="/userportal" element={<UserPortal />}/>
+            <Route exact path="/booking" element={<Booking />} />
+            <Route path="*" element={<NotFound />}/>
           </Routes>
           <Footer />
           <ToastContainer
