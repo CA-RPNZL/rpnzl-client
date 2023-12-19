@@ -7,6 +7,7 @@ import ServicesTab from '../components/AdminServicesTab';
 import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import AdminAddService from '../components/AdminAddService';
+import AdminAddUser from '../components/AdminAddUser';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
@@ -239,6 +240,24 @@ function AdminPortal() {
       }
     };
 
+    // Function to update the users list
+    const updateUsersList = async () => {
+      try {
+        // Fetch the updated list of users
+        let response = await fetch(`${process.env.REACT_APP_API}/users`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authtoken: jwt,
+          },
+        });
+        const responseData = await response.json();
+        setUsers(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
   return (
     <div id="adminPortal">
       <div id="tab-buttons">
@@ -282,6 +301,7 @@ function AdminPortal() {
         <div id="usersAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Customers</h1>
+            <AdminAddUser updateUsersList={updateUsersList} />
           </div>
           <div id="user-container" className="portalTabData">
             {users.map((user) => (
