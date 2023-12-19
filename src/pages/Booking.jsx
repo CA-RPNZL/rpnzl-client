@@ -32,7 +32,6 @@ function Booking() {
 
     // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-    const userId = localStorage.getItem("userId");
 
     // Import useNavigate
     const navigate = useNavigate();

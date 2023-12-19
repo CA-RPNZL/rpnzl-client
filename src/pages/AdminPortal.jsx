@@ -8,14 +8,17 @@ import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import AdminAddService from '../components/AdminAddService';
 import AdminAddUser from '../components/AdminAddUser';
+import ModalFormUpdate from '../components/ModalFormUpdate';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
   const [users, setUsers] = useState([]);
   const [services, setServices] = useState([]);
   const [activeTab, setActiveTab] = useState('appointments');
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [updateObjectData, setUpdateObjectData] = useState(null);
 
   // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
@@ -88,6 +91,7 @@ function AdminPortal() {
     fetchAppointments();
     fetchUsers();
     fetchServices();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt]);
 
   // Switch between tabs
@@ -126,27 +130,145 @@ function AdminPortal() {
   };
 
   // 'Update' button functionality
-  const handleUpdateClick = async (e, appointment) => {
+  // Opens up update modal
+  const handleUpdateClick = async (e, updateObject) => {
     e.preventDefault();
-    console.log("Update appointment: " + appointment._id);
-    try {
-      // Prepare appointment data to be sent
-      const updateAppointmentData = {
-        appId: appointment._id,
-        client: appointment.client,
-        service: appointment.service,
-        hairstylist: appointment.hairstylist,
-        startDateTime: appointment.startDateTime,
-        endDateTime: appointment.endDateTime
-      }
-      
-      // Navigate to booking page with appointment data
-      console.log(updateAppointmentData);
-      navigate("/booking", { state: {updateAppointmentData}});
+    switch (activeTab) {
+      case 'appointments':
+        console.log("Update appointment: " + updateObject._id);
+        try {
+          // Prepare appointment data to be sent
+          const updateAppointmentData = {
+            appId: updateObject._id,
+            client: updateObject.client,
+            service: updateObject.service,
+            hairstylist: updateObject.hairstylist,
+            startDateTime: updateObject.startDateTime,
+            endDateTime: updateObject.endDateTime
+          }
+          
+          // Navigate to booking page with appointment data
+          console.log(updateAppointmentData);
+          navigate("/booking", { state: {updateAppointmentData}});
+    
+        } catch (error) {
+          console.error("Error preparing to update appointment:", error);
+        }
+        break;
+      case 'users':
+        console.log("Update user: " + updateObject._id);
+        setUpdateObjectData(updateObject);
+        setOpenUpdateModal(true);
+        // try {
+        //   // Prepare user data to be sent
+        //   const updateUserData = {
+        //     userId: updateObject._id,
+        //     firstName: updateObject.firstName,
+        //     lastName: updateObject.lastName,
+        //     mobileNumber: updateObject.mobileNumber,
+        //     email: updateObject.email,
+        //     is_hairstylist: updateObject.is_hairstylist,
+        //     services: updateObject.services
+        //   }
 
-    } catch (error) {
-      console.error("Error preparing to update appointment:", error);
+          // console.log(updateUserData);
+          // Update modal opens
+          // updateObject data is sent to modal
+        // } catch (error) {
+        //   console.error("Error preparing to update appointment:", error);
+        // }
+        break;
+      case 'services':
+        console.log("Update service: " + updateObject._id);
+        setUpdateObjectData(updateObject);
+        setOpenUpdateModal(true);
+        // try {
+        //   // Prepare service data to be sent
+        //   const updateServiceData = {
+        //   }
+
+        //   console.log(updateServiceData);
+        // } catch (error) {
+        //   console.error("Error preparing to update appointment:", error);
+        // }
+        break;
+      default:
+        break;
     }
+  };
+
+  // Handle cancelling the update modal
+  const handleUpdateCancel = () => {
+    setOpenUpdateModal(false);
+  };
+
+  // Handle confirming the update modal
+  const handleUpdateConfirm = (updateObject) => {
+    switch (activeTab) {
+      case 'appointments':
+        console.log("Update appointment: " + updateObject._id);
+        try {
+          // Prepare appointment data to be sent
+          const updateAppointmentData = {
+            appId: updateObject._id,
+            client: updateObject.client,
+            service: updateObject.service,
+            hairstylist: updateObject.hairstylist,
+            startDateTime: updateObject.startDateTime,
+            endDateTime: updateObject.endDateTime
+          }
+          
+          // Navigate to booking page with appointment data
+          console.log(updateAppointmentData);
+          navigate("/booking", { state: {updateAppointmentData}});
+    
+        } catch (error) {
+          console.error("Error preparing to update appointment:", error);
+        }
+        break;
+      case 'users':
+        console.log("Update user: " + updateObject._id);
+        try {
+          // Prepare user data to be sent
+          const updateUserData = {
+            userId: updateObject._id,
+            firstName: updateObject.firstName,
+            lastName: updateObject.lastName,
+            mobileNumber: updateObject.mobileNumber,
+            email: updateObject.email,
+            is_hairstylist: updateObject.is_hairstylist,
+            services: updateObject.services
+          }
+
+          console.log(updateUserData);
+          // Update modal opens
+          // updateObject data is sent to modal
+        } catch (error) {
+          console.error("Error preparing to update appointment:", error);
+        }
+        break;
+      case 'services':
+        console.log("Update service: " + updateObject._id);
+        try {
+          // Prepare service data to be sent
+          const updateServiceData = {
+            serviceId: updateObject._id,
+            name: updateObject.name,
+            price: updateObject.price,
+            description: updateObject.description,
+            duration: updateObject.duration
+          }
+
+          console.log(updateServiceData);
+        } catch (error) {
+          console.error("Error preparing to update appointment:", error);
+        }
+        break;
+      default:
+        break;
+      }
+      // Close the update modal
+      setOpenUpdateModal(false);
   };
 
   // 'Delete' button functionality
@@ -321,6 +443,7 @@ function AdminPortal() {
                 mobileNumber={user.mobileNumber}
                 email={user.email}
                 isHairstylist={user.is_hairstylist}
+                onUpdate={(e) => handleUpdateClick(e,user)}
                 onDelete={() => handleDeleteClick(user._id)}
 
               />
@@ -343,6 +466,7 @@ function AdminPortal() {
                 description={service.description}
                 price={service.price}
                 duration={service.duration}
+                onUpdate={(e) => handleUpdateClick(e,service)}
                 onDelete={() => handleDeleteClick(service._id)}
 
               />
@@ -357,6 +481,13 @@ function AdminPortal() {
         heading={getDeleteModalContent().heading}
         subheading={getDeleteModalContent().subheading}
         text={getDeleteModalContent().text}
+      />
+      <ModalFormUpdate
+        open={openUpdateModal}
+        onClose={handleUpdateCancel}
+        handleConfirm={handleUpdateConfirm}
+        updateObjectData={updateObjectData}
+        updateObjectType={activeTab}
       />
     </div>
   );
