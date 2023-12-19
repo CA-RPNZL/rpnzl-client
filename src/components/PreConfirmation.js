@@ -9,9 +9,6 @@ function PreConfirmation() {
     const appointment = useContext(AppointmentContext);
     const {setDisableNextBtn} = useContext(AppointmentContext);
 
-    // Grab data from local storage
-    const userId = localStorage.getItem("userId");
-
     useEffect(() => {
         // Fetch appointment data
         const fetchAppointmentData = async () => {

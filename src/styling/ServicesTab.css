@@ -1,16 +1,16 @@
-.appointmentTab {
+.servicesTab {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
 }
-.appointmentTab #clientname,
-.appointmentTab #hairstylistname,
-.appointmentTab #servicename,
-.appointmentTab #duration {
+.servicesTab #servicename,
+.servicesTab #description,
+.servicesTab #price,
+.servicesTab #isHairstylist {
   flex: 1;
 }
-.appointmentTab #button {
+.servicesTab #button {
   background-color: #E8EADD;
   border: 2px solid #ABAF95;
   font-family: "Montserrat";
@@ -23,7 +23,7 @@
   text-decoration: none;
   max-height: 40px;
 }
-.appointmentTab #button:hover {
+.servicesTab #button:hover {
   background-color: #ABAF95;
   color: white;
-}/*# sourceMappingURL=AppointmentsTab.css.map */
+}/*# sourceMappingURL=ServicesTab.css.map */

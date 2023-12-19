@@ -55,14 +55,16 @@ function SelectDateTime() {
             };
         };
         fetchAppointmentData();
-    }, [selectedStartDateTime, setDisableNextBtn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedStartDateTime]);
 
     // Check if selectedStartDateTime already has a value
     useEffect(() => {
-        if (appId) {
+        if (appId && selectedStartDateTime && selectedEndDateTime) {
             setStartDateTime(selectedStartDateTime);
             setEndDateTime(selectedEndDateTime);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [appId]);
 
     // Grab date/time from each appointment, convert to timestamp
@@ -97,7 +99,7 @@ function SelectDateTime() {
         }],
         fullBooking: unavailableDates,
         onSelectDatetime: (timestamp) => {
-            console.log(timestamp);
+            console.log("Timestamp is: " + timestamp);
 
             // Format date using timestamp (milliseconds)
             let startDateTime = new Date(timestamp);
@@ -111,6 +113,8 @@ function SelectDateTime() {
             // Update values in appointment context
             setStartDateTime(startDateTime);
             setEndDateTime(endDateTime);
+            console.log("startDateTime is: " + startDateTime);
+            console.log("endDateTime is: " + endDateTime);
         }
     };
 

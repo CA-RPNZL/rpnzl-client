@@ -56,7 +56,8 @@ function SelectHairstylist() {
             };
         };
         fetchAppointmentData();
-    }, [selectedHairstylist, setDisableNextBtn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [appointment, selectedHairstylist]);
 
     // Check if selectedHairstylist already has a value
     useEffect(() => {

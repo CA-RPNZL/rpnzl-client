@@ -47,7 +47,7 @@ function PersonalDetailsForm() {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            const data = await response.json();
+            await response.json();
 
             toast.success("Successfully updated personal details.");
             navigate("/userportal");
