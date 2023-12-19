@@ -12,7 +12,7 @@ const Modal = ({open, heading, subheading, text, onClose, handleClick}) => {
                 <i onClick={onClose} className="fas fa-times"/>
                 <div className="modalContent">
                     <h3>{heading}</h3>
-                    <h5> {subheading}</h5>
+                    <h5>{subheading}</h5>
                     <p>{text}</p>
                 </div>
                 <div id="modalButtons">
