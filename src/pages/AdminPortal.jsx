@@ -20,6 +20,9 @@ function AdminPortal() {
 
   // Import useNavigate
   const navigate = useNavigate();
+  
+  // Grab current date
+  let currentDate = new Date();
 
   useEffect(() => {
     // Fetch list of appointments
@@ -32,9 +35,15 @@ function AdminPortal() {
             authtoken: jwt,
           },
         });
-        const responseData = await response.json();
-        setAppointments(responseData);
-        console.log(responseData);
+        let responseData = await response.json();
+
+        // Filter appointments for future dates only
+        const filterAppointments = responseData.filter(appointment => 
+          new Date(appointment.startDateTime) >= currentDate
+        );
+
+        setAppointments(filterAppointments);
+        console.log(filterAppointments);
       } catch (error) {
         console.log(error);
       }
