@@ -1,4 +1,4 @@
-.bookNowButton {
+.pinkButton {
   border: 2px solid #D51E01;
   background-color: #FDEDEB;
   font-family: "Titan One", sans-serif;
@@ -11,14 +11,14 @@
   text-decoration: none;
   text-transform: uppercase;
 }
-.bookNowButton:hover {
+.pinkButton:hover {
   border: none;
   background-color: #D51E01;
   color: white;
 }
 
 @media screen and (min-width: 768px) {
-  .bookNowButton {
+  .pinkButton {
     font-size: 22px;
   }
-}/*# sourceMappingURL=BookNowButton.css.map */
+}/*# sourceMappingURL=PinkButton.css.map */

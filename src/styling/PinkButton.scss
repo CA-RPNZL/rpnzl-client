@@ -1,6 +1,6 @@
-@import './variables';
+@import "./variables";
 
-.bookNowButton {
+.pinkButton {
     border: 2px solid $red;
     background-color: $pale-pink;
     font-family: 'Titan One', sans-serif;
@@ -22,7 +22,7 @@
 
 // Media query for tablet +
 @media screen and (min-width: $tablet) {
-    .bookNowButton {
+    .pinkButton {
         font-size: 22px;
     }   
 }

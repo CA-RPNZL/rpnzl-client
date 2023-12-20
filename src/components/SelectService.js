@@ -1,23 +1,29 @@
-import { useContext, useEffect, useState } from "react";
 import "../styling/Booking.css";
+import { useContext, useEffect, useState } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
 
 
 function SelectService() {
     // Use AppointmentContext data
-    const appointment = useContext(AppointmentContext);
+    // const appointment = useContext(AppointmentContext);
+    const {selectedService, setService} = useContext(AppointmentContext);
+    const {appId} = useContext(AppointmentContext);
+
+    // Update disableNextBtn
+    const {setDisableNextBtn} = useContext(AppointmentContext);
+
+    // Reset stored appointment data function
+    const {resetAppointment} = useContext(AppointmentContext);
 
     // Create state for list of services
     const [servicesList, setServicesList] = useState([]);
-    
-    // Update AppointmentContext with selected service
-    const {selectedService, setService} = useContext(AppointmentContext);
 
-    // Update disableNextBtn
-    const {disableNextBtn, setDisableNextBtn} = useContext(AppointmentContext);
+    // Create state for error message
+    const [error, setError] = useState(null);
 
-    // Fetch list of services + appointment data
-    // useEffect(fn, dependencyArray)
+
+
+    // Fetch list of services
     useEffect(() => {
         const fetchServices = async () => {
             try {
@@ -29,34 +35,45 @@ function SelectService() {
                 setServicesList(responseData);
             } catch (error) {
                 console.error("An error occurred while fetching data:", error);
-            }
+                setError("An error occurred while loading the list of services. Please contact the salon to make a booking.");
+            };
         };
-
-        const fetchAppointmentData = async () => {
-            if (selectedService !== "") {
-                // Update input form element of selected service to be selected
-                document.getElementById(`input-${selectedService._id}`).checked = true;
-
-                // Update Next button to be active
-                setDisableNextBtn(false);
-            }
-        };
-
         fetchServices();
+    }, []);
 
-        // Check servicesList has populated
-        if (servicesList.length > 0) {
-            fetchAppointmentData();
+    // Check if selectedService already has a value
+    useEffect(() => {
+        if (appId) {
+            // Set service as per stored data
+            setService(selectedService);
+            console.log(selectedService);
+        
+            // Update Next button to be active
+            setDisableNextBtn(false);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [appId]);
 
-    }, [servicesList, selectedService, setDisableNextBtn]);
+    // Update selectedService
+    const updateService = (selectedService) => {
+        // On change of service, resetAppointment details
+        // Note: does not reset appId if it exists
+        resetAppointment();
 
-
-    function updateService(service) {
-        setService(service);
-    }
-
+        // Set selected service
+        setService(selectedService);
+        console.log(selectedService);
+        
+        // Update Next button to be active
+        setDisableNextBtn(false);
+    };
     
+    // Update input radio button
+    function updateInputBtn(service) {
+        return selectedService && selectedService._id === service._id;
+    };
+
+
 
     return (
             <div id="selectServiceDiv">
@@ -70,6 +87,7 @@ function SelectService() {
                                 name="selectService" 
                                 className="serviceInput" 
                                 onChange={() => updateService(service)} 
+                                checked={updateInputBtn(service)}
                             />
                             <label htmlFor={`input-${service._id}`} className="serviceName">{service.name}</label>
                             <label htmlFor={`input-${service._id}`} className="servicePrice">{service.price}</label>
@@ -77,6 +95,7 @@ function SelectService() {
                         </div>
                     ))}
                 </form>
+            {error && <p className="error-message">{error}</p>}
             </div>
     );
 }
