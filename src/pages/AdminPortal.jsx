@@ -367,6 +367,8 @@ function AdminPortal() {
               <span>Name</span>
               <span>Phone Number</span>
               <span>Email</span>
+              <span>Hairstylist</span>
+              <span>Services</span>
               <span>Actions</span>
             </div>
             {users.map((user) => (
