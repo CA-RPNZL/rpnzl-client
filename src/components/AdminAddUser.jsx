@@ -90,7 +90,10 @@ function AdminAddUser({ updateUsersList }) {
           'Content-Type': 'application/json',
           authtoken: jwt,
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify({
+            ...newUser,
+        selectedServices: newUser.selectedServices.map(serviceId => ({_id: serviceId })),
+          }),
       });
 
       // Check if the request was successful
