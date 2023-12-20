@@ -45,3 +45,10 @@
 .portalTabData {
   border-top: 1px solid #000;
 }
+
+// Media Screen for Tablet
+@media screen and (max-width: $tablet) {
+  #tab-buttons a {
+      font-size: 25px;
+    }
+  }

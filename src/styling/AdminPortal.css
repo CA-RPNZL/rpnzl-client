@@ -35,4 +35,10 @@
 
 .portalTabData {
   border-top: 1px solid #000;
+}
+
+@media screen and (max-width: 768px) {
+  #tab-buttons a {
+    font-size: 25px;
+  }
 }/*# sourceMappingURL=AdminPortal.css.map */
