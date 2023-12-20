@@ -38,6 +38,7 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
             setIsHairstylist(true);
         } else {
             setIsHairstylist(false);
+            setServices(null);
         }
     };
     
@@ -107,34 +108,34 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
 
     return (
         <div className="overlay">
-            <div id="modalContainer">
+            <div className="modalContainer">
                 <i onClick={close} className="fas fa-times"/>
                 <div className="modalContent">
                     <h3>Update user</h3>
                 </div>
-                <div id="modalForm">
-                    <Form onSubmit={handleConfirmUpdate}>
-                        <Form.Group>
+                <div id="modalFormDiv">
+                    <Form id="modalForm" onSubmit={handleConfirmUpdate}>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>ID:</Form.Label>
                             <Form.Control placeholder={data._id} disabled />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>First name:</Form.Label>
                             <Form.Control placeholder={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Last name:</Form.Label>
                             <Form.Control placeholder={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Mobile number:</Form.Label>
                             <Form.Control placeholder={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control placeholder={email} onChange={(e) => setEmail(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Hairstylist:</Form.Label>
                             <Form.Select onChange={(e) => handleHairstylistToggle(e.target.value)} defaultValue={isHairstylist}>
                                 <option value="true">True</option>
@@ -143,12 +144,13 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
                         </Form.Group>
                         {/* Hide services field if user is not a hairstylist */}
                         {isHairstylist && (
-                            <Form.Group>
+                            <Form.Group className="modalFormRow">
                                 <Form.Label>Services:</Form.Label>
                                 <div id="userServiceList">
                                     {servicesList.map(serviceListItem =>
                                         <Form.Check 
                                             type="checkbox" 
+                                            key={serviceListItem._id}
                                             label={serviceListItem.name} 
                                             checked={services && services.some(existingService => existingService.name === serviceListItem.name)}
                                             onChange={(e) => handleServicesToggle(e.target.checked, serviceListItem)}

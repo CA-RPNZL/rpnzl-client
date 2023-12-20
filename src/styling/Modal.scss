@@ -21,10 +21,14 @@
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 18px 0 rbga(0, 0, 0, 0.75);
+
+    // Close button (x)
     i {
         float: right;
         cursor: pointer;
+        font-size: 2rem;
     }
+
     Button {
         background-color: $light-green;
         border: 2px solid $dark-green;
@@ -32,10 +36,10 @@
         margin-top: 10px;
         font-weight: bolder;
         padding: 5px 10px;
-        font-family: 'Montserrat', sans-serif;
         width: 180px;
         cursor: pointer;
     }
+
     .modalContent {
         h3 {
             font-family: 'Titan One', sans-serif;
@@ -54,6 +58,8 @@
 
 @media screen and (min-width: $laptop) {
     .modalContainer {
+        max-width: 500px;
+
         .modalContent {
             p {
                 font-size: 14px;

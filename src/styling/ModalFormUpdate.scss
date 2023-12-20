@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-#modalContainer {
+.modalContainer {
     max-width: none;
     min-width: 280px;
     width: 80%;
@@ -28,39 +28,35 @@
         cursor: pointer;
     }
 
-    #modalContent {
+    .modalContent {
         h3 {
             font-family: 'Titan One', sans-serif;
             font-weight: lighter;
         }
     }
-
-    #modalForm {
-        text-align: left;
-
-        #adminModalFormUpdate {
+    
+    #modalFormDiv{
+        #modalForm {
+            text-align: left;
             display: flex;
             flex-direction: column;
-
-            .updateFormDiv {
+    
+            .modalFormRow {
                 display: grid;
-                grid-template-columns: 1fr 2fr;
+                grid-template-columns: 1fr 3fr;
                 margin-bottom: 10px;
-                
-                .updateFormField {
-                    grid-column: 1 / 2;
-                }
 
-                .updateFormValue {
-                    grid-column: 2 / 5;
-                }
-
-                input.updateFormValue {
+                input.form-control, select.form-select, textarea.form-control {
                     padding: 5px;
                     box-sizing: border-box;
                     border: 1px solid $dark-green;
                     border-radius: 5px;
+                    color: black;
                 }
+            }
+
+            .row3 {
+                grid-template-columns: 1fr 2fr 1fr;
             }
         }
     }
@@ -69,7 +65,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
+    
         Button {
             background-color: $light-green;
             border: 2px solid $dark-green;
@@ -81,5 +77,11 @@
             width: 180px;
             cursor: pointer;
         }
+    }
+}
+    
+@media screen and (min-width: $laptop) {
+    .modalContainer {
+        max-width: 500px;
     }
 }

@@ -65,30 +65,30 @@ const AdminUpdateService = ({open, close, data}) => {
 
     return (
         <div className="overlay">
-            <div id="modalContainer">
+            <div className="modalContainer">
                 <i onClick={close} className="fas fa-times"/>
                 <div className="modalContent">
                     <h3>Update service</h3>
                 </div>
-                <div id="modalForm">
-                    <Form onSubmit={handleConfirmUpdate}>
-                        <Form.Group>
+                <div id="modalFormDiv">
+                    <Form id="modalForm" onSubmit={handleConfirmUpdate}>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>ID:</Form.Label>
                             <Form.Control placeholder={data._id} disabled />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Name:</Form.Label>
                             <Form.Control placeholder={data.name} onChange={(e) => setServiceName(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Price:</Form.Label>
                             <Form.Control placeholder={data.price} onChange={(e) => setServicePrice(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow">
                             <Form.Label>Description:</Form.Label>
                             <Form.Control as="textarea" rows={5} placeholder={data.description} onChange={(e) => setServiceDescription(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className="modalFormRow row3">
                             <Form.Label>Duration:</Form.Label>
                             <Form.Control placeholder={data.duration} onChange={(e) => setServiceDuration(e.target.value)} required/>
                             <InputGroup.Text> mins</InputGroup.Text>
