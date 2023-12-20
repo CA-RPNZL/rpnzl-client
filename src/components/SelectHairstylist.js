@@ -51,9 +51,7 @@ function SelectHairstylist() {
                 // Check if selectedHairstylist is from the list of hairstylists
                 const validHairstylist = hairstylistList.some(
                     hairstylist => hairstylist._id === selectedHairstylist._id
-                    );
-                    console.log("selectedHairstylist " + selectedHairstylist);
-                    console.log("validHairstylist " + validHairstylist);
+                );
 
                 if (validHairstylist) {
                     // Update Next button to be active

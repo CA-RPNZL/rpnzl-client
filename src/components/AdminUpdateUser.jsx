@@ -98,7 +98,7 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
             close();
 
             // Refresh the page
-            // window.location.reload();
+            window.location.reload();
         };
         
 
@@ -141,7 +141,8 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
                                 <option value="false">False</option>
                             </Form.Select>
                         </Form.Group>
-                        {/* {isHairstylist === "true" && */}
+                        {/* Hide services field if user is not a hairstylist */}
+                        {isHairstylist && (
                             <Form.Group>
                                 <Form.Label>Services:</Form.Label>
                                 <div id="userServiceList">
@@ -156,7 +157,7 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
                                     )}
                                 </div>
                             </Form.Group>
-                        {/* } */}
+                        )}
                     </Form>
                 </div>
                 <div id="modalButtons">
