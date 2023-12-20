@@ -39,6 +39,7 @@ function SignUp() {
     if (password.length < 8) {
       // Display warning message in the console
       toast.warning("Password must exceed 8 characters.");
+      setLoading(false);
       return;
     }
 
@@ -47,6 +48,7 @@ function SignUp() {
       // Display error message in the console
       console.error("Password and Confirm Password do not match.");
       toast.error("Password and Confirm Password do not match.");
+      setLoading(false);
       return;
     }
 
@@ -55,6 +57,7 @@ function SignUp() {
       // Display error message in the console
       console.error("Password must contain at least one letter, one number, and one symbol.");
       toast.error("Password must contain at least one letter, one number, and one symbol.");
+      setLoading(false);
       return;
     }
   
