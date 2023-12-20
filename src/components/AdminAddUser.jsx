@@ -59,6 +59,7 @@ function AdminAddUser({ updateUsersList }) {
 //     }));
 //   };
 
+  // Function to handle changes in the selected services
   const handleServiceChange = (e) => {
     const selectedServices = Array.from(e.target.selectedOptions, (option) => option.value);
   
