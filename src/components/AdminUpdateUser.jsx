@@ -34,7 +34,7 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
     };
     
     const handleHairstylistToggle = (value) => {
-        if (value === "true") {
+        if (value) {
             setIsHairstylist(true);
         } else {
             setIsHairstylist(false);

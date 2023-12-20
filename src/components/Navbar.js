@@ -76,7 +76,7 @@ const Navbar = () => {
         logInLink = <Link onClick={(event) => handleClick("/login", event)}>Log in</Link>
     } else {
         // If user is logged in, check if user is admin
-        if (isAdmin === "true") {
+        if (isAdmin) {
             // Show link to account page instead of sign up
             signUpAccountLink = <Link onClick={(event) => handleClick("/admin", event)}>Admin</Link>
         } else {

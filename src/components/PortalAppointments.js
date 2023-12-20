@@ -46,7 +46,7 @@ function PortalAppointments() {
                         },
                     });
                 // If user is a hairstylist
-                } else if (userId !== "" && isHairstylist === "true") {
+                } else if (userId !== "" && isHairstylist) {
                     // Grab all existing appointments for hairstylist
                     response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + userId + "?pastAppt=false", {
                         method: 'GET',

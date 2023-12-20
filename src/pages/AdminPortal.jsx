@@ -359,7 +359,7 @@ function AdminPortal() {
                 lastName={user.lastName}
                 mobileNumber={user.mobileNumber}
                 email={user.email}
-                is_hairstylist={user.is_hairstylist ? "true" : "false"}
+                is_hairstylist={user.is_hairstylist ? "true" : "false"} // Need to add in string values to populate
                 services={user.services.map(service => service.name).join(", ")}
                 onUpdate={(e) => handleUpdateClick(e,user)}
                 onDelete={() => handleDeleteClick(user._id)}
