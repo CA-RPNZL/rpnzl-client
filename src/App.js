@@ -47,7 +47,7 @@ function App() {
             draggable
             pauseOnHover
             theme="light"
-            toastStyle={{ backgroundColor: '#E8EADD', color: '#FBF8F0', border: '#ABAF95' }}
+            toastStyle={{ backgroundColor: '#E8EADD', color: '#000000', border: '#ABAF95' }}
             />
         </BrowserRouter>
         </AppointmentProvider>
