@@ -34,13 +34,13 @@ const AdminUpdateService = ({open, close, data}) => {
         
         // Send PATCH request to update service
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/services/id/" + updatedData.serviceId , {
+            const response = await fetch(process.env.REACT_APP_API + "/services/id/" + updatedData.serviceId, {
                 method: "PATCH",
                 headers: {
                 "Content-Type": "application/json",
-                "authtoken": jwt,
+                "authtoken": jwt
                 },
-                body: JSON.stringify(updatedData),
+                body: JSON.stringify(updatedData)
             });
 
             if (!response.ok) {
@@ -52,7 +52,7 @@ const AdminUpdateService = ({open, close, data}) => {
         } 
         catch (error) {
             console.error(error);
-        }
+        };
 
         // Close the modal
         close();

@@ -14,10 +14,6 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
     const [email, setEmail] = useState();
     const [isHairstylist, setIsHairstylist] = useState();
     const [services, setServices] = useState();
-
-    // Create state for managing checkbox list for services
-    const [checkboxHairstylist, setCheckboxHairstylist] = useState();
-    const [userServices, setUserServices] = useState();
     
     useEffect(() => {
         // Update data
@@ -29,84 +25,84 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
             setEmail(data.email);
             setIsHairstylist(data.is_hairstylist);
             setServices(data.services);
-            // Set toggle box for hairstylist
-            setCheckboxHairstylist(data.is_hairstylist);
         }
-    },[data])
+    },[data]);
     
     // If modal is closed
     if (!open) {
         return null;
-    }
-    // Handle "Update" button functionality
-    const handleConfirmUpdate = async () => {
-
-        // Consolidate updated data
-        const updatedData = {
-            userId: userId ?? data._id,
-            firstName: firstName ?? data.firstName,
-            lastName: lastName ?? data.lastName,
-            mobileNumber: mobileNumber ?? data.mobileNumber,
-            email: email ?? data.email,
-            isHairstylist: isHairstylist ?? data.isHairstylist,
-            services: services ?? data.services,
-        }
-        
-        console.log(updatedData);
-    }
+    };
+    
     const handleHairstylistToggle = (value) => {
-        // if (checkboxHairstylist === true) {
-        //     setCheckboxHairstylist(true);
-        //     setIsHairstylist(true);
-        // } else {
-        //     setCheckboxHairstylist(false);
-        //     setIsHairstylist(false);
-        // }
         if (value === "true") {
             setIsHairstylist(true);
         } else {
             setIsHairstylist(false);
         }
-        console.log('isHairstylist: ' + isHairstylist);
-    }
-    const handleServicesToggle = ({checked}, value) => {
-        if (checked) {
-            checked = false;
-        } else {
-            checked = true;
-        }
-        console.log(checked);
-        console.log(value.name)
-
-        // const prevServices = [...services]
-
-
-        // console.log(prevServices);
-
-
-    }
-    // const handleCheckboxChange = (serviceName, isChecked) => {
-    //     // Update your state or perform any other actions based on the checkbox change
-    //     console.log(`Service "${serviceName}" is checked: ${isChecked}`);
+    };
     
-    //     // Update your state based on the checkbox change
-    //     setData(prevData => {
-    //         const updatedServices = [...prevData.services];
-    
-    //         // If isChecked is true, add the service; otherwise, remove it
-    //         if (isChecked) {
-    //             updatedServices.push({ name: serviceName });
-    //         } else {
-    //             const index = updatedServices.findIndex(service => service.name === serviceName);
-    //             if (index !== -1) {
-    //                 updatedServices.splice(index, 1);
-    //             }
-    //         }
-    
-    //         // Update the state with the new services array
-    //         return { ...prevData, services: updatedServices };
-    //     });
-    // };
+    const handleServicesToggle = (isChecked, value) => {
+        if (isChecked) {
+            // If value is checked, add to services array
+            // Update services state
+            setServices((existingServices) => 
+            [...existingServices, { 
+                _id: value._id, 
+                name: value.name, 
+                    duration: value.duration 
+                }]
+                );
+            } else {
+                // If value is unchecked, remove from services array
+                // Update services state
+                setServices((existingServices) =>
+                existingServices.filter((service) => service.name !== value.name)
+                );
+            }
+        };
+        
+        // Handle "Update" button functionality
+        const handleConfirmUpdate = async () => {
+            
+            // Consolidate updated data
+            const updatedData = {
+                userId: userId ?? data._id,
+                firstName: firstName ?? data.firstName,
+                lastName: lastName ?? data.lastName,
+                mobileNumber: mobileNumber ?? data.mobileNumber,
+                email: email ?? data.email,
+                isHairstylist: isHairstylist ?? data.isHairstylist,
+                services: services ?? data.services,
+            }
+                
+            console.log(updatedData);
+
+            // Send PATCH request to update user
+            try {
+                const response = await fetch(process.env.REACT_APP_API + "/users/id/" + updatedData.userId, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authtoken": jwt
+                    },
+                    body: JSON.stringify(updatedData)
+                });
+
+                await response.json();
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            };
+
+            // Close the modal
+            close();
+
+            // Refresh the page
+            // window.location.reload();
+        };
+        
+
+
 
 
     return (
@@ -140,11 +136,10 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Hairstylist:</Form.Label>
-                            <Form.Select onChange={(e) => handleHairstylistToggle(e.target.value)} selected={isHairstylist}>
+                            <Form.Select onChange={(e) => handleHairstylistToggle(e.target.value)} defaultValue={isHairstylist}>
                                 <option value="true">True</option>
                                 <option value="false">False</option>
                             </Form.Select>
-                            {/* <Form.Check type="checkbox" checked={checkboxHairstylist} onChange={(e) => handleHairstylistToggle(e.target)} inline/>  */}
                         </Form.Group>
                         {/* {isHairstylist === "true" && */}
                             <Form.Group>
@@ -155,8 +150,9 @@ const AdminUpdateUser = ({open, close, data, servicesList}) => {
                                             type="checkbox" 
                                             label={serviceListItem.name} 
                                             checked={services && services.some(existingService => existingService.name === serviceListItem.name)}
-                                            onChange={(e) => handleServicesToggle(e.target, serviceListItem)}
+                                            onChange={(e) => handleServicesToggle(e.target.checked, serviceListItem)}
                                         />
+
                                     )}
                                 </div>
                             </Form.Group>
