@@ -8,14 +8,16 @@ import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import AdminAddService from '../components/AdminAddService';
 import AdminAddUser from '../components/AdminAddUser';
-import ModalFormUpdate from '../components/ModalFormUpdate';
+import AdminUpdateService from '../components/AdminUpdateService';
+import AdminUpdateUser from '../components/AdminUpdateUser';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
   const [users, setUsers] = useState([]);
   const [services, setServices] = useState([]);
   const [activeTab, setActiveTab] = useState('appointments');
-  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [openUpdateUserModal, setOpenUpdateUserModal] = useState(false);
+  const [openUpdateServiceModal, setOpenUpdateServiceModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [updateObjectData, setUpdateObjectData] = useState(null);
@@ -48,7 +50,6 @@ function AdminPortal() {
         );
 
         setAppointments(filterAppointments);
-        console.log(filterAppointments);
       } catch (error) {
         console.log(error);
       }
@@ -66,6 +67,7 @@ function AdminPortal() {
         });
         const responseData = await response.json();
         setUsers(responseData);
+        console.log(responseData);
       } catch (error) {
         console.log(error);
       }
@@ -157,40 +159,23 @@ function AdminPortal() {
         break;
       case 'users':
         console.log("Update user: " + updateObject._id);
-        setUpdateObjectData(updateObject);
-        setOpenUpdateModal(true);
-        // try {
-        //   // Prepare user data to be sent
-        //   const updateUserData = {
-        //     userId: updateObject._id,
-        //     firstName: updateObject.firstName,
-        //     lastName: updateObject.lastName,
-        //     mobileNumber: updateObject.mobileNumber,
-        //     email: updateObject.email,
-        //     is_hairstylist: updateObject.is_hairstylist,
-        //     services: updateObject.services
-        //   }
 
-          // console.log(updateUserData);
-          // Update modal opens
-          // updateObject data is sent to modal
-        // } catch (error) {
-        //   console.error("Error preparing to update appointment:", error);
-        // }
+        // Set user object data
+        setUpdateObjectData(updateObject);
+        console.log(updateObjectData);
+
+        // Open 'Admin Update User' modal
+        setOpenUpdateUserModal(true);
         break;
       case 'services':
         console.log("Update service: " + updateObject._id);
+        
+        // Set service object data
         setUpdateObjectData(updateObject);
-        setOpenUpdateModal(true);
-        // try {
-        //   // Prepare service data to be sent
-        //   const updateServiceData = {
-        //   }
+        console.log(updateObjectData);
 
-        //   console.log(updateServiceData);
-        // } catch (error) {
-        //   console.error("Error preparing to update appointment:", error);
-        // }
+        // Open 'Admin Update Service' modal
+        setOpenUpdateServiceModal(true);
         break;
       default:
         break;
@@ -199,76 +184,8 @@ function AdminPortal() {
 
   // Handle cancelling the update modal
   const handleUpdateCancel = () => {
-    setOpenUpdateModal(false);
-  };
-
-  // Handle confirming the update modal
-  const handleUpdateConfirm = (updateObject) => {
-    switch (activeTab) {
-      case 'appointments':
-        console.log("Update appointment: " + updateObject._id);
-        try {
-          // Prepare appointment data to be sent
-          const updateAppointmentData = {
-            appId: updateObject._id,
-            client: updateObject.client,
-            service: updateObject.service,
-            hairstylist: updateObject.hairstylist,
-            startDateTime: updateObject.startDateTime,
-            endDateTime: updateObject.endDateTime
-          }
-          
-          // Navigate to booking page with appointment data
-          console.log(updateAppointmentData);
-          navigate("/booking", { state: {updateAppointmentData}});
-    
-        } catch (error) {
-          console.error("Error preparing to update appointment:", error);
-        }
-        break;
-      case 'users':
-        console.log("Update user: " + updateObject._id);
-        try {
-          // Prepare user data to be sent
-          const updateUserData = {
-            userId: updateObject._id,
-            firstName: updateObject.firstName,
-            lastName: updateObject.lastName,
-            mobileNumber: updateObject.mobileNumber,
-            email: updateObject.email,
-            is_hairstylist: updateObject.is_hairstylist,
-            services: updateObject.services
-          }
-
-          console.log(updateUserData);
-          // Update modal opens
-          // updateObject data is sent to modal
-        } catch (error) {
-          console.error("Error preparing to update appointment:", error);
-        }
-        break;
-      case 'services':
-        console.log("Update service: " + updateObject._id);
-        try {
-          // Prepare service data to be sent
-          const updateServiceData = {
-            serviceId: updateObject._id,
-            name: updateObject.name,
-            price: updateObject.price,
-            description: updateObject.description,
-            duration: updateObject.duration
-          }
-
-          console.log(updateServiceData);
-        } catch (error) {
-          console.error("Error preparing to update appointment:", error);
-        }
-        break;
-      default:
-        break;
-      }
-      // Close the update modal
-      setOpenUpdateModal(false);
+    setOpenUpdateServiceModal(false);
+    setOpenUpdateUserModal(false);
   };
 
   // 'Delete' button functionality
@@ -442,10 +359,10 @@ function AdminPortal() {
                 lastName={user.lastName}
                 mobileNumber={user.mobileNumber}
                 email={user.email}
-                isHairstylist={user.is_hairstylist}
+                is_hairstylist={user.is_hairstylist ? "true" : "false"}
+                services={user.services.map(service => service.name).join(", ")}
                 onUpdate={(e) => handleUpdateClick(e,user)}
                 onDelete={() => handleDeleteClick(user._id)}
-
               />
             ))}
           </div>
@@ -482,12 +399,16 @@ function AdminPortal() {
         subheading={getDeleteModalContent().subheading}
         text={getDeleteModalContent().text}
       />
-      <ModalFormUpdate
-        open={openUpdateModal}
-        onClose={handleUpdateCancel}
-        handleConfirm={handleUpdateConfirm}
-        updateObjectData={updateObjectData}
-        updateObjectType={activeTab}
+      <AdminUpdateService 
+        open={openUpdateServiceModal} 
+        close={handleUpdateCancel}
+        data={updateObjectData} 
+      />
+      <AdminUpdateUser 
+        open={openUpdateUserModal} 
+        close={handleUpdateCancel}
+        data={updateObjectData} 
+        servicesList={services}
       />
     </div>
   );
