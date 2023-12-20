@@ -6,11 +6,11 @@
   flex-grow: 2;
   display: flex;
   flex-direction: column;
-  
+
   .portalTabDiv {
     display: flex;
     flex-direction: column;
-    
+
     .portalTabHeader {
       margin: 0 auto;
       width: 90vw;
@@ -19,6 +19,14 @@
         text-align: left;
         font-family: 'Titan One', sans-serif;
       }
+    }
+
+    .appointmentsColumnHeadings,
+    .userColumnHeadings,
+    .servicesColumnHeadings {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
     }
   }
 }
@@ -33,11 +41,10 @@
     color: black;
     padding: 20px;
     text-decoration: underline;
-    transition: font-size 0.3s ease; 
+    transition: font-size 0.3s ease;
 
     &:hover {
       font-size: 37px;
-
     }
   }
 }
@@ -49,6 +56,6 @@
 // Media Screen for Tablet
 @media screen and (max-width: $tablet) {
   #tab-buttons a {
-      font-size: 25px;
-    }
+    font-size: 25px;
   }
+}

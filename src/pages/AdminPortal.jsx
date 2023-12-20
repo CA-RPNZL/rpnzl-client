@@ -223,6 +223,15 @@ function AdminPortal() {
           <div className="portalTabHeader">
             <h1>Bookings</h1>
           </div>
+          {/* Column Headings */}
+          <div className="appointmentsColumnHeadings">
+            <span>Client</span>
+            <span>Hairstylist</span>
+            <span>Service</span>
+            <span>Date & Time</span>
+            <span>Duration</span>
+            <span>Actions</span>
+          </div>
           <div id="appointmentcontainer" className="portalTabData">
             {appointments.length > 0 &&
               appointments.map((appointment) => (
@@ -235,7 +244,7 @@ function AdminPortal() {
                   date={bookedDate(appointment)}
                   startTime={bookedStartTime(appointment)}
                   endTime={bookedEndTime(appointment)}
-                  onUpdate={(e) => handleUpdateClick(e,appointment)}
+                  onUpdate={(e) => handleUpdateClick(e, appointment)}
                   onDelete={() => handleDeleteClick(appointment._id)}
                 />
               ))}
@@ -248,6 +257,13 @@ function AdminPortal() {
           <div className="portalTabHeader">
             <h1>Customers</h1>
           </div>
+          {/* Column Headings */}
+          <div className="userColumnHeadings">
+            <span>Name</span>
+            <span>Phone Number</span>
+            <span>Email</span>
+            <span>Actions</span>
+          </div>
           <div id="user-container" className="portalTabData">
             {users.map((user) => (
               <UsersTab
@@ -258,7 +274,6 @@ function AdminPortal() {
                 email={user.email}
                 isHairstylist={user.is_hairstylist}
                 onDelete={() => handleDeleteClick(user._id)}
-
               />
             ))}
           </div>
@@ -269,6 +284,14 @@ function AdminPortal() {
         <div id="servicesAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Services</h1>
+          </div>
+          {/* Column Headings */}
+          <div className="servicesColumnHeadings">
+            <span>Service</span>
+            <span>Description</span>
+            <span>Price</span>
+            <span>Duration</span>
+            <span>Actions</span>
           </div>
           <div id="service-container" className="portalTabData">
             {services.map((service) => (

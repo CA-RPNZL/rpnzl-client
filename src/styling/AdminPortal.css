@@ -16,6 +16,13 @@
   text-align: left;
   font-family: "Titan One", sans-serif;
 }
+#adminPortal .portalTabDiv .appointmentsColumnHeadings,
+#adminPortal .portalTabDiv .userColumnHeadings,
+#adminPortal .portalTabDiv .servicesColumnHeadings {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
 
 #tab-buttons {
   display: flex;
