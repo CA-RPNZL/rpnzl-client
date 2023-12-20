@@ -25,8 +25,14 @@
     .userColumnHeadings,
     .servicesColumnHeadings {
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
       padding: 10px;
+      border-bottom: 1px solid #000;
+
+      span {
+        flex: 2;
+        font-weight: 900;
+      }
     }
   }
 }
@@ -47,10 +53,6 @@
       font-size: 37px;
     }
   }
-}
-
-.portalTabData {
-  border-top: 1px solid #000;
 }
 
 // Media Screen for Tablet

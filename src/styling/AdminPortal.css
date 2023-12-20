@@ -20,8 +20,15 @@
 #adminPortal .portalTabDiv .userColumnHeadings,
 #adminPortal .portalTabDiv .servicesColumnHeadings {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   padding: 10px;
+  border-bottom: 1px solid #000;
+}
+#adminPortal .portalTabDiv .appointmentsColumnHeadings span,
+#adminPortal .portalTabDiv .userColumnHeadings span,
+#adminPortal .portalTabDiv .servicesColumnHeadings span {
+  flex: 2;
+  font-weight: 900;
 }
 
 #tab-buttons {
@@ -38,10 +45,6 @@
 }
 #tab-buttons a:hover {
   font-size: 37px;
-}
-
-.portalTabData {
-  border-top: 1px solid #000;
 }
 
 @media screen and (max-width: 768px) {

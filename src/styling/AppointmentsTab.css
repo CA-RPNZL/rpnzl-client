@@ -1,12 +1,13 @@
 .appointmentTab {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 10px;
 }
 .appointmentTab #clientname,
 .appointmentTab #hairstylistname,
 .appointmentTab #servicename,
+.appointmentTab #startDate,
+.appointmentTab #startTime,
 .appointmentTab #duration {
   flex: 1;
 }
