@@ -413,7 +413,6 @@ function AdminPortal() {
                 duration={service.duration}
                 onUpdate={(e) => handleUpdateClick(e,service)}
                 onDelete={() => handleDeleteClick(service._id)}
-
               />
             ))}
           </div>

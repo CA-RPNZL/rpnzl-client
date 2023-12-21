@@ -1,0 +1,45 @@
+#AdminAddUser {
+    // Style for the "Add User" button
+    Button {
+      // Add your button styling here
+    }
+  
+    // Style for the modal form
+    .modalForm {
+      // Add your modal form styling here
+      text-align: center; // Center align the form
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+  
+        label {
+          margin-bottom: 5px;
+  
+          // Style for labels next to input
+          &:not([for="mobileNumber"]) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+          }
+  
+          // Style for labels above input
+          &[for="mobileNumber"] {
+            text-align: center;
+          }
+        }
+  
+        input,
+        textarea,
+        select {
+          margin-bottom: 10px;
+          width: 100%;
+  
+          // Add your additional input styling here
+        }
+      }
+    }
+  }

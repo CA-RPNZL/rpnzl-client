@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ModalForm from '../components/ModalFormAdd';
 import { Button } from 'react-bootstrap';
+import "../styling/components/AdminAddUser.css"
 
 function AdminAddUser({ updateUsersList }) {
   const [openAddUserModal, setOpenAddUserModal] = useState(false);
@@ -59,6 +60,7 @@ function AdminAddUser({ updateUsersList }) {
 //     }));
 //   };
 
+  // Function to handle changes in the selected services
   const handleServiceChange = (e) => {
     const selectedServices = Array.from(e.target.selectedOptions, (option) => option.value);
   
@@ -90,7 +92,10 @@ function AdminAddUser({ updateUsersList }) {
           'Content-Type': 'application/json',
           authtoken: jwt,
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify({
+            ...newUser,
+        selectedServices: newUser.selectedServices.map(serviceId => ({_id: serviceId })),
+          }),
       });
 
       // Check if the request was successful
