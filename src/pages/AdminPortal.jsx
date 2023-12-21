@@ -265,7 +265,7 @@ function AdminPortal() {
           Bookings
         </Link>
         <Link href="#" onClick={() => handleTabChange('users')}>
-          Customers
+          Users
         </Link>
         <Link href="#" onClick={() => handleTabChange('services')}>
           Services
@@ -310,7 +310,7 @@ function AdminPortal() {
       {activeTab === 'users' && (
         <div id="usersAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
-            <h1>Customers</h1>
+            <h1>Users</h1>
             <AdminAddUser updateUsersList={updateUsersList} />
           </div>
           <div id="user-container" className="portalTabData">
@@ -359,7 +359,6 @@ function AdminPortal() {
                 price={service.price}
                 duration={service.duration}
                 onDelete={() => handleDeleteClick(service._id)}
-
               />
             ))}
           </div>

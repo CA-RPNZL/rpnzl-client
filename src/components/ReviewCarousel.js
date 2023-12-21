@@ -1,11 +1,13 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import '../styling/ReviewCarousel.css'
+import '../styling/ReviewCarousel.css';
 
 function ReviewCarousel() {
     return (  
         <div className="ovalContainer"> 
+            {/* Purple oval background */}
             <div id="purpleOval">
+                {/* Carousel component with specified configurations */}
                 <Carousel 
                     axis="horizontal" 
                     showThumbs={false} 
@@ -15,6 +17,7 @@ function ReviewCarousel() {
                     autoPlay
                     infiniteLoop  
                     emulateTouch>
+                    {/* Individual review slides */}
                     <div className="review">
                         <p>"The best salon in town"</p>
                         <p>- Bianca</p>
