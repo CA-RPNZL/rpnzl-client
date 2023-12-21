@@ -6,6 +6,8 @@ import UsersTab from '../components/AdminUsersTab';
 import ServicesTab from '../components/AdminServicesTab';
 import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
+import AdminAddService from '../components/AdminAddService';
+import AdminAddUser from '../components/AdminAddUser';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
@@ -13,7 +15,7 @@ function AdminPortal() {
   const [services, setServices] = useState([]);
   const [activeTab, setActiveTab] = useState('appointments');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
   // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
@@ -140,28 +142,26 @@ function AdminPortal() {
 
   // 'Delete' button functionality
   // Opens up confirmation modal
-  const handleDeleteClick = (appointmentId) => {
+  const handleDeleteClick = (itemId) => {
     // Open the delete confirmation modal
-    setSelectedAppointmentId(appointmentId);
+    setSelectedItemId(itemId);
     setOpenDeleteModal(true);
   };
 
-  // Modal 'Back' button functionality
   const handleCancelDelete = () => {
     // Handle canceling the delete operation
     setOpenDeleteModal(false);
-    setSelectedAppointmentId(null);
+    setSelectedItemId(null);
   };
 
-  // Modal 'Delete Appointment' functionality
   const handleConfirmDelete = async () => {
     try {
       // Implement logic to confirm and delete based on the active tab
       switch (activeTab) {
         case 'appointments':
-          console.log('Appointment deleted:', selectedAppointmentId);
-          // Call API to delete the appointment using selectedAppointmentId
-          await fetch(`${process.env.REACT_APP_API}/appointments/id/${selectedAppointmentId}`, {
+          console.log('Appointment deleted:', selectedItemId);
+          // Call API to delete the appointment using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/appointments/id/${selectedItemId}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -170,23 +170,43 @@ function AdminPortal() {
           });
           // Update the appointments list
           setAppointments((prevAppointments) =>
-            prevAppointments.filter((appointment) => appointment._id !== selectedAppointmentId)
+            prevAppointments.filter((appointment) => appointment._id !== selectedItemId)
           );
           break;
         case 'users':
-          // Implement logic to delete a user
+          console.log('User deleted:', selectedItemId);
+          // Call API to delete the user using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/users/id/${selectedItemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              authtoken: jwt,
+            },
+          });
+          // Update the users list
+          setUsers((prevUsers) => prevUsers.filter((user) => user._id !== selectedItemId));
           break;
         case 'services':
-          // Implement logic to delete a service
+          console.log('Service deleted:', selectedItemId);
+          // Call API to delete the service using selectedItemId
+          await fetch(`${process.env.REACT_APP_API}/services/id/${selectedItemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              authtoken: jwt,
+            },
+          });
+          // Update the services list
+          setServices((prevServices) => prevServices.filter((service) => service._id !== selectedItemId));
           break;
         default:
           break;
       }
-
+  
       // Close the modal
       setOpenDeleteModal(false);
-      setSelectedAppointmentId(null);
-
+      setSelectedItemId(null);
+  
       console.log('Delete successful');
     } catch (error) {
       console.error('Error deleting:', error);
@@ -202,7 +222,41 @@ function AdminPortal() {
   // Format appointment end time
   const bookedEndTime = (appointment) => formattedAppointmentEndTime(appointment.endDateTime);
 
+    // Function to update the services list
+    const updateServicesList = async () => {
+      try {
+        // Fetch the updated list of services
+        let response = await fetch(`${process.env.REACT_APP_API}/services`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authtoken: jwt,
+          },
+        });
+        const responseData = await response.json();
+        setServices(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    // Function to update the users list
+    const updateUsersList = async () => {
+      try {
+        // Fetch the updated list of users
+        let response = await fetch(`${process.env.REACT_APP_API}/users`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authtoken: jwt,
+          },
+        });
+        const responseData = await response.json();
+        setUsers(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
     <div id="adminPortal">
@@ -257,6 +311,7 @@ function AdminPortal() {
         <div id="usersAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Customers</h1>
+            <AdminAddUser updateUsersList={updateUsersList} />
           </div>
           <div id="user-container" className="portalTabData">
             {/* Column Headings */}
@@ -285,6 +340,7 @@ function AdminPortal() {
         <div id="servicesAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
             <h1>Services</h1>
+            <AdminAddService updateServicesList={updateServicesList} />
           </div>
           <div id="service-container" className="portalTabData">
             {/* Column Headings */}
