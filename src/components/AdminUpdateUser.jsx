@@ -1,6 +1,7 @@
 import "../styling/ModalFormUpdate.css";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => {
     // Grab data from local storage
@@ -36,8 +37,10 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
     const handleHairstylistToggle = (value) => {
         if (value) {
             setIsHairstylist(true);
+            document.getElementById("servicesForm").visible = true;
         } else {
             setIsHairstylist(false);
+            document.getElementById("servicesForm").visible = false;
             setServices(null);
         }
     };
@@ -90,9 +93,11 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                 });
 
                 if (response.ok) {
-                    console.log("Service updated successfully");
+                    console.log("User updated successfully");
+                    toast.success("User: " + updatedData.firstName + " " + updatedData.lastName + " updated successfully.");
                     updateUsersList();
                 } else {
+                    toast.error("An error occurred. User: " + updatedData.firstName + " " + updatedData.lastName + " could not be updated.");
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 };
 
@@ -121,23 +126,23 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                     <Form id="modalForm" onSubmit={handleConfirmUpdate}>
                         <Form.Group className="modalFormRow">
                             <Form.Label>ID:</Form.Label>
-                            <Form.Control placeholder={data._id} disabled />
+                            <Form.Control value={data._id} disabled />
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>First name:</Form.Label>
-                            <Form.Control placeholder={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+                            <Form.Control value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Last name:</Form.Label>
-                            <Form.Control placeholder={lastName} onChange={(e) => setLastName(e.target.value)} required/>
+                            <Form.Control value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Mobile number:</Form.Label>
-                            <Form.Control placeholder={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} required/>
+                            <Form.Control value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Email:</Form.Label>
-                            <Form.Control placeholder={email} onChange={(e) => setEmail(e.target.value)} required/>
+                            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Hairstylist:</Form.Label>
@@ -147,8 +152,8 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                             </Form.Select>
                         </Form.Group>
                         {/* Hide services field if user is not a hairstylist */}
-                        {isHairstylist && (
-                            <Form.Group className="modalFormRow">
+                        {/* {isHairstylist && ( */}
+                            <Form.Group className="modalFormRow" id="servicesForm">
                                 <Form.Label>Services:</Form.Label>
                                 <div id="userServiceList">
                                     {servicesList.map(serviceListItem =>
@@ -163,7 +168,7 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                                     )}
                                 </div>
                             </Form.Group>
-                        )}
+                        {/* )} */}
                     </Form>
                 </div>
                 <div id="modalButtons">

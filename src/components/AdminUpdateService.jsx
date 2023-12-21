@@ -1,18 +1,30 @@
 import "../styling/ModalFormUpdate.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const AdminUpdateService = ({open, close, data, updateServicesList}) => {
     // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
     
     // Create state for service
-    const [serviceId] = useState();
+    const [serviceId, setServiceId] = useState();
     const [serviceName, setServiceName] = useState();
     const [servicePrice, setServicePrice] = useState();
     const [serviceDescription, setServiceDescription] = useState();
     const [serviceDuration, setServiceDuration] = useState();
-  
+      
+    useEffect(() => {
+        // Update data
+        if (data) {
+            setServiceId(data._id);
+            setServiceName(data.name);
+            setServicePrice(data.price);
+            setServiceDescription(data.description);
+            setServiceDuration(data.duration);
+        }
+    },[data]);
+
     // If modal is closed
     if (!open) {
         return null;
@@ -45,8 +57,10 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
 
             if (response.ok) {
                 console.log("Service updated successfully");
+                toast.success("Service: " + updatedData.name + " updated successfully.");
                 updateServicesList();
             } else {
+                toast.error("An error occurred.Service: " + updatedData.name + " could not be updated.");
                 throw new Error(`HTTP error! Status: ${response.status}`);
             };
 
@@ -74,23 +88,23 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
                     <Form id="modalForm" onSubmit={handleConfirmUpdate}>
                         <Form.Group className="modalFormRow">
                             <Form.Label>ID:</Form.Label>
-                            <Form.Control placeholder={data._id} disabled />
+                            <Form.Control value={serviceId} disabled />
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Name:</Form.Label>
-                            <Form.Control placeholder={data.name} onChange={(e) => setServiceName(e.target.value)} required/>
+                            <Form.Control value={serviceName} onChange={(e) => setServiceName(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Price:</Form.Label>
-                            <Form.Control placeholder={data.price} onChange={(e) => setServicePrice(e.target.value)} required/>
+                            <Form.Control value={servicePrice} onChange={(e) => setServicePrice(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Description:</Form.Label>
-                            <Form.Control as="textarea" rows={5} placeholder={data.description} onChange={(e) => setServiceDescription(e.target.value)} required/>
+                            <Form.Control as="textarea" rows={5} value={serviceDescription} onChange={(e) => setServiceDescription(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="modalFormRow row3">
                             <Form.Label>Duration:</Form.Label>
-                            <Form.Control placeholder={data.duration} onChange={(e) => setServiceDuration(e.target.value)} required/>
+                            <Form.Control value={serviceDuration} onChange={(e) => setServiceDuration(e.target.value)} required/>
                             <InputGroup.Text> mins</InputGroup.Text>
                         </Form.Group>
                     </Form>

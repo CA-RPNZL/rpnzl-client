@@ -50,6 +50,7 @@ function AdminPortal() {
         );
 
         setAppointments(filterAppointments);
+        console.log(responseData);
       } catch (error) {
         console.log(error);
       }
