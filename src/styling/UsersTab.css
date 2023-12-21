@@ -6,10 +6,11 @@
   padding: 10px;
 }
 
-#servicename,
-#description,
-#price,
-#isHairstylist {
+#username,
+#mobilenumber,
+#email,
+#isHairstylist,
+#services {
   flex: 1;
 }
 

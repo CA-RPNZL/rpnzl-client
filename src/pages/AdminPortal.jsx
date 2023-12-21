@@ -403,7 +403,7 @@ function AdminPortal() {
               <span>Price</span>
               <span>Duration</span>
               <span>Actions</span>
-            </div>`
+            </div>
             {services.map((service) => (
               <ServicesTab
                 key={service._id}
