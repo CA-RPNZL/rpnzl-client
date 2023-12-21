@@ -16,6 +16,20 @@
   text-align: left;
   font-family: "Titan One", sans-serif;
 }
+#adminPortal .portalTabDiv .appointmentsColumnHeadings,
+#adminPortal .portalTabDiv .userColumnHeadings,
+#adminPortal .portalTabDiv .servicesColumnHeadings {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+}
+#adminPortal .portalTabDiv .appointmentsColumnHeadings span,
+#adminPortal .portalTabDiv .userColumnHeadings span,
+#adminPortal .portalTabDiv .servicesColumnHeadings span {
+  flex: 2;
+  font-weight: 900;
+}
 
 #tab-buttons {
   display: flex;
@@ -33,6 +47,8 @@
   font-size: 37px;
 }
 
-.portalTabData {
-  border-top: 1px solid #000;
+@media screen and (max-width: 768px) {
+  #tab-buttons a {
+    font-size: 25px;
+  }
 }/*# sourceMappingURL=AdminPortal.css.map */

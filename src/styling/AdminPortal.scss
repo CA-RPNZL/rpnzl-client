@@ -6,11 +6,11 @@
   flex-grow: 2;
   display: flex;
   flex-direction: column;
-  
+
   .portalTabDiv {
     display: flex;
     flex-direction: column;
-    
+
     .portalTabHeader {
       margin: 0 auto;
       width: 90vw;
@@ -18,6 +18,20 @@
       h1 {
         text-align: left;
         font-family: 'Titan One', sans-serif;
+      }
+    }
+
+    .appointmentsColumnHeadings,
+    .userColumnHeadings,
+    .servicesColumnHeadings {
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+      border-bottom: 1px solid #000;
+
+      span {
+        flex: 2;
+        font-weight: 900;
       }
     }
   }
@@ -33,15 +47,17 @@
     color: black;
     padding: 20px;
     text-decoration: underline;
-    transition: font-size 0.3s ease; 
+    transition: font-size 0.3s ease;
 
     &:hover {
       font-size: 37px;
-
     }
   }
 }
 
-.portalTabData {
-  border-top: 1px solid #000;
+// Media Screen for Tablet
+@media screen and (max-width: $tablet) {
+  #tab-buttons a {
+    font-size: 25px;
+  }
 }
