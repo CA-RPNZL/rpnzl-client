@@ -2,7 +2,7 @@ import "../styling/ModalFormUpdate.css";
 import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
-const AdminUpdateService = ({open, close, data}) => {
+const AdminUpdateService = ({open, close, data, updateServicesList}) => {
     // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
     
@@ -43,9 +43,12 @@ const AdminUpdateService = ({open, close, data}) => {
                 body: JSON.stringify(updatedData)
             });
 
-            if (!response.ok) {
+            if (response.ok) {
+                console.log("Service updated successfully");
+                updateServicesList();
+            } else {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            };
 
             await response.json();
             console.log(response);
@@ -56,9 +59,6 @@ const AdminUpdateService = ({open, close, data}) => {
 
         // Close the modal
         close();
-
-        // Refresh the page
-        window.location.reload();
     };
 
 
