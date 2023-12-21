@@ -32,7 +32,6 @@ function Booking() {
 
     // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-    const userId = localStorage.getItem("userId");
 
     // Import useNavigate
     const navigate = useNavigate();
@@ -93,15 +92,12 @@ function Booking() {
             // If user is logged in, direct user to booking form
             navigate("/booking");
         }
-    }, [jwt, navigate]);
-
-    // Checking if we're updating an appointment
-    useEffect(() => {
+    
+        // Checking if we're updating an appointment
         
         // Check if updateAppointmentData exists
         if (state && state.updateAppointmentData) {
             // Show updateAppointmentData
-            console.log(state.updateAppointmentData);
             setAppId(state.updateAppointmentData.appId);
             setService(state.updateAppointmentData.service);
             setHairstylist(state.updateAppointmentData.hairstylist);
@@ -116,7 +112,7 @@ function Booking() {
             setClient(state.updateAppointmentData.client);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state, userId, client]);
+    }, []);
 
     // Confirm button functionality
     const confirmAppt = async (e) => {

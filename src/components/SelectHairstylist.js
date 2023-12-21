@@ -48,8 +48,19 @@ function SelectHairstylist() {
             }
 
             if (selectedHairstylist !== "") {
-                // Update Next button to be active
-                setDisableNextBtn(false);
+                // Check if selectedHairstylist is from the list of hairstylists
+                const validHairstylist = hairstylistList.some(
+                    hairstylist => hairstylist._id === selectedHairstylist._id
+                );
+
+                if (validHairstylist) {
+                    // Update Next button to be active
+                    setDisableNextBtn(false);
+                } else {
+                    // Update Next button to be disabled
+                    setDisableNextBtn(true);
+                }
+    
             } else {
                 // Update Next button to be disabled
                 setDisableNextBtn(true);

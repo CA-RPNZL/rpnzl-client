@@ -12,6 +12,8 @@ function ServicesTab(props) {
             <div id="price">{props.price}</div>
             {/* Displaying the duration of the service */}
             <div id="duration">{props.duration}</div>
+            {/* Button to trigger the update function when clicked */}
+            <button onClick={props.onUpdate} id="button">Update</button>
             {/* Button to trigger the delete function when clicked */}
             <button onClick={props.onDelete} id="button">Delete</button>
         </div>
