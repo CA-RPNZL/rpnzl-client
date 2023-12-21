@@ -22,6 +22,7 @@ import HS3_1 from "../assets/photos/HS3_1.jpg";
 import HS3_2 from "../assets/photos/HS3_2.jpg";
 import HS3_3 from "../assets/photos/HS3_3.jpg";
 
+// Individual hairdresser component
 const Hairdresser = ({ name, image, photos, bio, services }) => (
   <div className="hairdresser-container">
     {/* Bio section */}
@@ -61,7 +62,9 @@ const Hairdresser = ({ name, image, photos, bio, services }) => (
   </div>
 );
 
+// Main component the renders multiple hairdresser components
 function HairdresserComponent() {
+  // Data for the different hairstylists
   const hairdressers = [
     {
       name: "Michelle",

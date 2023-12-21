@@ -265,7 +265,7 @@ function AdminPortal() {
           Bookings
         </Link>
         <Link href="#" onClick={() => handleTabChange('users')}>
-          Customers
+          Users
         </Link>
         <Link href="#" onClick={() => handleTabChange('services')}>
           Services
@@ -278,6 +278,16 @@ function AdminPortal() {
             <h1>Bookings</h1>
           </div>
           <div id="appointmentcontainer" className="portalTabData">
+            {/* Column Headings */}
+            <div className="appointmentsColumnHeadings">
+              <span>Client</span>
+              <span>Hairstylist</span>
+              <span>Service</span>
+              <span>Date</span>
+              <span>Time</span>
+              <span>Duration</span>
+              <span>Actions</span>
+            </div>
             {appointments.length > 0 &&
               appointments.map((appointment) => (
                 <AppointmentsTab
@@ -289,7 +299,7 @@ function AdminPortal() {
                   date={bookedDate(appointment)}
                   startTime={bookedStartTime(appointment)}
                   endTime={bookedEndTime(appointment)}
-                  onUpdate={(e) => handleUpdateClick(e,appointment)}
+                  onUpdate={(e) => handleUpdateClick(e, appointment)}
                   onDelete={() => handleDeleteClick(appointment._id)}
                 />
               ))}
@@ -300,10 +310,17 @@ function AdminPortal() {
       {activeTab === 'users' && (
         <div id="usersAdmin" className="portalTabDiv">
           <div className="portalTabHeader">
-            <h1>Customers</h1>
+            <h1>Users</h1>
             <AdminAddUser updateUsersList={updateUsersList} />
           </div>
           <div id="user-container" className="portalTabData">
+            {/* Column Headings */}
+            <div className="userColumnHeadings">
+              <span>Name</span>
+              <span>Phone Number</span>
+              <span>Email</span>
+              <span>Actions</span>
+            </div>
             {users.map((user) => (
               <UsersTab
                 key={user._id}
@@ -313,10 +330,9 @@ function AdminPortal() {
                 email={user.email}
                 isHairstylist={user.is_hairstylist}
                 onDelete={() => handleDeleteClick(user._id)}
-
               />
             ))}
-          </div>
+          </div>   
         </div>
       )}
 
@@ -327,6 +343,14 @@ function AdminPortal() {
             <AdminAddService updateServicesList={updateServicesList} />
           </div>
           <div id="service-container" className="portalTabData">
+            {/* Column Headings */}
+            <div className="servicesColumnHeadings">
+              <span>Service</span>
+              <span>Description</span>
+              <span>Price</span>
+              <span>Duration</span>
+              <span>Actions</span>
+            </div>`
             {services.map((service) => (
               <ServicesTab
                 key={service._id}
@@ -335,7 +359,6 @@ function AdminPortal() {
                 price={service.price}
                 duration={service.duration}
                 onDelete={() => handleDeleteClick(service._id)}
-
               />
             ))}
           </div>
