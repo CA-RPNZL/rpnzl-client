@@ -163,7 +163,6 @@ function AdminPortal() {
 
         // Set user object data
         setUpdateObjectData(updateObject);
-        console.log(updateObjectData);
 
         // Open 'Admin Update User' modal
         setOpenUpdateUserModal(true);
@@ -173,7 +172,6 @@ function AdminPortal() {
         
         // Set service object data
         setUpdateObjectData(updateObject);
-        console.log(updateObjectData);
 
         // Open 'Admin Update Service' modal
         setOpenUpdateServiceModal(true);
@@ -301,6 +299,8 @@ function AdminPortal() {
           },
         });
         const responseData = await response.json();
+        console.log("updateUsersList");
+        console.log(responseData);
         setUsers(responseData);
       } catch (error) {
         console.log(error);

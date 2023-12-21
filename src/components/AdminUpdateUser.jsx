@@ -15,7 +15,7 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
     const [email, setEmail] = useState();
     const [isHairstylist, setIsHairstylist] = useState();
     const [services, setServices] = useState();
-    
+
     useEffect(() => {
         // Update data
         if (data) {
@@ -35,14 +35,12 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
     };
     
     const handleHairstylistToggle = (value) => {
-        if (value) {
-            setIsHairstylist(true);
-            document.getElementById("servicesForm").visible = true;
-        } else {
+        if (value === "false") {
             setIsHairstylist(false);
-            document.getElementById("servicesForm").visible = false;
-            setServices(null);
-        }
+            setServices([]);
+        } else {
+            setIsHairstylist(true);
+        };
     };
     
     const handleServicesToggle = (isChecked, value) => {
@@ -53,37 +51,36 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
             [...existingServices, { 
                 _id: value._id, 
                 name: value.name, 
-                    duration: value.duration 
-                }]
-                );
-            } else {
-                // If value is unchecked, remove from services array
-                // Update services state
-                setServices((existingServices) =>
+                duration: value.duration 
+            }]);
+        } else {
+            // If value is unchecked, remove from services array
+            // Update services state
+            setServices((existingServices) =>
                 existingServices.filter((service) => service.name !== value.name)
-                );
-            }
+            );
         };
-        
-        // Handle "Update" button functionality
-        const handleConfirmUpdate = async () => {
-            
-            // Consolidate updated data
-            const updatedData = {
-                userId: userId ?? data._id,
-                firstName: firstName ?? data.firstName,
-                lastName: lastName ?? data.lastName,
-                mobileNumber: mobileNumber ?? data.mobileNumber,
-                email: email ?? data.email,
-                isHairstylist: isHairstylist ?? data.isHairstylist,
-                services: services ?? data.services,
-            }
-                
-            console.log(updatedData);
+    };
+    
+    // Handle "Update" button functionality
+    const handleConfirmUpdate = async () => {
 
-            // Send PATCH request to update user
-            try {
-                const response = await fetch(process.env.REACT_APP_API + "/users/id/" + updatedData.userId, {
+        // Consolidate updated data
+        const updatedData = {
+            _id: userId ?? data._id,
+            firstName: firstName ?? data.firstName,
+            lastName: lastName ?? data.lastName,
+            mobileNumber: mobileNumber ?? data.mobileNumber,
+            email: email ?? data.email,
+            is_hairstylist: isHairstylist ?? data.is_hairstylist,
+            services: services ?? data.services,
+        };
+                
+        console.log(updatedData);
+
+        // Send PATCH request to update user
+        try {
+                const response = await fetch(process.env.REACT_APP_API + "/users/id/" + updatedData._id, {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
@@ -110,8 +107,6 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
             // Close the modal
             close();
         };
-        
-
 
 
 
@@ -146,15 +141,17 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                         </Form.Group>
                         <Form.Group className="modalFormRow">
                             <Form.Label>Hairstylist:</Form.Label>
-                            <Form.Select onChange={(e) => handleHairstylistToggle(e.target.value)} defaultValue={isHairstylist}>
+                            <Form.Select onChange={(e) => handleHairstylistToggle(e.target.value)} value={String(isHairstylist)}>
+                            {/* value attribute only takes strings */}
                                 <option value="true">True</option>
                                 <option value="false">False</option>
                             </Form.Select>
                         </Form.Group>
                         {/* Hide services field if user is not a hairstylist */}
-                        {/* {isHairstylist && ( */}
+                        {isHairstylist && (
                             <Form.Group className="modalFormRow" id="servicesForm">
                                 <Form.Label>Services:</Form.Label>
+
                                 <div id="userServiceList">
                                     {servicesList.map(serviceListItem =>
                                         <Form.Check 
@@ -168,7 +165,7 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                                     )}
                                 </div>
                             </Form.Group>
-                        {/* )} */}
+                        )}
                     </Form>
                 </div>
                 <div id="modalButtons">

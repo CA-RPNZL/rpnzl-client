@@ -35,7 +35,7 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
 
         // Consolidate updated data
         const updatedData = {
-            serviceId: serviceId ?? data._id,
+            _id: serviceId ?? data._id,
             name: serviceName ?? data.name,
             price: servicePrice ?? data.price,
             description: serviceDescription ?? data.description,
@@ -46,7 +46,7 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
         
         // Send PATCH request to update service
         try {
-            const response = await fetch(process.env.REACT_APP_API + "/services/id/" + updatedData.serviceId, {
+            const response = await fetch(process.env.REACT_APP_API + "/services/id/" + updatedData._id, {
                 method: "PATCH",
                 headers: {
                 "Content-Type": "application/json",
