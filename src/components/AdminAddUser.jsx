@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ModalForm from '../components/ModalFormAdd';
 import { Button } from 'react-bootstrap';
+import "../styling/components/AdminAddUser.css"
 
 function AdminAddUser({ updateUsersList }) {
   const [openAddUserModal, setOpenAddUserModal] = useState(false);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import '../styling/Modal.css';
+import '../styling/ModalForm.css';
 
 const ModalForm = ({ open, heading, subheading, text, onClose, handleClick, children }) => {
   if (!open) {
