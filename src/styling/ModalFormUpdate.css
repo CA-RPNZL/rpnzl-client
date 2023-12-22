@@ -1,0 +1,73 @@
+.overlay {
+  top: 0;
+  right: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.modalContainer {
+  max-width: none;
+  min-width: 280px;
+  width: 80%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FBF8F0;
+  border: 2px solid #E8EADD;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 18px 0 rbga(0, 0, 0, 0.75);
+}
+.modalContainer i {
+  float: right;
+  cursor: pointer;
+}
+.modalContainer .modalContent h3 {
+  font-family: "Titan One", sans-serif;
+  font-weight: lighter;
+}
+.modalContainer #modalFormDiv #modalForm {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.modalContainer #modalFormDiv #modalForm .modalFormRow {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-bottom: 10px;
+}
+.modalContainer #modalFormDiv #modalForm .modalFormRow input.form-control, .modalContainer #modalFormDiv #modalForm .modalFormRow select.form-select, .modalContainer #modalFormDiv #modalForm .modalFormRow textarea.form-control {
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ABAF95;
+  border-radius: 5px;
+  color: black;
+}
+.modalContainer #modalFormDiv #modalForm .row3 {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.modalContainer #modalButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modalContainer #modalButtons Button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bolder;
+  padding: 5px 10px;
+  font-family: "Montserrat", sans-serif;
+  width: 180px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+  .modalContainer {
+    max-width: 500px;
+  }
+}/*# sourceMappingURL=ModalFormUpdate.css.map */

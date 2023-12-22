@@ -23,6 +23,7 @@
 .modalContainer i {
   float: right;
   cursor: pointer;
+  font-size: 2rem;
 }
 .modalContainer Button {
   background-color: #E8EADD;
@@ -31,7 +32,6 @@
   margin-top: 10px;
   font-weight: bolder;
   padding: 5px 10px;
-  font-family: "Montserrat", sans-serif;
   width: 180px;
   cursor: pointer;
 }
@@ -49,6 +49,9 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .modalContainer {
+    max-width: 500px;
+  }
   .modalContainer .modalContent p {
     font-size: 14px;
   }

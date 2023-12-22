@@ -8,20 +8,28 @@ import Modal from '../components/Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import AdminAddService from '../components/AdminAddService';
 import AdminAddUser from '../components/AdminAddUser';
+import AdminUpdateService from '../components/AdminUpdateService';
+import AdminUpdateUser from '../components/AdminUpdateUser';
 
 function AdminPortal() {
   const [appointments, setAppointments] = useState([]);
   const [users, setUsers] = useState([]);
   const [services, setServices] = useState([]);
   const [activeTab, setActiveTab] = useState('appointments');
+  const [openUpdateUserModal, setOpenUpdateUserModal] = useState(false);
+  const [openUpdateServiceModal, setOpenUpdateServiceModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [updateObjectData, setUpdateObjectData] = useState(null);
 
   // Grab JWT from local storage
   const jwt = localStorage.getItem('jwt');
 
   // Import useNavigate
   const navigate = useNavigate();
+  
+  // Grab current date
+  let currentDate = new Date();
 
   useEffect(() => {
     // Fetch list of appointments
@@ -34,8 +42,14 @@ function AdminPortal() {
             authtoken: jwt,
           },
         });
-        const responseData = await response.json();
-        setAppointments(responseData);
+        let responseData = await response.json();
+
+        // Filter appointments for future dates only
+        const filterAppointments = responseData.filter(appointment => 
+          new Date(appointment.startDateTime) >= currentDate
+        );
+
+        setAppointments(filterAppointments);
         console.log(responseData);
       } catch (error) {
         console.log(error);
@@ -54,6 +68,7 @@ function AdminPortal() {
         });
         const responseData = await response.json();
         setUsers(responseData);
+        console.log(responseData);
       } catch (error) {
         console.log(error);
       }
@@ -79,6 +94,7 @@ function AdminPortal() {
     fetchAppointments();
     fetchUsers();
     fetchServices();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt]);
 
   // Switch between tabs
@@ -117,27 +133,58 @@ function AdminPortal() {
   };
 
   // 'Update' button functionality
-  const handleUpdateClick = async (e, appointment) => {
+  // Opens up update modal
+  const handleUpdateClick = async (e, updateObject) => {
     e.preventDefault();
-    console.log("Update appointment: " + appointment._id);
-    try {
-      // Prepare appointment data to be sent
-      const updateAppointmentData = {
-        appId: appointment._id,
-        client: appointment.client,
-        service: appointment.service,
-        hairstylist: appointment.hairstylist,
-        startDateTime: appointment.startDateTime,
-        endDateTime: appointment.endDateTime
-      }
-      
-      // Navigate to booking page with appointment data
-      console.log(updateAppointmentData);
-      navigate("/booking", { state: {updateAppointmentData}});
+    switch (activeTab) {
+      case 'appointments':
+        console.log("Update appointment: " + updateObject._id);
+        try {
+          // Prepare appointment data to be sent
+          const updateAppointmentData = {
+            appId: updateObject._id,
+            client: updateObject.client,
+            service: updateObject.service,
+            hairstylist: updateObject.hairstylist,
+            startDateTime: updateObject.startDateTime,
+            endDateTime: updateObject.endDateTime
+          }
+          
+          // Navigate to booking page with appointment data
+          console.log(updateAppointmentData);
+          navigate("/booking", { state: {updateAppointmentData}});
+    
+        } catch (error) {
+          console.error("Error preparing to update appointment:", error);
+        }
+        break;
+      case 'users':
+        console.log("Update user: " + updateObject._id);
 
-    } catch (error) {
-      console.error("Error preparing to update appointment:", error);
+        // Set user object data
+        setUpdateObjectData(updateObject);
+
+        // Open 'Admin Update User' modal
+        setOpenUpdateUserModal(true);
+        break;
+      case 'services':
+        console.log("Update service: " + updateObject._id);
+        
+        // Set service object data
+        setUpdateObjectData(updateObject);
+
+        // Open 'Admin Update Service' modal
+        setOpenUpdateServiceModal(true);
+        break;
+      default:
+        break;
     }
+  };
+
+  // Handle cancelling the update modal
+  const handleUpdateCancel = () => {
+    setOpenUpdateServiceModal(false);
+    setOpenUpdateUserModal(false);
   };
 
   // 'Delete' button functionality
@@ -252,6 +299,8 @@ function AdminPortal() {
           },
         });
         const responseData = await response.json();
+        console.log("updateUsersList");
+        console.log(responseData);
         setUsers(responseData);
       } catch (error) {
         console.log(error);
@@ -319,6 +368,8 @@ function AdminPortal() {
               <span>Name</span>
               <span>Phone Number</span>
               <span>Email</span>
+              <span>Hairstylist</span>
+              <span>Services</span>
               <span>Actions</span>
             </div>
             {users.map((user) => (
@@ -328,7 +379,9 @@ function AdminPortal() {
                 lastName={user.lastName}
                 mobileNumber={user.mobileNumber}
                 email={user.email}
-                isHairstylist={user.is_hairstylist}
+                is_hairstylist={user.is_hairstylist ? "true" : "false"} // Need to add in string values to populate
+                services={user.services.map(service => service.name).join(", ")}
+                onUpdate={(e) => handleUpdateClick(e,user)}
                 onDelete={() => handleDeleteClick(user._id)}
               />
             ))}
@@ -350,7 +403,7 @@ function AdminPortal() {
               <span>Price</span>
               <span>Duration</span>
               <span>Actions</span>
-            </div>`
+            </div>
             {services.map((service) => (
               <ServicesTab
                 key={service._id}
@@ -358,6 +411,7 @@ function AdminPortal() {
                 description={service.description}
                 price={service.price}
                 duration={service.duration}
+                onUpdate={(e) => handleUpdateClick(e,service)}
                 onDelete={() => handleDeleteClick(service._id)}
               />
             ))}
@@ -371,6 +425,19 @@ function AdminPortal() {
         heading={getDeleteModalContent().heading}
         subheading={getDeleteModalContent().subheading}
         text={getDeleteModalContent().text}
+      />
+      <AdminUpdateService 
+        open={openUpdateServiceModal} 
+        close={handleUpdateCancel}
+        data={updateObjectData} 
+        updateServicesList={updateServicesList}
+      />
+      <AdminUpdateUser 
+        open={openUpdateUserModal} 
+        close={handleUpdateCancel}
+        data={updateObjectData} 
+        servicesList={services}
+        updateUsersList={updateUsersList}
       />
     </div>
   );
