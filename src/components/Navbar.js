@@ -1,7 +1,8 @@
 import "../styling/Navbar.css";
-import { Link } from "react-router-dom";
-import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from 'react';
 import { useUserContext } from "../contexts/UserContext";
+import AppointmentContext from "../contexts/AppointmentContext";
 
 const Navbar = () => {
     // Toggle open and close nav bar
@@ -10,17 +11,52 @@ const Navbar = () => {
     // Grab logout from User Context
     const { logout } = useUserContext();
 
-    // Grab JWT from local storage
+    // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-
-    // Grab isAdmin from local storage
     const isAdmin = localStorage.getItem("isAdmin");
+
+    // Import useNavigate
+    const navigate = useNavigate();
+
+    // Reset stored appointment data function
+    const {resetAppointment, setClient, setAppId} = useContext(AppointmentContext);
 
 
     // Function if a user logs out
     const handleLogOut = () => {
+        // Close navigation menu
         setToggle(!toggle);
+        // Reset current stored data if service input changes
+        resetAppointment();
+        setClient("");
+        // Log out user
         logout();
+    }
+
+    // Function to handle link clicks
+    const handleClick = (path, event) => {
+        event.preventDefault();
+        // Navigate to path
+        navigate(path);
+        // Close navigation menu
+        setToggle(!toggle);
+        // Reset current stored data if service input changes
+        resetAppointment();
+        setClient("");
+        // Reset appId
+        setAppId(null);
+    }
+
+    // Function to handle link clicks
+    const handleLogoClick = (path, event) => {
+        event.preventDefault();
+        // Navigate to path
+        navigate(path);
+        // Reset current stored data if service input changes
+        resetAppointment();
+        setClient("");
+        // Reset appId
+        setAppId(null);
     }
 
 
@@ -35,16 +71,16 @@ const Navbar = () => {
     if (!jwt) {
         // If user is not logged in:
         // Show link to sign up page instead of account page
-        signUpAccountLink = <Link to="/signup">Sign up</Link>
+        signUpAccountLink = <Link onClick={(event) => handleClick("/signup", event)}>Sign up</Link>
         // Show link to log in page instead of log out
-        logInLink = <Link to="/login">Log in</Link>
+        logInLink = <Link onClick={(event) => handleClick("/login", event)}>Log in</Link>
     } else {
         // If user is logged in, check if user is admin
-        if (isAdmin === "true") {
+        if (isAdmin) {
             // Show link to account page instead of sign up
-            signUpAccountLink = <Link to="/admin">Admin</Link>
+            signUpAccountLink = <Link onClick={(event) => handleClick("/admin", event)}>Admin</Link>
         } else {
-            signUpAccountLink = <Link to="/userportal">Account</Link>
+            signUpAccountLink = <Link onClick={(event) => handleClick("/userportal", event)}>Account</Link>
         }
         // Show link to log out instead of log out
         logInLink = <Link to="/" onClick={handleLogOut}>Log out</Link>
@@ -54,7 +90,7 @@ const Navbar = () => {
         <div id="navHeader">
             <header id="header">
                 <div className="container">
-                    <Link to="/" id="logo">
+                    <Link onClick={(event) => handleLogoClick("/", event)} id="logo">
                         RPNZL
                     </Link>
                 </div>
@@ -63,10 +99,10 @@ const Navbar = () => {
                 </div>
                 <nav> 
                     <ul id="navbar" className={toggle ? "#navbar open" : "#navbar"}>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/services">Services</Link></li>
-                        <li><Link to="/contactus">Contact Us</Link></li>
-                        <li><Link to="/booking">Book Now</Link></li>
+                        <li><Link onClick={(event) => handleClick("/about", event)}>About</Link></li>
+                        <li><Link onClick={(event) => handleClick("/services", event)}>Services</Link></li>
+                        <li><Link onClick={(event) => handleClick("/contactus", event)}>Contact us</Link></li>
+                        <li><Link onClick={(event) => handleClick("/booking", event)}>Book now</Link></li>
                         <li>{signUpAccountLink}</li>
                         <li>{logInLink}</li>
                     </ul>

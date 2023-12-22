@@ -1,5 +1,5 @@
 import "../styling/Booking.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from "../functions/formatDate";
 import AppointmentContext from "../contexts/AppointmentContext";
 
@@ -7,24 +7,24 @@ import AppointmentContext from "../contexts/AppointmentContext";
 function PreConfirmation() {
     // Use AppointmentContext data
     const appointment = useContext(AppointmentContext);
-
-    // Update disableNextBtn
     const {setDisableNextBtn} = useContext(AppointmentContext);
 
-    // Fetch appointment data
-    const fetchAppointmentData = async () => {
-
-        // If missing client ID (e.g. user is not logged in)
-        if (appointment.client === "") {
-            console.error("Error: Missing client ID.");
-
-            // Update Next button to be disabled
-            setDisableNextBtn(true);
-        }
-
-    }
-    fetchAppointmentData();
+    useEffect(() => {
+        // Fetch appointment data
+        const fetchAppointmentData = async () => {
     
+            // If missing client ID (e.g. user is not logged in)
+            if (appointment.client === "") {
+                console.error("Error: Missing client ID.");
+    
+                // Update Next button to be disabled
+                setDisableNextBtn(true);
+            }
+        }
+        fetchAppointmentData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[appointment]);
+
     // Update start date with date formatting
     const selectedDate = formattedAppointmentDate(appointment.selectedStartDateTime);
     
@@ -33,6 +33,8 @@ function PreConfirmation() {
     
     // Update end date with time formatting
     const selectedEndTime = formattedAppointmentEndTime(appointment.selectedEndDateTime);
+
+
 
     return (
             <div id="preConfirmationDiv">

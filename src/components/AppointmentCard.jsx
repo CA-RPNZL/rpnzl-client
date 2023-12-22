@@ -27,19 +27,19 @@ function AppointmentCard(props) {
                             <td>with {props.hairstylist.firstName} {props.hairstylist.lastName}</td>
                         </tr>
                         {/* If user is hairstylist, show client's name */}
-                        { isHairstylist === "true" && 
+                        { isHairstylist === "true" && (
                             <tr>
                                 <td><FontAwesomeIcon icon={faUserClock} /></td>
                                 <td>for {props.client.firstName} {props.client.lastName}</td>
                             </tr>
-                        }
+                        )}
                         {/* If user is hairstylist, show client's phone number */}
-                        { isHairstylist === "true" && 
+                        { isHairstylist === "true" && (
                             <tr>
                                 <td><FontAwesomeIcon icon={faPhone} /></td>
                                 <td>{props.client.mobileNumber}</td>
                             </tr>
-                        }
+                        )}
                     </tbody>
                 </table>
             </div>

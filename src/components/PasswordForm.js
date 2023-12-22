@@ -6,14 +6,16 @@ import { toast } from 'react-toastify';
 import Loader from './Loader';
 
 function PasswordForm() {
+    // State variables to manage form input and loading state
     const[oldPassword, setOldPassword] = useState("");
     const[newPassword, setNewPassword] = useState("");
     const[confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-   
+    // Function to handle form submission
     const handleSubmit = async(event) => {
+        // Preventing the default form submission behavior
         console.log("Submitting password form...")
         event.preventDefault();
 
@@ -45,9 +47,11 @@ function PasswordForm() {
         }
         try {
             setLoading(true);
-
+            
+            // Retrieving JWT token and user ID from local storage
             const jwt = localStorage.getItem("jwt")
             const userId = localStorage.getItem("userId");
+            // Making a PATCH request to update the user's password
             const response = await fetch(process.env.REACT_APP_API + '/changepassword/' + userId, {
                 method: "PATCH",
                 headers: {
@@ -59,13 +63,17 @@ function PasswordForm() {
                     newPassword: newPassword,
                 }),
             })
-
+            
+            // Parsing the response JSON data
             const responseData = await response.json();
 
+            // Handling different scenarios based on the response message
             if(responseData.message === "Successfully changed password") {
                 toast.success("Successfully changed password");
+                // Clearing JWT token and user ID from local storage
                 localStorage.removeItem("jwt");
                 localStorage.removeItem("userId");
+                // Navigating to the login page
                 navigate("/login");
             } else if (responseData.message  === "Invalid current password") {
                 toast.error("Invalid current password, please try again.");
@@ -75,6 +83,7 @@ function PasswordForm() {
                 console.log(responseData.message);
             }
         } catch (error) {
+            // Logging and displaying an error message in case of an exception
             console.error(error);
             toast.error("An error occurred");
         } finally {
@@ -86,25 +95,30 @@ function PasswordForm() {
         <div>
             <form onSubmit={handleSubmit}className="userPortalForm">
             <h3>Update Password</h3>
+             {/* Input field for the old password */}
             <input 
                 className="formFields" 
                 type="password" 
                 id="oldPassword"
                 placeholder="Current password"
                 onChange={(event) => setOldPassword(event.target.value)}/>
+                {/* Input field for the new password */}
             <input 
                 className="formFields" 
                 type="password"  
                 id="newPassword"
                 placeholder="New password"
                 onChange={(event) => setNewPassword(event.target.value)}/>
+                  {/* Input field for confirming the new password */}
             <input 
                 className="formFields" 
                 type="password" 
                 id="confirmPassword"
                 placeholder='Confirm new password'
                 onChange={(event) => setConfirmPassword(event.target.value)}/>
+             {/* Button to submit the form */}
             <Button type="submit">Update Password</Button>
+            {/* Loader component for indicating loading state */}
             <Loader open={loading}/>
         </form>
         </div>

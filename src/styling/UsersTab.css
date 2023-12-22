@@ -6,9 +6,28 @@
   padding: 10px;
 }
 
-#servicename,
-#description,
-#price,
-#isHairstylist {
+#username,
+#mobilenumber,
+#email,
+#isHairstylist,
+#services {
   flex: 1;
+}
+
+#button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  font-family: "Montserrat";
+  border-radius: 4px;
+  font-weight: bolder;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+  max-height: 40px;
+  max-width: 70px;
+}
+#button:hover {
+  background-color: #ABAF95;
+  color: white;
 }/*# sourceMappingURL=UsersTab.css.map */

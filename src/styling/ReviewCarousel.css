@@ -10,18 +10,7 @@
   height: 200px;
   max-width: 500px;
   background-color: #FBF8F0;
-}
-
-.review {
-  margin-top: 60px;
-}
-.review p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-}
-
-@media screen and (min-width: 768px) {
-  .review p {
-    font-size: 16px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=ReviewCarousel.css.map */

@@ -1,21 +1,30 @@
 .appointmentTab {
-  width: 100%;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 10px;
 }
-.appointmentTab #appointmentHeader #clientname {
-  font-weight: bold;
+.appointmentTab #clientname,
+.appointmentTab #hairstylistname,
+.appointmentTab #servicename,
+.appointmentTab #startDate,
+.appointmentTab #startTime,
+.appointmentTab #duration {
+  flex: 1;
 }
-.appointmentTab #appointmentHeader #hairstylistname {
-  color: #555;
+.appointmentTab #button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  font-family: "Montserrat";
+  border-radius: 4px;
+  font-weight: bolder;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+  max-height: 40px;
+  max-width: 70px;
 }
-.appointmentTab #appointmentHeader #servicename {
-  text-decoration: underline;
-}
-.appointmentTab #appointmentHeader #duration {
-  color: #888;
+.appointmentTab #button:hover {
+  background-color: #ABAF95;
+  color: white;
 }/*# sourceMappingURL=AppointmentsTab.css.map */

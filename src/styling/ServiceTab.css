@@ -1,0 +1,18 @@
+.ServiceTab {
+  background-color: #FBF8F0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.ServiceTab h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+}
+
+#servicename,
+#description,
+#price,
+#isHairstylist {
+  flex: 1;
+}/*# sourceMappingURL=ServiceTab.css.map */

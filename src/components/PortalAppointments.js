@@ -2,19 +2,18 @@ import "../styling/PortalAppointments.css"
 import { Carousel } from 'react-responsive-carousel';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 import { formattedAppointmentDate, formattedAppointmentEndTime, formattedAppointmentStartTime } from "../functions/formatDate";
 import Modal from '../components/Modal';
 import AppointmentCard from './AppointmentCard';
+import Loader from "./Loader";
+
 
 
 function PortalAppointments() {
-    // Grab jwt from local storage
+    // Grab data from local storage
     const jwt = localStorage.getItem("jwt");
-
-    // Grab userId from local storage
     const userId = localStorage.getItem("userId");
-    
-    // Grab isHairstylist from local storage
     const isHairstylist = localStorage.getItem("isHairstylist");
 
     // Create state for list of appointments
@@ -23,9 +22,17 @@ function PortalAppointments() {
     // Create state for modal
     const [openCancelModal, setOpenCancelModal] = useState(false);
 
+    // Import useNavigate
+    const navigate = useNavigate();
+
+    // Create state for loading
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         // Fetch list of existing appointments
         const fetchAppointments = async () => {
+            setLoading(true);
+
             try {
                 let response;
                 // If user is a customer
@@ -39,7 +46,7 @@ function PortalAppointments() {
                         },
                     });
                 // If user is a hairstylist
-                } else if (userId !== "" && isHairstylist === "true") {
+                } else if (userId !== "" && isHairstylist) {
                     // Grab all existing appointments for hairstylist
                     response = await fetch(process.env.REACT_APP_API + "/appointments/hairstylist/" + userId + "?pastAppt=false", {
                         method: 'GET',
@@ -54,6 +61,8 @@ function PortalAppointments() {
                 console.log(responseData);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -70,15 +79,21 @@ function PortalAppointments() {
     // Format appointment end time
     const bookedEndTime = (appointment) => formattedAppointmentEndTime(appointment.endDateTime);
 
+
     
+
     // 'Cancel Appointment' button functionality
-    const handleCancelBtn = async () => {
+    const handleCancelBtn = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
         try {
             // Get id of current appointment shown in carousel
             const currentApptId = document.querySelector("li.selected div").id;
-    
+
             // Get ID of selected appointment
-            console.log(currentApptId)
+            console.log("Current appointment ID: " + currentApptId);
     
             // Cancel appointment
     
@@ -104,8 +119,55 @@ function PortalAppointments() {
             console.log("Delete successful");
         } catch (error) {
             console.error("Error deleting appointment:", error);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
+
+
+    // 'Update appointment' button functionality
+    const handleUpdateBtn = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
+        try {
+            // Fetch appointment data to store in state
+
+            // Get id of current appointment shown in carousel
+            const currentApptId = document.querySelector("li.selected div").id;
+            
+            // Get ID of selected appointment
+            console.log("Current appointment ID: " + currentApptId);
+    
+            // GET request: /appointments/id/:id
+            const result = await fetch(process.env.REACT_APP_API + "/appointments/id/" + currentApptId, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authtoken": jwt
+                },
+            }).then(response => response.json());
+
+            const updateAppointmentData = {
+                appId: result._id,
+                client: result.client,
+                service: result.service,
+                hairstylist: result.hairstylist,
+                startDateTime: result.startDateTime,
+                endDateTime: result.endDateTime
+            }
+
+            // Navigate to booking page with appointment data
+            // navigate("/new-route", { state: { key: "value" } });
+            console.log(updateAppointmentData);
+            navigate("/booking", { state: {updateAppointmentData}});
+        } catch (error) {
+            console.error("Error preparing to update appointment:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
 
@@ -141,8 +203,9 @@ function PortalAppointments() {
                     ))}
                 </Carousel>
 
+
                 <div id="apptButtonDiv">
-                    <Button className="apptButtons">Update appointment</Button>
+                    <Button className="apptButtons" onClick={handleUpdateBtn}>Update appointment</Button>
                     <Button className="apptButtons" onClick={() => setOpenCancelModal(true)}>Cancel appointment</Button>
                 </div>
 
@@ -158,7 +221,8 @@ function PortalAppointments() {
                 handleClick={handleCancelBtn}
                 />   
             </div>
-            }           
+            } 
+            <Loader open={loading} />          
         </div>
     )
 }
