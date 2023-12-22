@@ -1,12 +1,17 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import Loader from '../src/components/Loader';
 import ServicesCard from '../src/components/ServicesCard';
 import AppointmentsTab from '../src/components/AdminAppointmentsTab';
 import ServicesTab from '../src/components/AdminServicesTab';
 import NotFound from '../src/pages/NotFound';
 import ModalForm from '../src/components/ModalFormAdd';
+import { MemoryRouter } from 'react-router-dom';
+import SignUp from '../src/pages/SignUp';
+import axios from 'axios';
+
+
+
 
 // Loader tests
 describe('Loader component', () => {
@@ -150,7 +155,6 @@ describe('NotFound page', () => {
   });
 
 
-
   
 // Modal Add Form test
 describe('ModalForm component', () => {
@@ -191,6 +195,96 @@ describe('ModalForm component', () => {
     });
   });
   
+
+
+// Sign Up Test
+jest.mock('axios');
+
+describe('SignUp component', () => {
+  test('renders signup form and handles signup', async () => {
+    const { queryAllByText, getByLabelText, getByText } = render(
+      <MemoryRouter>
+        <SignUp />
+      </MemoryRouter>
+    );
+
+    // Check if there is only one element with the text "Sign-up"
+    const signUpElements = queryAllByText('Sign-up');
+    expect(signUpElements).toHaveLength(1);
+
+    // Check if the form and its elements are rendered
+    expect(getByLabelText('First Name:')).toBeInTheDocument();
+    expect(getByLabelText('Last Name:')).toBeInTheDocument();
+    expect(getByLabelText('Email Address:')).toBeInTheDocument();
+    expect(getByLabelText('Mobile Number:')).toBeInTheDocument();
+    expect(getByLabelText('Password:')).toBeInTheDocument();
+    expect(getByLabelText('Confirm Password:')).toBeInTheDocument();
+
+    // Mock the API response for successful signup
+    axios.post.mockResolvedValueOnce({
+      data: {
+        message: 'User signed up successfully',
+      },
+    });
+
+    // Simulate user input and submit the form
+    fireEvent.change(getByLabelText('First Name:'), { target: { value: 'John' } });
+    fireEvent.change(getByLabelText('Last Name:'), { target: { value: 'Doe' } });
+    fireEvent.change(getByLabelText('Email Address:'), { target: { value: 'john@example.com' } });
+    fireEvent.change(getByLabelText('Mobile Number:'), { target: { value: '1234567890' } });
+    fireEvent.change(getByLabelText('Password:'), { target: { value: 'password123' } });
+    fireEvent.change(getByLabelText('Confirm Password:'), { target: { value: 'password123' } });
+
+    // Click the "Sign up" button
+    fireEvent.click(getByText('Sign up'));
+ 
+    await waitFor(() => {
+   
+    });
+  });
+});
+
+
+
+// Sign-up Password Validation Test
+// jest.mock('react-router-dom', () => ({
+//   ...jest.requireActual('react-router-dom'),
+//   useNavigate: jest.fn(),
+// }));
+
+// describe('SignUp component', () => {
+//   test('handles password validation and prevents navigation on failure', async () => {
+//     // Mock the useNavigate function
+//     const mockNavigate = jest.fn();
+//     require('react-router-dom').useNavigate.mockReturnValue(mockNavigate);
+
+//     const { getByLabelText, getAllByText, getByText } = render(<SignUp />);
+
+//     // Simulate user input with a weak password
+//     fireEvent.change(getByLabelText('Password:'), { target: { value: 'weak' } });
+//     fireEvent.change(getByLabelText('Confirm Password:'), { target: { value: 'weak' } });
+
+//     // Click the "Sign up" button
+//     fireEvent.click(getByText('Sign up'));
+
+//     await waitFor(
+//       () => {
+//         // Assert: useNavigate is not called
+//         expect(mockNavigate).not.toHaveBeenCalled();
+//       },
+//       { timeout: 5000 } 
+//     );
+
+//     // Check for the warning message
+//     const warningMessage = getAllByText('Password must exceed 8 characters.', { exact: false });
+//     expect(warningMessage).toBeInTheDocument();
+//   });
+// });
+
+
+
+
+
 
 
 

@@ -74,10 +74,6 @@ function SignUp() {
   
       // Log the server response
       console.log(response.data); 
-  
-      // Log successful response 
-      console.log("Welcome to RPNZL!");
-      toast.success("Welcome to RPNZL!");
 
       // Navigate to login page
       navigate("/login");
@@ -107,7 +103,7 @@ function SignUp() {
       <div id="signUpImageDiv">
       </div>
       <div id="signUpFormDiv"> 
-        <h2>Sign up</h2> 
+        <h2>Sign-up</h2> 
         <form id="signUpForm" onSubmit={handleSubmit}>
           <div className="inputGroup">
             <label htmlFor="firstName">First Name:</label> 
