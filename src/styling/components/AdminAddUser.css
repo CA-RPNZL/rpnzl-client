@@ -1,44 +1,27 @@
-#AdminAdd #AddButton {
-  background-color: #E8EADD;
-  border: 2px solid #ABAF95;
-  font-family: "Montserrat";
-  border-radius: 4px;
-  font-weight: bolder;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.1s ease-out;
-  text-decoration: none;
-  max-height: 50px;
-  max-width: 100px;
-}
-#AdminAdd #AddButton:hover {
-  background-color: #ABAF95;
-  color: white;
-}
-#AdminAdd .modalForm {
+#AdminAddUser .modalForm {
   text-align: center;
 }
-#AdminAdd .modalForm form {
+#AdminAddUser .modalForm form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-#AdminAdd .modalForm form label {
+#AdminAddUser .modalForm form label {
   margin-bottom: 5px;
 }
-#AdminAdd .modalForm form label:not([for=mobileNumber]) {
+#AdminAddUser .modalForm form label:not([for=mobileNumber]) {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
-#AdminAdd .modalForm form label[for=mobileNumber] {
+#AdminAddUser .modalForm form label[for=mobileNumber] {
   text-align: center;
 }
-#AdminAdd .modalForm form input,
-#AdminAdd .modalForm form textarea,
-#AdminAdd .modalForm form select {
+#AdminAddUser .modalForm form input,
+#AdminAddUser .modalForm form textarea,
+#AdminAddUser .modalForm form select {
   margin-bottom: 10px;
   width: 100%;
 }/*# sourceMappingURL=AdminAddUser.css.map */

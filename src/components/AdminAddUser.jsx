@@ -116,8 +116,8 @@ function AdminAddUser({ updateUsersList }) {
   };
 
   return (
-    <div id="AdminAdd">
-      <Button id="AddButton" nClick={handleOpenAddUserModal}>Add User</Button>
+    <div id="AdminAddUser">
+      <Button onClick={handleOpenAddUserModal}>Add User</Button>
       {/* Add User Modal */}
       <ModalForm
         open={openAddUserModal}
