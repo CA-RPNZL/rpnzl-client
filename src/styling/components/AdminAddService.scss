@@ -1,7 +1,7 @@
 @import "../variables";
 
-#AdminAddUser {
-    // Style for the "Add User" button
+#AdminAddService {
+    // Style for the "Add Service" button
     Button {
       @each $property, $value in $button-styles {
         #{$property}: $value;
@@ -12,4 +12,5 @@
         }
       }
     }
+  
   }

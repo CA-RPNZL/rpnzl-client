@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ModalForm from '../components/ModalFormAdd';
 import { Button } from 'react-bootstrap';
+import "../styling/components/AdminAddService.css";
 
 function AdminAddService({ updateServicesList }) {
     const [openAddServiceModal, setOpenAddServiceModal] = useState(false);
