@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ModalForm from '../components/ModalFormAdd';
 import { Button } from 'react-bootstrap';
+import "../styling/components/AdminAddUser.css"
 
 function AdminAddService({ updateServicesList }) {
     const [openAddServiceModal, setOpenAddServiceModal] = useState(false);
@@ -66,8 +67,8 @@ function AdminAddService({ updateServicesList }) {
   };
 
   return (
-    <div id="AdminAddService">
-        <Button onClick={handleOpenAddServiceModal}>Add Service</Button>
+    <div id="AdminAdd">
+        <Button id="AddButton" onClick={handleOpenAddServiceModal}>Add Service</Button>
         {/* Add Service Modal */}
       <ModalForm
         open={openAddServiceModal}

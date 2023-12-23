@@ -20,8 +20,8 @@
   cursor: pointer;
   transition: 0.1s ease-out;
   text-decoration: none;
-  max-height: 40px;
-  max-width: 70px;
+  max-height: 50px;
+  max-width: 100px;
 }
 .servicesTab #button:hover {
   background-color: #ABAF95;
