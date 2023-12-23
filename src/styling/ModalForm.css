@@ -60,8 +60,23 @@
   padding: 10px 20px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .modalContainer .modalContent p {
     font-size: 14px;
   }
-} /*# sourceMappingURL=ModalForm.css.map */
+  .modalContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modalContainer form label {
+    margin-bottom: 5px;
+  }
+  .modalContainer form input,
+  .modalContainer form textarea,
+  .modalContainer form select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+/*# sourceMappingURL=ModalForm.css.map */
