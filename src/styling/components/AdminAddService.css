@@ -1,4 +1,4 @@
-#AdminAddUser Button {
+#AdminAddService Button {
   background-color: #E8EADD;
   border: 2px solid #ABAF95;
   font-family: "Montserrat";
@@ -11,7 +11,7 @@
   max-height: 40px;
   max-width: 110px;
 }
-#AdminAddUser Button:hover {
+#AdminAddService Button:hover {
   background-color: #ABAF95;
   color: white;
-}/*# sourceMappingURL=AdminAddUser.css.map */
+}/*# sourceMappingURL=AdminAddService.css.map */

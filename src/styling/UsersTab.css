@@ -25,7 +25,7 @@
   transition: 0.1s ease-out;
   text-decoration: none;
   max-height: 40px;
-  max-width: 90px;
+  max-width: 110px;
 }
 #button:hover {
   background-color: #ABAF95;
