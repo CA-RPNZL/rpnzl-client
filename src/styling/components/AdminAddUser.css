@@ -1,3 +1,20 @@
+#AdminAddUser Button {
+  background-color: #E8EADD;
+  border: 2px solid #ABAF95;
+  font-family: "Montserrat";
+  border-radius: 4px;
+  font-weight: bolder;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  text-decoration: none;
+  max-height: 40px;
+  max-width: 90px;
+}
+#AdminAddUser Button:hover {
+  background-color: #ABAF95;
+  color: white;
+}
 #AdminAddUser .modalForm {
   text-align: center;
 }
