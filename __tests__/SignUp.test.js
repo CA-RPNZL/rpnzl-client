@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import SignUp from '../src/pages/SignUp';
 import axios from 'axios';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 jest.mock('axios');
 
@@ -43,9 +43,6 @@ describe('SignUp component', () => {
 
     // Click the "Sign up" button
     fireEvent.click(getByText('Sign up'));
- 
-    await waitFor(() => {
-   
-    });
+
   });
 });

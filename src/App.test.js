@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Loader from '../src/components/Loader';
 import ServicesCard from '../src/components/ServicesCard';
 import AppointmentsTab from '../src/components/AdminAppointmentsTab';
@@ -9,6 +9,14 @@ import ModalForm from '../src/components/ModalFormAdd';
 import { MemoryRouter } from 'react-router-dom';
 import SignUp from '../src/pages/SignUp';
 import axios from 'axios';
+import PersonalDetailsForm from '../src/components/PersonalDetailsForm';
+import { BrowserRouter as Router } from 'react-router-dom';
+import PasswordForm from '../src/components/PasswordForm';
+import PortalAppointments from '../src/components/PortalAppointments';
+import PreConfirmation from '../src/components/PreConfirmation';
+import { AppointmentProvider } from '../src/contexts/AppointmentContext';
+import ReviewCarousel from '../src/components/ReviewCarousel';
+
 
 
 
@@ -232,54 +240,152 @@ describe('SignUp component', () => {
     fireEvent.change(getByLabelText('Last Name:'), { target: { value: 'Doe' } });
     fireEvent.change(getByLabelText('Email Address:'), { target: { value: 'john@example.com' } });
     fireEvent.change(getByLabelText('Mobile Number:'), { target: { value: '1234567890' } });
-    fireEvent.change(getByLabelText('Password:'), { target: { value: 'password123' } });
-    fireEvent.change(getByLabelText('Confirm Password:'), { target: { value: 'password123' } });
+    fireEvent.change(getByLabelText('Password:'), { target: { value: 'Password123!' } });
+    fireEvent.change(getByLabelText('Confirm Password:'), { target: { value: 'Password123!' } });
 
     // Click the "Sign up" button
     fireEvent.click(getByText('Sign up'));
- 
-    await waitFor(() => {
-   
-    });
+
   });
 });
 
 
 
-// Sign-up Password Validation Test
-// jest.mock('react-router-dom', () => ({
-//   ...jest.requireActual('react-router-dom'),
-//   useNavigate: jest.fn(),
-// }));
+// Personal Details Form Test
 
-// describe('SignUp component', () => {
-//   test('handles password validation and prevents navigation on failure', async () => {
-//     // Mock the useNavigate function
-//     const mockNavigate = jest.fn();
-//     require('react-router-dom').useNavigate.mockReturnValue(mockNavigate);
+// Mock react-router-dom module
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => jest.fn(),
+}));
 
-//     const { getByLabelText, getAllByText, getByText } = render(<SignUp />);
+describe('PersonalDetailsForm Component', () => {
+  it('renders without crashing', () => {
+    render(
+      <Router>
+        <PersonalDetailsForm />
+      </Router>
+    );
+  });
+});
 
-//     // Simulate user input with a weak password
-//     fireEvent.change(getByLabelText('Password:'), { target: { value: 'weak' } });
-//     fireEvent.change(getByLabelText('Confirm Password:'), { target: { value: 'weak' } });
 
-//     // Click the "Sign up" button
-//     fireEvent.click(getByText('Sign up'));
 
-//     await waitFor(
-//       () => {
-//         // Assert: useNavigate is not called
-//         expect(mockNavigate).not.toHaveBeenCalled();
-//       },
-//       { timeout: 5000 } 
-//     );
 
-//     // Check for the warning message
-//     const warningMessage = getAllByText('Password must exceed 8 characters.', { exact: false });
-//     expect(warningMessage).toBeInTheDocument();
-//   });
-// });
+// Password Form test
+
+// Mock react-router-dom module
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => jest.fn(),
+}));
+
+describe('PasswordForm Component', () => {
+  it('renders without crashing', () => {
+    render(
+      <Router>
+        <PasswordForm />
+      </Router>
+    );
+  });
+});
+
+
+
+// Portal Appointments test
+
+// Mock react-router-dom module
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => jest.fn(),
+}));
+
+describe('PortalAppointments Component', () => {
+  it('renders without crashing', () => {
+    render(
+      <Router>
+        <PortalAppointments />
+      </Router>
+    );
+
+  });
+});
+
+
+
+// Preconfirmation Test
+// Mock the AppointmentContext
+jest.mock('../src/contexts/AppointmentContext', () => ({
+  ...jest.requireActual('../src/contexts/AppointmentContext'),
+  useContext: jest.fn(),
+}));
+
+describe('PreConfirmation Component', () => {
+  test('renders with appointment data', () => {
+    // Mock the context data
+    const mockAppointment = {
+      client: '123',
+      selectedService: { name: 'Haircut' },
+      selectedHairstylist: { firstName: 'Jo', lastName: 'Doe' },
+      selectedStartDateTime: new Date('2023-01-01T12:00:00Z'),
+      selectedEndDateTime: new Date('2023-01-01T13:00:00Z'),
+    };
+
+    // Mock the useContext hook
+    jest.spyOn(React, 'useContext').mockReturnValue(mockAppointment);
+
+    // Render the component within the AppointmentProvider
+    render(
+      <AppointmentProvider>
+        <PreConfirmation />
+      </AppointmentProvider>
+    );
+
+    // Check if the selected service is displayed
+    const serviceElement = screen.getByText('Services');
+    expect(serviceElement).toBeInTheDocument();
+
+    // Check if the selected hairstylist is displayed
+    const hairstylistElement = screen.getByText('Hairstylist');
+    expect(hairstylistElement).toBeInTheDocument();
+
+    // Check if the selected date and time are displayed
+    const dateTimeElement = screen.getByText('Date and time');
+    expect(dateTimeElement).toBeInTheDocument();
+
+  });
+});
+
+
+
+
+// Review Carousel Tests
+describe('ReviewCarousel Component', () => {
+  it('renders without crashing', () => {
+    render(<ReviewCarousel />);
+  });
+});
+
+describe('ReviewCarousel Component', () => {
+  it('renders carousel slides with reviews', () => {
+    const { getAllByText } = render(<ReviewCarousel />);
+
+    // Check if specific review text is present in at least one of the carousel slides
+    const reviewElements = getAllByText(/"The best salon in town"|Quality services and friendly staff|I will keep coming back here/);
+
+    // Ensure at least one element with each text is present
+    expect(reviewElements.length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+
+
+
+
+
+
+
+
 
 
 
