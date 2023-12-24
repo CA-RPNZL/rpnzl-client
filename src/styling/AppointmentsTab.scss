@@ -25,3 +25,12 @@
     }
   }
 }
+
+@media screen and (max-width: $tablet) {
+    #hairstylistname,
+    #servicename,
+    #startTime,
+    #duration {
+      display: none;
+    }
+}

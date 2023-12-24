@@ -36,6 +36,13 @@
     }
 }
 
+//media query for tablets and smaller screens dispaly less columns
+@media screen and (max-width: $tablet) {
+    #description,
+    #duration {
+      display: none;
+    }     
+}
 
 // Media query for mobile
 @media screen and (max-width: $mobile) {

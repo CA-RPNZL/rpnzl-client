@@ -26,4 +26,12 @@
     }
   }
 }
-  
+
+//media query for tablets and smaller screens dispaly less columns
+@media screen and (max-width: $tablet) {
+  #email,
+  #isHairstylist,
+  #services {
+    display: none;
+  }  
+}
