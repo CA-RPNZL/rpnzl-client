@@ -42,7 +42,7 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
             duration: serviceDuration ?? data.duration
         }
         
-        console.log(updatedData);
+        // console.log(updatedData);
         
         // Send PATCH request to update service
         try {
@@ -65,7 +65,7 @@ const AdminUpdateService = ({open, close, data, updateServicesList}) => {
             };
 
             await response.json();
-            console.log(response);
+            // console.log(response);
         } 
         catch (error) {
             console.error(error);

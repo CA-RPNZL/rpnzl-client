@@ -24,7 +24,6 @@ function PasswordForm() {
 
         // Check if password length is under 8
         if (newPassword.length < 8) {
-            console.log()
             // Display warning message in the console
             toast.warning("Password must exceed 8 characters.");
             return;

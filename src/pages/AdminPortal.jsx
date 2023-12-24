@@ -50,7 +50,7 @@ function AdminPortal() {
         );
 
         setAppointments(filterAppointments);
-        console.log(responseData);
+        // console.log(responseData);
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +68,7 @@ function AdminPortal() {
         });
         const responseData = await response.json();
         setUsers(responseData);
-        console.log(responseData);
+        // console.log(responseData);
       } catch (error) {
         console.log(error);
       }
@@ -138,7 +138,7 @@ function AdminPortal() {
     e.preventDefault();
     switch (activeTab) {
       case 'appointments':
-        console.log("Update appointment: " + updateObject._id);
+        // console.log("Update appointment: " + updateObject._id);
         try {
           // Prepare appointment data to be sent
           const updateAppointmentData = {
@@ -151,7 +151,7 @@ function AdminPortal() {
           }
           
           // Navigate to booking page with appointment data
-          console.log(updateAppointmentData);
+          // console.log(updateAppointmentData);
           navigate("/booking", { state: {updateAppointmentData}});
     
         } catch (error) {
@@ -159,7 +159,7 @@ function AdminPortal() {
         }
         break;
       case 'users':
-        console.log("Update user: " + updateObject._id);
+        // console.log("Update user: " + updateObject._id);
 
         // Set user object data
         setUpdateObjectData(updateObject);
@@ -168,7 +168,7 @@ function AdminPortal() {
         setOpenUpdateUserModal(true);
         break;
       case 'services':
-        console.log("Update service: " + updateObject._id);
+        // console.log("Update service: " + updateObject._id);
         
         // Set service object data
         setUpdateObjectData(updateObject);
@@ -299,8 +299,8 @@ function AdminPortal() {
           },
         });
         const responseData = await response.json();
-        console.log("updateUsersList");
-        console.log(responseData);
+        // console.log("updateUsersList");
+        // console.log(responseData);
         setUsers(responseData);
       } catch (error) {
         console.log(error);

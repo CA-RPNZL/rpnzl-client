@@ -58,7 +58,7 @@ function PortalAppointments() {
                 }
                 const responseData = await response.json();
                 setAppointmentsList(responseData);
-                console.log(responseData);
+                // console.log(responseData);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -93,7 +93,7 @@ function PortalAppointments() {
             const currentApptId = document.querySelector("li.selected div").id;
 
             // Get ID of selected appointment
-            console.log("Current appointment ID: " + currentApptId);
+            // console.log("Current appointment ID: " + currentApptId);
     
             // Cancel appointment
     
@@ -138,7 +138,7 @@ function PortalAppointments() {
             const currentApptId = document.querySelector("li.selected div").id;
             
             // Get ID of selected appointment
-            console.log("Current appointment ID: " + currentApptId);
+            // console.log("Current appointment ID: " + currentApptId);
     
             // GET request: /appointments/id/:id
             const result = await fetch(process.env.REACT_APP_API + "/appointments/id/" + currentApptId, {
@@ -160,7 +160,7 @@ function PortalAppointments() {
 
             // Navigate to booking page with appointment data
             // navigate("/new-route", { state: { key: "value" } });
-            console.log(updateAppointmentData);
+            // console.log(updateAppointmentData);
             navigate("/booking", { state: {updateAppointmentData}});
         } catch (error) {
             console.error("Error preparing to update appointment:", error);

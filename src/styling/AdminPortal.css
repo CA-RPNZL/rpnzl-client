@@ -52,7 +52,26 @@
 }
 
 @media screen and (max-width: 768px) {
+  #tab-buttons {
+    display: flex;
+    transition: 0.3s ease-in;
+    background-color: #FBF8F0;
+  }
   #tab-buttons a {
+    font-size: 22px;
+    color: black;
+    padding: 15px;
+  }
+  #tab-buttons a:hover {
     font-size: 25px;
+  }
+  .userColumnHeadings span:nth-child(3), .userColumnHeadings span:nth-child(4), .userColumnHeadings span:nth-child(5) {
+    display: none;
+  }
+  .appointmentsColumnHeadings span:nth-child(2), .appointmentsColumnHeadings span:nth-child(3), .appointmentsColumnHeadings span:nth-child(5), .appointmentsColumnHeadings span:nth-child(6) {
+    display: none;
+  }
+  .servicesColumnHeadings span:nth-child(2), .servicesColumnHeadings span:nth-child(4) {
+    display: none;
   }
 }/*# sourceMappingURL=AdminPortal.css.map */
