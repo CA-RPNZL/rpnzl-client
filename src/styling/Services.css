@@ -26,12 +26,6 @@
     flex-flow: column wrap;
   }
 }
-@media screen and (max-width: 768px) {
-  #description,
-  #duration {
-    display: none;
-  }
-}
 @media screen and (max-width: 480px) {
   #services h1 {
     font-size: 2rem;

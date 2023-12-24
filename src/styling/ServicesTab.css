@@ -26,4 +26,14 @@
 .servicesTab #button:hover {
   background-color: #ABAF95;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  #servicename {
+    display: flex;
+  }
+  #description,
+  #duration {
+    display: none;
+  }
 }/*# sourceMappingURL=ServicesTab.css.map */
