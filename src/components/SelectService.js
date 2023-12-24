@@ -46,7 +46,7 @@ function SelectService() {
         if (appId) {
             // Set service as per stored data
             setService(selectedService);
-            console.log(selectedService);
+            // console.log(selectedService);
         
             // Update Next button to be active
             setDisableNextBtn(false);
@@ -62,7 +62,7 @@ function SelectService() {
 
         // Set selected service
         setService(selectedService);
-        console.log(selectedService);
+        // console.log(selectedService);
         
         // Update Next button to be active
         setDisableNextBtn(false);

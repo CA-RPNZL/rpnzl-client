@@ -63,6 +63,7 @@ function SignUp() {
   
     try {
       // Send POST request to the server to create a new user
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post(`${REACT_APP_API}/users`, {
         firstName,
         lastName,
@@ -73,7 +74,7 @@ function SignUp() {
       });
   
       // Log the server response
-      console.log(response.data); 
+      // console.log(response.data); 
 
       // Navigate to login page
       navigate("/login");
