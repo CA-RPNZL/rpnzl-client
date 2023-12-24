@@ -24,3 +24,13 @@
     }
   }
 }
+
+@media screen and (max-width: $tablet) {
+  #servicename {
+    display: flex;
+  }
+  #description,
+  #duration {
+    display: none;
+  }
+}
