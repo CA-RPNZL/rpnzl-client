@@ -84,12 +84,12 @@ function SelectHairstylist() {
             // Get random number from hairstylist list
             let randomNumber = Math.floor(Math.random()*hairstylistList.length);
             let randomHairstylist = hairstylistList[randomNumber];
-            console.log(randomHairstylist);
+            // console.log(randomHairstylist);
             setHairstylist(randomHairstylist);
             updateInputBtn(randomHairstylist);
         } else {
             setHairstylist(selectedHairstylist);
-            console.log(selectedHairstylist);
+            // console.log(selectedHairstylist);
         }
 
         // Update Next button to be active

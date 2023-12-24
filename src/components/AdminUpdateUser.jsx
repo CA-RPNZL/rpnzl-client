@@ -76,7 +76,7 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
             services: services ?? data.services,
         };
                 
-        console.log(updatedData);
+        // console.log(updatedData);
 
         // Send PATCH request to update user
         try {
@@ -99,7 +99,7 @@ const AdminUpdateUser = ({open, close, data, servicesList, updateUsersList}) => 
                 };
 
                 await response.json();
-                console.log(response);
+                // console.log(response);
             } catch (error) {
                 console.error(error);
             };

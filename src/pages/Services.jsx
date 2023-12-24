@@ -22,7 +22,7 @@ function Services() {
             } catch (error) {
                 console.error("An error has occurred:", error);
                 setError("An error occurred while loading the list of services.");
-                console.log(process.env.REACT_APP_API + "/services")
+                // console.log(process.env.REACT_APP_API + "/services")
             }
         }
 
