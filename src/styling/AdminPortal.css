@@ -52,6 +52,19 @@
 }
 
 @media screen and (max-width: 768px) {
+  #tab-buttons {
+    display: flex;
+    transition: 0.3s ease-in;
+    background-color: #FBF8F0;
+  }
+  #tab-buttons a {
+    font-size: 22px;
+    color: black;
+    padding: 15px;
+  }
+  #tab-buttons a:hover {
+    font-size: 25px;
+  }
   .userColumnHeadings span:nth-child(3), .userColumnHeadings span:nth-child(4), .userColumnHeadings span:nth-child(5) {
     display: none;
   }
