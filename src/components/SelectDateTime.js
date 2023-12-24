@@ -99,7 +99,7 @@ function SelectDateTime() {
         }],
         fullBooking: unavailableDates,
         onSelectDatetime: (timestamp) => {
-            console.log("Timestamp is: " + timestamp);
+            // console.log("Timestamp is: " + timestamp);
 
             // Format date using timestamp (milliseconds)
             let startDateTime = new Date(timestamp);
@@ -113,8 +113,8 @@ function SelectDateTime() {
             // Update values in appointment context
             setStartDateTime(startDateTime);
             setEndDateTime(endDateTime);
-            console.log("startDateTime is: " + startDateTime);
-            console.log("endDateTime is: " + endDateTime);
+            // console.log("startDateTime is: " + startDateTime);
+            // console.log("endDateTime is: " + endDateTime);
         }
     };
 
